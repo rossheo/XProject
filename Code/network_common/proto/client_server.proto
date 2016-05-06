@@ -1,0 +1,9 @@
+// client_server.proto (UTF-8 without BOM)
+import public "common.proto";
+
+package PC2S;
+
+message Chat
+{
+    required string message = 1;
+}

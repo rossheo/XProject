@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="defines">
+      <UniqueIdentifier>{e2bee56f-11fd-4012-8d16-ded6bf0b299e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cppformat">
+      <UniqueIdentifier>{3c665b4a-ccb6-4513-b73e-06be23e8b5b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sync_object">
+      <UniqueIdentifier>{71232532-4023-4ebd-8a3a-b216af3dec63}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="boost_define.h">
+      <Filter>defines</Filter>
+    </ClInclude>
+    <ClInclude Include="data_type.h">
+      <Filter>defines</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_define.h">
+      <Filter>defines</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="global_common.h" />
+    <ClInclude Include="log4plus_define.h">
+      <Filter>defines</Filter>
+    </ClInclude>
+    <ClInclude Include="format.h">
+      <Filter>cppformat</Filter>
+    </ClInclude>
+    <ClInclude Include="macro_define.h">
+      <Filter>defines</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.h">
+      <Filter>defines</Filter>
+    </ClInclude>
+    <ClInclude Include="rw_lock.h">
+      <Filter>sync_object</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="format.cc">
+      <Filter>cppformat</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

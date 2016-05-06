@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="network_common">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="proto">
+      <UniqueIdentifier>{f7c62487-fbd1-4608-8d78-3c98ad40e503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pb">
+      <UniqueIdentifier>{412e9c80-0dea-4450-8011-d0a821f477e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="packet_header">
+      <UniqueIdentifier>{0dfffc69-4b22-43e0-8a55-69d754f018cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sessions">
+      <UniqueIdentifier>{864c609c-d5fb-42b2-8d98-7e5e3cda61a2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="packet_buffer.h">
+      <Filter>network_common</Filter>
+    </ClInclude>
+    <ClInclude Include="pb\client_server.pb.h">
+      <Filter>pb</Filter>
+    </ClInclude>
+    <ClInclude Include="pb\common.pb.h">
+      <Filter>pb</Filter>
+    </ClInclude>
+    <ClInclude Include="pb\server_client.pb.h">
+      <Filter>pb</Filter>
+    </ClInclude>
+    <ClInclude Include="packet_handler_manager.h">
+      <Filter>network_common</Filter>
+    </ClInclude>
+    <ClInclude Include="packet_define.h">
+      <Filter>network_common</Filter>
+    </ClInclude>
+    <ClInclude Include="p_client_server.h">
+      <Filter>packet_header</Filter>
+    </ClInclude>
+    <ClInclude Include="p_server_client.h">
+      <Filter>packet_header</Filter>
+    </ClInclude>
+    <ClInclude Include="session.h">
+      <Filter>sessions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="packet_buffer.cpp">
+      <Filter>network_common</Filter>
+    </ClCompile>
+    <ClCompile Include="pb\client_server.pb.cc">
+      <Filter>pb</Filter>
+    </ClCompile>
+    <ClCompile Include="pb\common.pb.cc">
+      <Filter>pb</Filter>
+    </ClCompile>
+    <ClCompile Include="pb\server_client.pb.cc">
+      <Filter>pb</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="proto\client_server.proto">
+      <Filter>proto</Filter>
+    </None>
+    <None Include="proto\common.proto">
+      <Filter>proto</Filter>
+    </None>
+    <None Include="proto\server_client.proto">
+      <Filter>proto</Filter>
+    </None>
+  </ItemGroup>
+</Project>

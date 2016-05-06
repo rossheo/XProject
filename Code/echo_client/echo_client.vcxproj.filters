@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="echo_client">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="sessions">
+      <UniqueIdentifier>{1adbd62e-819d-4434-b81d-a37cb47427a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="app">
+      <UniqueIdentifier>{9af624b0-5ae9-423a-837e-002b751d02f5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="targetver.h">
+      <Filter>echo_client</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="server_session.h">
+      <Filter>sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="echo_client_app.h">
+      <Filter>app</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="echo_client.cpp">
+      <Filter>echo_client</Filter>
+    </ClCompile>
+    <ClCompile Include="server_session_handler.cpp">
+      <Filter>sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="echo_client_app.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+// server_client.proto (UTF-8 without BOM)
+import public "common.proto";
+
+package PS2C;
+
+message Chat
+{
+    required string message = 1;
+}
