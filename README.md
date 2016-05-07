@@ -12,7 +12,7 @@
 ### Supported Platforms
  - Windows
 
-### Third party library is used in the project is as follows
+### The following third party libraries are used in the project
  - boost library 1.60
  - cppformat 2.0.0
  - google-protobuf 2.6.1
