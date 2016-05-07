@@ -65,17 +65,11 @@ bool ServerApp<TSession>::Initialize(AppConfig&& appConfig)
 
         PostAccept();
     }
-    catch (boost::system::error_code& errorCode)
+    catch (const boost::system::error_code& errorCode)
     {
         LOG_ERROR(LOG_FILTER_SERVER, "Fail to initialized."
             " error_code: {}, error_message: {}",
             errorCode.value(), errorCode.message());
-        return false;
-    }
-    catch (std::exception& exception)
-    {
-        LOG_ERROR(LOG_FILTER_SERVER, "Fail to initialized."
-            " exception: {}", exception.what());
         return false;
     }
 

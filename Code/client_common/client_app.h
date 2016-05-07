@@ -63,7 +63,7 @@ bool ClientApp<TSession>::Initialize(AppConfig&& appConfig)
 
         PostReceive();
     }
-    catch (boost::system::error_code& errorCode)
+    catch (const boost::system::error_code& errorCode)
     {
         LOG_ERROR(LOG_FILTER_CLIENT, "Fail to initialized."
             " error_code: {}, error_message: {}",
