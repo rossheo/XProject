@@ -7,7 +7,7 @@
  - Using the boost library, anyone can easily use.
 
 ### Build requirements
- - Visual Studio 2015
+ - Visual Studio 2015 Update2
 
 ### Supported Platforms
  - Windows
@@ -18,6 +18,9 @@
  - google-protobuf 2.6.1
  - log4plus 1.2.0
  - loki 0.1.7
+
+### Third party archive file download.
+ - https://www.npteam.net/973
 
 ### Third party library directory tree.
 ```
