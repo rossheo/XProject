@@ -12,17 +12,17 @@
 ### Supported Platforms
  - Windows
 
-### Third party library is used in the project is as follows.
+### Third party library is used in the project is as follows
  - boost library 1.60
  - cppformat 2.0.0
  - google-protobuf 2.6.1
  - log4plus 1.2.0
  - loki 0.1.7
 
-### Third party archive file download.
+### Third party archive file download
  - https://www.npteam.net/973
 
-### Third party library directory tree.
+### Third party library directory tree
 ```
 |-- SDKs
 |   |-- boost_1_60_0
