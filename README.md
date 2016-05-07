@@ -6,10 +6,10 @@
  - XProject is a echo server/client based on boost asio library.
  - Using the boost library, anyone can easily use.
 
-### Build requirements
+### Build requirement
  - Visual Studio 2015 Update2
 
-### Supported Platforms
+### Supported Platform
  - Windows
 
 ### The following third party libraries are used in the project
