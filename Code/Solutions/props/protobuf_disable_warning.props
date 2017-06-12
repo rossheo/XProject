@@ -4,7 +4,6 @@
     <ClCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);_SCL_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
       <DisableSpecificWarnings>4267;4100;4800;</DisableSpecificWarnings>
-      <WarningLevel>Level3</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />
