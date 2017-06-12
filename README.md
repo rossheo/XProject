@@ -8,7 +8,7 @@
  - Using the boost library, anyone can easily use.
 
 ### Build requirement
- - Visual Studio 2015 Update2
+ - Visual Studio 2015 Update3
 
 ### Supported Platform
  - Windows
@@ -16,7 +16,7 @@
 ### The following third party libraries are used in the project
  - boost library 1.60
  - cppformat 2.0.0
- - google-protobuf 2.6.1
+ - google-protobuf 3.3.0 (In progress)
  - log4plus 1.2.0
  - loki 0.1.7
 
