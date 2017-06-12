@@ -94,7 +94,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>$(ProjectDir)proto_build.bat</Command>
+      <Command>$(ProjectDir)proto_build.cmd</Command>
       <Message>protobuf_build</Message>
     </PreBuildEvent>
     <CustomBuildStep>
@@ -114,13 +114,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <DisableSpecificWarnings>4267;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
-      <Command>$(ProjectDir)proto_build.bat</Command>
+      <Command>$(ProjectDir)proto_build.cmd</Command>
       <Message>protobuf_build</Message>
     </PreBuildEvent>
     <CustomBuildStep>
@@ -151,7 +150,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>$(ProjectDir)proto_build.bat</Command>
+      <Command>$(ProjectDir)proto_build.cmd</Command>
       <Message>protobuf_build</Message>
     </PreBuildEvent>
     <CustomBuildStep>
@@ -182,7 +181,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <PreBuildEvent>
-      <Command>$(ProjectDir)proto_build.bat</Command>
+      <Command>$(ProjectDir)proto_build.cmd</Command>
       <Message>protobuf_build</Message>
     </PreBuildEvent>
     <CustomBuildStep>
@@ -200,9 +199,9 @@
     <ClInclude Include="packet_buffer.h" />
     <ClInclude Include="packet_define.h" />
     <ClInclude Include="packet_handler_manager.h" />
-    <ClInclude Include="pb\client_server.pb.h" />
-    <ClInclude Include="pb\common.pb.h" />
-    <ClInclude Include="pb\server_client.pb.h" />
+    <ClInclude Include="pb_cpp\client_server.pb.h" />
+    <ClInclude Include="pb_cpp\common.pb.h" />
+    <ClInclude Include="pb_cpp\server_client.pb.h" />
     <ClInclude Include="p_client_server.h" />
     <ClInclude Include="p_server_client.h" />
     <ClInclude Include="session.h" />
@@ -210,22 +209,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="packet_buffer.cpp" />
-    <ClCompile Include="pb\client_server.pb.cc">
+    <ClCompile Include="pb_cpp\client_server.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="pb\common.pb.cc">
+    <ClCompile Include="pb_cpp\common.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="pb\server_client.pb.cc">
+    <ClCompile Include="pb_cpp\server_client.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">

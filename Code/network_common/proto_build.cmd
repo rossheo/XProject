@@ -1,0 +1,40 @@
+@ECHO OFF
+CD /d %~dp0
+SETLOCAL ENABLEDELAYEDEXPANSION
+
+SET PROTO_EXE=%CD%\..\..\build\protoc-3.3.0\bin\protoc.exe
+SET INCLUDE_PATH=.\proto
+SET CPP_OUT_PATH=%CD%\pb_cpp
+SET CSHARP_OUT_PATH=%CD%\pb_csharp
+SET PROTO_FILES=
+FOR %%i in (%INCLUDE_PATH%\*.proto) DO (SET PROTO_FILES=!PROTO_FILES! %%i)
+
+:: -- Create proto temp directory -- ::
+SET TEMP_DIR=%TEMP%\PROTO
+SET TEMP_DIR_CPP=%TEMP%\PROTO\CPP
+SET TEMP_DIR_CSHARP=%TEMP%\PROTO\CSHARP
+RMDIR %TEMP_DIR% /S /Q
+
+:: -- Build cpp -- ::
+MKDIR %TEMP_DIR_CPP%
+%PROTO_EXE% -I=%INCLUDE_PATH% --cpp_out=%TEMP_DIR_CPP% %PROTO_FILES%
+IF %ERRORLEVEL% NEQ 0 (
+	ECHO cpp build error.
+	EXIT /B 1
+)
+
+robocopy.exe /MIR %TEMP_DIR_CPP% %CPP_OUT_PATH%
+IF %ERRORLEVEL% GEQ 4 (EXIT /B 1) ELSE (@SET ERRORLEVEL=0)
+
+:: -- Build csharp -- ::
+MKDIR %TEMP_DIR_CSHARP%
+%PROTO_EXE% -I=%INCLUDE_PATH% --csharp_out=%TEMP_DIR_CSHARP% %PROTO_FILES%
+IF %ERRORLEVEL% NEQ 0 (
+	ECHO csharp build error.
+	EXIT /B 1
+)
+
+robocopy.exe /MIR %TEMP_DIR_CSHARP% %CSHARP_OUT_PATH%
+IF %ERRORLEVEL% GEQ 4 (EXIT /B 1) ELSE (@SET ERRORLEVEL=0)
+
+ECHO build complete.

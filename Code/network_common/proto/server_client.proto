@@ -1,9 +1,9 @@
-// server_client.proto (UTF-8 without BOM)
+﻿syntax = "proto3";
 import public "common.proto";
 
 package PS2C;
 
 message Chat
 {
-    required string message = 1;
+    string message = 1;
 }

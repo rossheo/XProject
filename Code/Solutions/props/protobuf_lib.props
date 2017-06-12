@@ -4,10 +4,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SDKS_DIR)protobuf\include\;</AdditionalIncludeDirectories>
     </ClCompile>
-    <Link>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(SDKS_DIR)protobuf\lib\;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);libprotobuf_$(Platform)_$(Configuration).lib</AdditionalDependencies>
-    </Link>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

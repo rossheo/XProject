@@ -8,29 +8,20 @@
     <Filter Include="proto">
       <UniqueIdentifier>{f7c62487-fbd1-4608-8d78-3c98ad40e503}</UniqueIdentifier>
     </Filter>
-    <Filter Include="pb">
-      <UniqueIdentifier>{412e9c80-0dea-4450-8011-d0a821f477e5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="packet_header">
       <UniqueIdentifier>{0dfffc69-4b22-43e0-8a55-69d754f018cf}</UniqueIdentifier>
     </Filter>
     <Filter Include="sessions">
       <UniqueIdentifier>{864c609c-d5fb-42b2-8d98-7e5e3cda61a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="pb_cpp">
+      <UniqueIdentifier>{412e9c80-0dea-4450-8011-d0a821f477e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="packet_buffer.h">
       <Filter>network_common</Filter>
-    </ClInclude>
-    <ClInclude Include="pb\client_server.pb.h">
-      <Filter>pb</Filter>
-    </ClInclude>
-    <ClInclude Include="pb\common.pb.h">
-      <Filter>pb</Filter>
-    </ClInclude>
-    <ClInclude Include="pb\server_client.pb.h">
-      <Filter>pb</Filter>
     </ClInclude>
     <ClInclude Include="packet_handler_manager.h">
       <Filter>network_common</Filter>
@@ -47,20 +38,29 @@
     <ClInclude Include="session.h">
       <Filter>sessions</Filter>
     </ClInclude>
+    <ClInclude Include="pb_cpp\client_server.pb.h">
+      <Filter>pb_cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="pb_cpp\common.pb.h">
+      <Filter>pb_cpp</Filter>
+    </ClInclude>
+    <ClInclude Include="pb_cpp\server_client.pb.h">
+      <Filter>pb_cpp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="packet_buffer.cpp">
       <Filter>network_common</Filter>
     </ClCompile>
-    <ClCompile Include="pb\client_server.pb.cc">
-      <Filter>pb</Filter>
+    <ClCompile Include="pb_cpp\client_server.pb.cc">
+      <Filter>pb_cpp</Filter>
     </ClCompile>
-    <ClCompile Include="pb\common.pb.cc">
-      <Filter>pb</Filter>
+    <ClCompile Include="pb_cpp\common.pb.cc">
+      <Filter>pb_cpp</Filter>
     </ClCompile>
-    <ClCompile Include="pb\server_client.pb.cc">
-      <Filter>pb</Filter>
+    <ClCompile Include="pb_cpp\server_client.pb.cc">
+      <Filter>pb_cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
