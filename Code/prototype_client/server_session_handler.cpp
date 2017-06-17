@@ -15,7 +15,7 @@ IMPLEMENT_INITIALIZE(ServerSession)
 }
 
 IMPLEMENT_HANDLER(ServerSession, PS2C_Chat)
-{ 
+{
     std::wstring message(FromUTF8(packet.message()));
 
     LOG_INFO(LOG_FILTER_CLIENT, "FromServer: {}", message);
