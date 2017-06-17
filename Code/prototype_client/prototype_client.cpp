@@ -28,6 +28,12 @@ int main()
                 LOG_INFO(LOG_FILTER_CLIENT, "quit client.");
                 break;
             }
+            else if (message == TEXT("login"))
+            {
+                g_PrototypeClientApp.SendAuth(TEXT("proto_id"), TEXT("proto_pw"));
+                inputMessage.fill(L'\0');
+                continue;
+            }
 
             g_PrototypeClientApp.SendMessage(message);
             inputMessage.fill(L'\0');

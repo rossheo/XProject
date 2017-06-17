@@ -8,7 +8,9 @@ namespace PC2S
     enum ProtocolNumber : uint16
     {
         Chat,
+        Auth,
     };
 }
 
 DECLARE_PACKET_TYPE(PC2S, Chat);
+DECLARE_PACKET_TYPE(PC2S, Auth);

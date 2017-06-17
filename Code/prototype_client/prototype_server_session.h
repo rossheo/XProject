@@ -5,15 +5,15 @@
 namespace XP
 {
 
-class ServerSession : public Session<ServerSession>
+class PrototypeServerSession : public Session<PrototypeServerSession>
 {
 public:
-    explicit ServerSession(boost::asio::io_service& ioservice)
+    explicit PrototypeServerSession(boost::asio::io_service& ioservice)
         : Session(ioservice)
     {
     };
 
-    virtual ~ServerSession()
+    virtual ~PrototypeServerSession()
     {
     };
 
@@ -40,6 +40,14 @@ public:
     {
         PC2S_Chat out;
         out.set_message(ToUTF8(message));
+        SendPacket(out);
+    }
+
+    void SendAuth(const std::wstring& id, const std::wstring& password)
+    {
+        PC2S_Auth out;
+        out.set_id(ToUTF8(id));
+        out.set_password(ToUTF8(password));
         SendPacket(out);
     }
 };

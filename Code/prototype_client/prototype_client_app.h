@@ -1,11 +1,11 @@
 #pragma once
 #include "client_app.h"
-#include "server_session.h"
+#include "prototype_server_session.h"
 
 namespace XP
 {
 
-class PrototypeClientApp : public ClientApp<ServerSession>
+class PrototypeClientApp : public ClientApp<PrototypeServerSession>
 {
 public:
     explicit PrototypeClientApp();
@@ -14,6 +14,8 @@ public:
 public:
     virtual bool Initialize(AppConfig&& appConfig) override;
     virtual bool Run() override;
+
+    void SendAuth(const std::wstring& id, const std::wstring& password);
 };
 
 } // namespace XP

@@ -8,7 +8,7 @@
     <ClInclude Include="prototype_client_app.h">
       <Filter>app</Filter>
     </ClInclude>
-    <ClInclude Include="server_session.h">
+    <ClInclude Include="prototype_server_session.h">
       <Filter>sessions</Filter>
     </ClInclude>
   </ItemGroup>
@@ -20,7 +20,7 @@
     <ClCompile Include="prototype_client_app.cpp">
       <Filter>app</Filter>
     </ClCompile>
-    <ClCompile Include="server_session_handler.cpp">
+    <ClCompile Include="prototype_server_session_handler.cpp">
       <Filter>sessions</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,3 +7,9 @@ message Chat
 {
     string message = 1;
 }
+
+message Auth
+{
+    string id = 1;
+    string password = 2;
+}

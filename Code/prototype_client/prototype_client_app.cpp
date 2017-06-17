@@ -29,4 +29,15 @@ bool PrototypeClientApp::Run()
     return true;
 }
 
+void PrototypeClientApp::SendAuth(const std::wstring& id, const std::wstring& password)
+{
+    if (!_spServerSession)
+    {
+        LOG_ERROR(LOG_FILTER_CLIENT, "_spServerSession is nullptr.");
+        return;
+    }
+
+    _spServerSession->SendAuth(id, password);
+}
+
 } // namespace XP

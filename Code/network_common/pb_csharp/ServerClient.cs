@@ -23,11 +23,13 @@ namespace PS2C {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChNzZXJ2ZXJfY2xpZW50LnByb3RvEgRQUzJDGgxjb21tb24ucHJvdG8iFwoE",
-            "Q2hhdBIPCgdtZXNzYWdlGAEgASgJUABiBnByb3RvMw=="));
+            "Q2hhdBIPCgdtZXNzYWdlGAEgASgJIhsKBEF1dGgSEwoLYXV0aF9yZXN1bHQY",
+            "ASABKAlQAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PS2C.Chat), global::PS2C.Chat.Parser, new[]{ "Message" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PS2C.Chat), global::PS2C.Chat.Parser, new[]{ "Message" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PS2C.Auth), global::PS2C.Auth.Parser, new[]{ "AuthResult" }, null, null, null)
           }));
     }
     #endregion
@@ -143,6 +145,123 @@ namespace PS2C {
             break;
           case 10: {
             Message = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Auth : pb::IMessage<Auth> {
+    private static readonly pb::MessageParser<Auth> _parser = new pb::MessageParser<Auth>(() => new Auth());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Auth> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PS2C.ServerClientReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Auth() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Auth(Auth other) : this() {
+      authResult_ = other.authResult_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Auth Clone() {
+      return new Auth(this);
+    }
+
+    /// <summary>Field number for the "auth_result" field.</summary>
+    public const int AuthResultFieldNumber = 1;
+    private string authResult_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AuthResult {
+      get { return authResult_; }
+      set {
+        authResult_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Auth);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Auth other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AuthResult != other.AuthResult) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AuthResult.Length != 0) hash ^= AuthResult.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AuthResult.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AuthResult);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AuthResult.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthResult);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Auth other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AuthResult.Length != 0) {
+        AuthResult = other.AuthResult;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AuthResult = input.ReadString();
             break;
           }
         }
