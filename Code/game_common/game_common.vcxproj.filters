@@ -5,6 +5,12 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
+    <Filter Include="game_common\units">
+      <UniqueIdentifier>{47be01f2-4912-4052-a9c1-bc349aec8653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="game_common\unit_datas">
+      <UniqueIdentifier>{bbc92dda-3f98-46db-9ce7-fb416244e203}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -14,17 +20,29 @@
     <ClInclude Include="unit_id.h">
       <Filter>game_common</Filter>
     </ClInclude>
-    <ClInclude Include="unit.h">
-      <Filter>game_common</Filter>
-    </ClInclude>
-    <ClInclude Include="unitdata.h">
-      <Filter>game_common</Filter>
-    </ClInclude>
     <ClInclude Include="npc_unitdata.h">
-      <Filter>game_common</Filter>
+      <Filter>game_common\unit_datas</Filter>
     </ClInclude>
     <ClInclude Include="player_unitdata.h">
-      <Filter>game_common</Filter>
+      <Filter>game_common\unit_datas</Filter>
+    </ClInclude>
+    <ClInclude Include="unitdata.h">
+      <Filter>game_common\unit_datas</Filter>
+    </ClInclude>
+    <ClInclude Include="unit.h">
+      <Filter>game_common\units</Filter>
+    </ClInclude>
+    <ClInclude Include="game_unit.h">
+      <Filter>game_common\units</Filter>
+    </ClInclude>
+    <ClInclude Include="actor_unit.h">
+      <Filter>game_common\units</Filter>
+    </ClInclude>
+    <ClInclude Include="player_unit.h">
+      <Filter>game_common\units</Filter>
+    </ClInclude>
+    <ClInclude Include="npc_unit.h">
+      <Filter>game_common\units</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -32,17 +50,29 @@
     <ClCompile Include="unit_id.cpp">
       <Filter>game_common</Filter>
     </ClCompile>
-    <ClCompile Include="unit.cpp">
-      <Filter>game_common</Filter>
-    </ClCompile>
-    <ClCompile Include="unitdata.cpp">
-      <Filter>game_common</Filter>
-    </ClCompile>
     <ClCompile Include="npc_unitdata.cpp">
-      <Filter>game_common</Filter>
+      <Filter>game_common\unit_datas</Filter>
     </ClCompile>
     <ClCompile Include="player_unitdata.cpp">
-      <Filter>game_common</Filter>
+      <Filter>game_common\unit_datas</Filter>
+    </ClCompile>
+    <ClCompile Include="unitdata.cpp">
+      <Filter>game_common\unit_datas</Filter>
+    </ClCompile>
+    <ClCompile Include="unit.cpp">
+      <Filter>game_common\units</Filter>
+    </ClCompile>
+    <ClCompile Include="game_unit.cpp">
+      <Filter>game_common\units</Filter>
+    </ClCompile>
+    <ClCompile Include="actor_unit.cpp">
+      <Filter>game_common\units</Filter>
+    </ClCompile>
+    <ClCompile Include="player_unit.cpp">
+      <Filter>game_common\units</Filter>
+    </ClCompile>
+    <ClCompile Include="npc_unit.cpp">
+      <Filter>game_common\units</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

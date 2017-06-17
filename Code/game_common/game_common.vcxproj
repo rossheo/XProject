@@ -71,8 +71,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="actor_unit.h" />
+    <ClInclude Include="game_unit.h" />
     <ClInclude Include="id_pool.h" />
+    <ClInclude Include="npc_unit.h" />
     <ClInclude Include="npc_unitdata.h" />
+    <ClInclude Include="player_unit.h" />
     <ClInclude Include="player_unitdata.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="unit.h" />
@@ -80,7 +84,11 @@
     <ClInclude Include="unit_id.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="actor_unit.cpp" />
+    <ClCompile Include="game_unit.cpp" />
+    <ClCompile Include="npc_unit.cpp" />
     <ClCompile Include="npc_unitdata.cpp" />
+    <ClCompile Include="player_unit.cpp" />
     <ClCompile Include="player_unitdata.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
