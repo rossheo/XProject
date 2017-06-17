@@ -8,8 +8,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="id_pool.h">
+      <Filter>game_common</Filter>
+    </ClInclude>
+    <ClInclude Include="unit_id.h">
+      <Filter>game_common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="unit_id.cpp">
+      <Filter>game_common</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

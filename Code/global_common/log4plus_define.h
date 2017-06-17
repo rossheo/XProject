@@ -43,5 +43,7 @@
 #define LOG_FILTER_CLIENT "Client"
 #define LOG_FILTER_CONNECTION "Connection"
 
+#define LOG_FILTER_ID_POOL "IdPool"
+
 #define LOG_FILTER_PACKET_BUFFER "PacketBuffer"
 #define LOG_FILTER_PACKET_HANDLER "PacketHandler"
