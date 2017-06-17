@@ -82,6 +82,7 @@
     <ClInclude Include="unit.h" />
     <ClInclude Include="unitdata.h" />
     <ClInclude Include="unit_id.h" />
+    <ClInclude Include="unit_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="actor_unit.cpp" />
@@ -97,6 +98,7 @@
     <ClCompile Include="unit.cpp" />
     <ClCompile Include="unitdata.cpp" />
     <ClCompile Include="unit_id.cpp" />
+    <ClCompile Include="unit_manager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

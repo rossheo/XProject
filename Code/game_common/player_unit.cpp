@@ -4,6 +4,8 @@
 
 namespace XP
 {
+const eUnitType PlayerUnit::unitType = eUnitType::PLAYER_UNIT;
+
 PlayerUnit::PlayerUnit(const UnitId& unitId, const PlayerUnitData& playerUnitData)
 {
     SetUnitId(unitId);

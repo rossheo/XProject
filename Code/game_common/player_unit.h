@@ -16,16 +16,14 @@ public:
     PlayerUnit& operator= (const PlayerUnit&) = delete;
 
 public:
-    virtual eUnitType GetType() const override { return _unitType; }
+    static const eUnitType unitType;
+    virtual eUnitType GetType() const override { return unitType; }
 
     virtual void PostCreate() override;
     virtual void OnCreate() override;
 
 protected:
     virtual void Update(float frame) override;
-
-private:
-    const eUnitType _unitType = eUnitType::PLAYER_UNIT;
 };
 
 } // namespace XP

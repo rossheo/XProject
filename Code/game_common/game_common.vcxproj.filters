@@ -44,6 +44,9 @@
     <ClInclude Include="npc_unit.h">
       <Filter>game_common\units</Filter>
     </ClInclude>
+    <ClInclude Include="unit_manager.h">
+      <Filter>game_common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -73,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="npc_unit.cpp">
       <Filter>game_common\units</Filter>
+    </ClCompile>
+    <ClCompile Include="unit_manager.cpp">
+      <Filter>game_common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
