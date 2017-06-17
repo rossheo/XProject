@@ -24,11 +24,12 @@ protected:
 private:
     virtual void PostAccept();
 
+protected:
+    SessionManager<TSession> _sessionManager;
+
 private:
     AppConfig _appConfig;
     bool _isInitialized;
-
-    SessionManager<TSession> _sessionManager;
 
     boost::asio::io_service _ioservice;
     boost::asio::ip::tcp::acceptor _acceptor;
@@ -165,4 +166,4 @@ void ServerApp<TSession>::PostAccept()
     });
 }
 
-} // namespace Xp
+} // namespace XP

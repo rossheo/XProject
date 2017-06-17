@@ -1,4 +1,5 @@
 #pragma once
+#include "player_unit.h"
 
 namespace XP
 {
@@ -11,21 +12,69 @@ public:
     ~SessionManager();
 
 public:
+    struct SessionTag
+    {
+        SessionTag(const TSession* pSession_, const UnitId& unitId_, const PlayerUnit* pUnit_)
+            : pSession(pSession_)
+            , unitId(unitId_)
+            , pUnit(pUnit_)
+        {
+        }
+
+        const TSession* pSession;
+        UnitId unitId;
+        const PlayerUnit* pUnit;
+    };
+
+    struct tagSession {};
+    struct tagUnitId {};
+    struct tagUnit {};
+
+    typedef boost::multi_index::multi_index_container<
+        SessionTag,
+        boost::multi_index::indexed_by
+        <
+        boost::multi_index::hashed_unique<
+        boost::multi_index::tag<tagSession>,
+        boost::multi_index::member<SessionTag, const TSession*, &SessionTag::pSession>
+        >,
+        boost::multi_index::hashed_unique<
+        boost::multi_index::tag<tagUnitId>,
+        boost::multi_index::member<SessionTag, UnitId, &SessionTag::unitId>
+        >,
+        boost::multi_index::hashed_unique<
+        boost::multi_index::tag<tagUnit>,
+        boost::multi_index::member<SessionTag, const PlayerUnit*, &SessionTag::pUnit>
+        >
+        >
+    > SessionMultiIndex;
+
+public:
     std::shared_ptr<TSession> CreateSession(boost::asio::io_service& ioservice);
     void RemoveSession(const TSession* pSession);
 
+    void AssociateUnitWithSession(const TSession& session, const PlayerUnit& unit);
+    bool Get(const TSession* pSession, UnitId& unitId) const;
+    bool Get(const TSession* pSession, PlayerUnit* pUnit) const;
+    bool Get(const UnitId& unitId, TSession* pSession) const;
+    bool Get(const UnitId& unitId, PlayerUnit* pUnit) const;
+    bool Get(const PlayerUnit* pUnit, TSession* pSession) const;
+    bool Get(const PlayerUnit* pUnit, UnitId& unitId) const;
+
 private:
     void AddSession(std::weak_ptr<TSession>&& wpSession);
+    void RemoveSessionMultiIndex(const TSession* pSession);
 
 private:
     std::vector<std::weak_ptr<TSession>> _sessions;
-    SlimRWLock _lock;
+    SessionMultiIndex _sessionMultiIndex;
+    mutable SlimRWLock _lock;
 };
 
 template <typename TSession>
 SessionManager<TSession>::SessionManager()
 {
-    const std::size_t session_reserve = 3000;
+    const std::size_t session_reserve = 5000;
     _sessions.reserve(session_reserve);
 }
 
@@ -60,6 +109,8 @@ void SessionManager<TSession>::RemoveSession(const TSession* pSession)
 
     {
         LOCK_W(_lock);
+
+        RemoveSessionMultiIndex(pSession);
 
         {
             auto it = std::remove_if(_sessions.begin(), _sessions.end(),
@@ -112,6 +163,167 @@ void SessionManager<TSession>::AddSession(std::weak_ptr<TSession>&& wpSession)
 
         _sessions.push_back(std::move(wpSession));
     }
+}
+
+template <typename TSession>
+void SessionManager<TSession>::RemoveSessionMultiIndex(const TSession* pSession)
+{
+    if (!pSession)
+        return;
+
+    auto& session_index = _sessionMultiIndex.get<tagSession>();
+    auto it = session_index.find(pSession);
+    if (it != session_index.end())
+    {
+        session_index.erase(it);
+    }
+}
+
+template <typename TSession>
+void SessionManager<TSession>::AssociateUnitWithSession(
+    const TSession& session, const PlayerUnit& unit)
+{
+    LOCK_W(_lock);
+    _sessionMultiIndex.insert({ &session, unit.GetUnitId(), &unit });
+}
+
+
+template <typename TSession>
+bool SessionManager<TSession>::Get(const TSession* pSession, UnitId& unitId) const
+{
+    if (!pSession)
+    {
+        unitId = UnitId::INVALID:
+        return false;
+    }
+
+    LOCK_R(_lock);
+
+    auto& session_index = _sessionMultiIndex.get<tagSession>();
+    auto it = session_index.find(pSession);
+    if (it != session_index.end())
+    {
+        unitId = (*it).unitId;
+        return true;
+    }
+
+    unitId = UnitId::INVALID:
+    return false;
+}
+
+template <typename TSession>
+bool SessionManager<TSession>::Get(const TSession* pSession, PlayerUnit* pUnit) const
+{
+    if (!pSession)
+    {
+        pUnit = nullptr;
+        return false;
+    }
+
+    LOCK_R(_lock);
+
+    auto& session_index = _sessionMultiIndex.get<tagSession>();
+    auto it = session_index.find(pSession);
+    if (it != session_index.end())
+    {
+        pUnit = const_cast<PlayerUnit*>((*it).pUnit);
+        return true;
+    }
+
+    pUnit = nullptr;
+    return false;
+}
+
+template <typename TSession>
+bool SessionManager<TSession>::Get(const UnitId& unitId, TSession* pSession) const
+{
+    if (unitId.IsInvalid())
+    {
+        pSession = nullptr;
+        return false;
+    }
+
+    LOCK_R(_lock);
+
+    auto& unitId_index = _sessionMultiIndex.get<tagUnitId>();
+    auto it = unitId_index.find(unitId);
+    if (it != unitId_index.end())
+    {
+        pSession = (*it).pSession;
+        return true;
+    }
+
+    pSession = nullptr;
+    return false;
+}
+
+template <typename TSession>
+bool SessionManager<TSession>::Get(const UnitId& unitId, PlayerUnit* pUnit) const
+{
+    if (unitId.IsInvalid())
+    {
+        pUnit = nullptr;
+        return false;
+    }
+
+    LOCK_R(_lock);
+
+    auto& unitId_index = _sessionMultiIndex.get<tagUnitId>();
+    auto it = unitId_index.find(unitId);
+    if (it != unitId_index.end())
+    {
+        pUnit = (*it).pUnit;
+        return true;
+    }
+
+    pUnit = nullptr;
+    return false;
+}
+
+template <typename TSession>
+bool SessionManager<TSession>::Get(const PlayerUnit* pUnit, TSession* pSession) const
+{
+    if (!pUnit)
+    {
+        pSession = nullptr;
+        return false;
+    }
+
+    LOCK_R(_lock);
+
+    auto& unit_index = _sessionMultiIndex.get<tagUnit>();
+    auto it = unit_index.find(pUnit);
+    if (it != unit_index.end())
+    {
+        pSession = (*it).pSession;
+        return true;
+    }
+
+    pSession = nullptr;
+    return false;
+}
+
+template <typename TSession>
+bool SessionManager<TSession>::Get(const PlayerUnit* pUnit, UnitId& unitId) const
+{
+    if (!pUnit)
+    {
+        unitId = unitId::INVALID;
+        return false;
+    }
+
+    LOCK_R(_lock);
+
+    auto& unit_index = _sessionMultiIndex.get<tagUnit>();
+    auto it = unit_index.find(pUnit);
+    if (it != unit_index.end())
+    {
+        unitId = (*it).unitId;
+        return true;
+    }
+
+    unitId = unitId::INVALID;
+    return false;
 }
 
 } // namespace XP

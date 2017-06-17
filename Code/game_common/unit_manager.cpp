@@ -18,7 +18,7 @@ UnitManager::~UnitManager()
 {
 }
 
-PlayerUnit* UnitManager::CreatePlayerUnit(const PlayerUnitData& playerUnitData)
+PlayerUnit* UnitManager::CreatePlayerUnit(PlayerUnitData&& playerUnitData)
 {
     LOCK_W(_lock);
 

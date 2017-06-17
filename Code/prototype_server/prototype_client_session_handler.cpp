@@ -1,22 +1,24 @@
 #include "stdafx.h"
-#include "client_session.h"
+#include "prototype_client_session.h"
 
 #include "p_client_server.h"
 #include "p_server_client.h"
+#include "prototype_server_app.h"
+#include "player_unitdata.h"
 
 namespace XP
 {
 
-DECLARE_HANDLER(ClientSession, PC2S_Chat);
-DECLARE_HANDLER(ClientSession, PC2S_Auth);
+DECLARE_HANDLER(PrototypeClientSession, PC2S_Chat);
+DECLARE_HANDLER(PrototypeClientSession, PC2S_Auth);
 
-IMPLEMENT_INITIALIZE(ClientSession)
+IMPLEMENT_INITIALIZE(PrototypeClientSession)
 {
     REGISTER_HANDLER(PC2S_Chat);
     REGISTER_HANDLER(PC2S_Auth);
 }
 
-IMPLEMENT_HANDLER(ClientSession, PC2S_Chat)
+IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Chat)
 {
     const auto& remoteEndpoint = session.GetSocket().remote_endpoint();
     LOG_INFO(LOG_FILTER_SERVER, "IP:{}, PORT:{}, Message:{}",
@@ -30,7 +32,7 @@ IMPLEMENT_HANDLER(ClientSession, PC2S_Chat)
     return true;
 }
 
-IMPLEMENT_HANDLER(ClientSession, PC2S_Auth)
+IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Auth)
 {
     const auto& remoteEndpoint = session.GetSocket().remote_endpoint();
     LOG_INFO(LOG_FILTER_SERVER, "IP:{}, PORT:{}, ID:{}, PW:{}",
@@ -39,8 +41,17 @@ IMPLEMENT_HANDLER(ClientSession, PC2S_Auth)
         FromUTF8(packet.id()),
         FromUTF8(packet.password()));
 
+    bool login_result = false;
+    if (packet.id() == "proto_id" && packet.password() == "proto_pw")
+        login_result = true;
+
+    PlayerUnitData playerUnitData;
+    playerUnitData.SetName(TEXT("proto_player"));
+    if (!g_PrototypeServerApp.CreatePlayer(session, std::move(playerUnitData)))
+        login_result = false;
+
     PS2C_Auth out;
-    out.set_auth_result("auth_success");
+    out.set_auth_result(login_result ? "auth_success" : "auth_failed");
     session.SendPacket(out);
     return true;
 }

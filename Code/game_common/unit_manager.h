@@ -21,7 +21,7 @@ public:
     virtual ~UnitManager();
 
 public:
-    PlayerUnit* CreatePlayerUnit(const PlayerUnitData& playerUnitData);
+    PlayerUnit* CreatePlayerUnit(PlayerUnitData&& playerUnitData);
     NpcUnit* CreateNpcUnit(const NpcUnitData& npcUnitData);
     void ReleaseUnit(Unit* pUnit);
 

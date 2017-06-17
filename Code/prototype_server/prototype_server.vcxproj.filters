@@ -10,17 +10,23 @@
     <Filter Include="sessions">
       <UniqueIdentifier>{2ece1dd4-3138-4abe-9146-2ff7f5268fc8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="unit_manager">
+      <UniqueIdentifier>{3d84e84d-830b-4dab-9bfb-6f40e6d83f6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
       <Filter>prototype_server</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="client_session.h">
-      <Filter>sessions</Filter>
-    </ClInclude>
     <ClInclude Include="prototype_server_app.h">
       <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype_client_session.h">
+      <Filter>sessions</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype_unit_manager.h">
+      <Filter>unit_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -28,14 +34,17 @@
       <Filter>prototype_server</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="client_session.cpp">
-      <Filter>sessions</Filter>
-    </ClCompile>
     <ClCompile Include="prototype_server_app.cpp">
       <Filter>app</Filter>
     </ClCompile>
-    <ClCompile Include="client_session_handler.cpp">
+    <ClCompile Include="prototype_client_session.cpp">
       <Filter>sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype_client_session_handler.cpp">
+      <Filter>sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype_unit_manager.cpp">
+      <Filter>unit_manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

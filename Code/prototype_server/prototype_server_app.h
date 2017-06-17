@@ -1,11 +1,15 @@
 #pragma once
 
 #include "server_app.h"
-#include "client_session.h"
+#include "prototype_client_session.h"
+#include "prototype_unit_manager.h"
 
 namespace XP
 {
-class PrototypeServerApp : public ServerApp<ClientSession>
+
+class PlayerUnitData;
+
+class PrototypeServerApp : public ServerApp<PrototypeClientSession>
 {
 public:
     explicit PrototypeServerApp();
@@ -14,6 +18,12 @@ public:
 public:
     virtual bool Initialize(AppConfig&& appConfig) override;
     virtual bool Run() override;
+
+    bool CreatePlayer(const PrototypeClientSession& session,
+        PlayerUnitData&& playerUnitData);
+
+private:
+    PrototypeUnitManager _unitManager;
 };
 
 } // namespace XP
