@@ -6,7 +6,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(SDKS_DIR)log4plus\lib\;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies);log4cplusS_$(Platform)_$(Configuration)_Unicode.lib</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies);log4cplusS_$(Platform)_$(Configuration)_Unicode_$(PlatformToolset).lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

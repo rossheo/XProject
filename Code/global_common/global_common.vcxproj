@@ -81,6 +81,7 @@
     <ClInclude Include="singleton.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="stl_define.h" />
+    <ClInclude Include="utf8.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="format.cc" />

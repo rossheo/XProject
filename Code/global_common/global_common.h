@@ -12,6 +12,7 @@
 #include "boost_define.h"
 #include "log4plus_define.h"
 #include "format.h"
+#include "utf8.h"
 #include "rw_lock.h"
 
 #define LOKI_WINDOWS_H

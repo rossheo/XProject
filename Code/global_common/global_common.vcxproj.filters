@@ -10,6 +10,9 @@
     <Filter Include="sync_object">
       <UniqueIdentifier>{71232532-4023-4ebd-8a3a-b216af3dec63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="utf8">
+      <UniqueIdentifier>{a693d01c-27b9-4bd0-9247-ce235c56f648}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boost_define.h">
@@ -37,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="rw_lock.h">
       <Filter>sync_object</Filter>
+    </ClInclude>
+    <ClInclude Include="utf8.h">
+      <Filter>utf8</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

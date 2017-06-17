@@ -15,10 +15,12 @@ IMPLEMENT_INITIALIZE(ServerSession)
 }
 
 IMPLEMENT_HANDLER(ServerSession, PS2C_Chat)
-{
-    LOG_INFO(LOG_FILTER_CLIENT, "FromServer: {}", packet.message());
+{ 
+    std::wstring message(fromUTF8(packet.message()));
 
-    if (boost::starts_with(packet.message(), "loop"))
+    LOG_INFO(LOG_FILTER_CLIENT, "FromServer: {}", message);
+
+    if (boost::starts_with(message, TEXT("loop")))
     {
         PC2S_Chat out;
         out.set_message(packet.message());

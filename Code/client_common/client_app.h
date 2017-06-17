@@ -18,7 +18,7 @@ protected:
 
 public:
     virtual void AsyncRun();
-    virtual void SendMessage(const std::string& message);
+    virtual void SendMessage(const std::wstring& message);
 
 private:
     virtual void PostReceive();
@@ -132,7 +132,7 @@ void ClientApp<TSession>::PostReceive()
 }
 
 template <typename TSession>
-void ClientApp<TSession>::SendMessage(const std::string& message)
+void ClientApp<TSession>::SendMessage(const std::wstring& message)
 {
     if (!_spServerSession)
     {

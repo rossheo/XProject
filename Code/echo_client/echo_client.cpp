@@ -19,11 +19,11 @@ int main()
     {
         g_EchoClientApp.AsyncRun();
 
-        std::array<char, 512> inputMessage = {0};
-        while (std::cin.getline(inputMessage.data(), inputMessage.size()))
+        std::array<wchar_t, 512> inputMessage = {0};
+        while (std::wcin.getline(inputMessage.data(), inputMessage.size()))
         {
-            std::string message(inputMessage.data());
-            if (message == "quit")
+            std::wstring message(inputMessage.data());
+            if (message == TEXT("quit"))
             {
                 LOG_INFO(LOG_FILTER_CLIENT, "quit client.");
                 break;

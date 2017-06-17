@@ -36,10 +36,10 @@ public:
             endpoint.address().to_string(), endpoint.port());
     }
 
-    void SendMessage(const std::string& message)
+    void SendMessage(const std::wstring& message)
     {
         PC2S_Chat out;
-        out.set_message(message);
+        out.set_message(toUTF8(message));
         SendPacket(out);
     }
 };
