@@ -13,6 +13,9 @@
     <Filter Include="utf8">
       <UniqueIdentifier>{a693d01c-27b9-4bd0-9247-ce235c56f648}</UniqueIdentifier>
     </Filter>
+    <Filter Include="enum">
+      <UniqueIdentifier>{7b68536c-ec30-4dc1-bdcc-b3cdef94098e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boost_define.h">
@@ -43,6 +46,9 @@
     </ClInclude>
     <ClInclude Include="utf8.h">
       <Filter>utf8</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>enum</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

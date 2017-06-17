@@ -44,6 +44,7 @@ AppConfig& AppConfig::operator=(AppConfig&& appConfig)
 void AppConfig::Initialize()
 {
     InitWorkingDirectory();
+    CreateLogDirectory();
     InitLog4cplus();
 }
 
@@ -79,6 +80,13 @@ void AppConfig::InitWorkingDirectory() noexcept
 {
     const std::wstring& workingDirectory = GetWorkingDirectory();
     SetCurrentDirectoryW(workingDirectory.c_str());
+}
+
+void AppConfig::CreateLogDirectory() noexcept
+{
+    boost::filesystem::path logPath(GetWorkingDirectory());
+    logPath /= TEXT("logs");
+    boost::filesystem::create_directories(logPath);
 }
 
 void AppConfig::Cleanup() noexcept

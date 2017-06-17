@@ -28,6 +28,7 @@ public:
 private:
     void InitLog4cplus() noexcept;
     void InitWorkingDirectory() noexcept;
+    void CreateLogDirectory() noexcept;
     void Cleanup() noexcept;
 
 private:
