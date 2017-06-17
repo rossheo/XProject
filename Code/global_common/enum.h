@@ -337,6 +337,8 @@ BETTER_ENUMS_CONSTEXPR_ static T* _or_null(optional<T*> maybe)
 
 
 
+#pragma warning(push)
+#pragma warning(disable: 4100)
 // Functional sequencing. This is essentially a comma operator wrapped in a
 // constexpr function. g++ 4.7 doesn't "accept" integral constants in the second
 // position for the comma operator, and emits an external symbol, which then
@@ -364,6 +366,7 @@ struct _eat_assign {
   private:
     EnumType    _value;
 };
+#pragma warning(pop)
 
 
 
