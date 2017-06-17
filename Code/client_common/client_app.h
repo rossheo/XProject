@@ -54,7 +54,7 @@ bool ClientApp<TSession>::Initialize(AppConfig&& appConfig)
     try
     {
         boost::asio::ip::tcp::endpoint endPoint(
-            boost::asio::ip::address::from_string(_appConfig.GetAddress()),
+            boost::asio::ip::address::from_string(toUTF8(_appConfig.GetAddress())),
             _appConfig.GetPort());
 
         _spServerSession = std::make_shared<TSession>(_ioservice);

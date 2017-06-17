@@ -94,12 +94,12 @@ void AppConfig::Cleanup() noexcept
     log4cplus::threadCleanup();
 }
 
-void AppConfig::SetAddress(const std::string& ipAddress)
+void AppConfig::SetAddress(const std::wstring& ipAddress)
 {
     _ipAddress = ipAddress;
 }
 
-std::string AppConfig::GetAddress() const
+std::wstring AppConfig::GetAddress() const
 {
     return _ipAddress;
 }

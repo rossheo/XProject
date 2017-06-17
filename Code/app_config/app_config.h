@@ -20,8 +20,8 @@ public:
     std::wstring GetWorkingDirectory() const;
 
     std::wstring GetAppName() const;
-    void SetAddress(const std::string& ipAddress);
-    std::string GetAddress() const;
+    void SetAddress(const std::wstring& ipAddress);
+    std::wstring GetAddress() const;
     void SetPort(uint16 port);
     uint16 GetPort() const;
 
@@ -34,7 +34,7 @@ private:
 private:
     std::wstring _appName;
     std::wstring _logFilePropertyName;
-    std::string _ipAddress;
+    std::wstring _ipAddress;
     uint16 _port;
 };
 

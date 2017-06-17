@@ -11,7 +11,7 @@ int main()
     std::locale::global(std::locale("korean"));
     std::wcout.imbue(std::locale("korean"));
 
-    AppConfig appConfig(L"EchoServerApp", L"echo_server_log4cplus.property");
+    AppConfig appConfig(TEXT("EchoServerApp"), TEXT("echo_server_log4cplus.property"));
     appConfig.SetPort(1280);
 
     if (g_EchoServerApp.Initialize(std::move(appConfig)))

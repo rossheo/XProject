@@ -11,8 +11,8 @@ int main()
     std::locale::global(std::locale("korean"));
     std::wcout.imbue(std::locale("korean"));
 
-    AppConfig appConfig(L"EchoClientApp", L"echo_client_log4cplus.property");
-    appConfig.SetAddress("127.0.0.1");
+    AppConfig appConfig(TEXT("EchoClientApp"), TEXT("echo_client_log4cplus.property"));
+    appConfig.SetAddress(TEXT("127.0.0.1"));
     appConfig.SetPort(1280);
 
     if (g_EchoClientApp.Initialize(std::move(appConfig)))
@@ -30,7 +30,7 @@ int main()
             }
 
             g_EchoClientApp.SendMessage(message);
-            inputMessage.fill('\0');
+            inputMessage.fill(L'\0');
         }
     }
 
