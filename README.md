@@ -14,10 +14,10 @@
  - Windows
 
 ### The following third party libraries are used in the project
- - boost library 1.60
- - cppformat 2.0.0
- - google-protobuf 3.3.0 (In progress)
- - log4plus 1.2.0
+ - boost library 1.64
+ - cppformat 3.0.2
+ - google-protobuf 3.3.0
+ - log4cplus 2.0-RC1
  - loki 0.1.7
 
 ### Third party archive file download
@@ -26,10 +26,9 @@
 ### Third party library directory tree
 ```
 |-- SDKs
-|   |-- boost_1_60_0
+|   |-- boost_1_64_0
 |   |   |-- boost
 |   |   `-- lib64-msvc-14.0
-|   |-- cppformat-2.0.0
 |   |-- log4plus
 |   |   |-- include
 |   |   `-- lib
