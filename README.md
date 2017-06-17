@@ -19,6 +19,7 @@
  - google-protobuf 3.3.0
  - log4cplus 2.0-RC1
  - loki 0.1.7
+ - Better Enums 0.11.1
 
 ### Third party archive file download
  - https://www.npteam.net/973
