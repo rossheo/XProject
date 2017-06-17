@@ -14,10 +14,34 @@
     <ClInclude Include="unit_id.h">
       <Filter>game_common</Filter>
     </ClInclude>
+    <ClInclude Include="unit.h">
+      <Filter>game_common</Filter>
+    </ClInclude>
+    <ClInclude Include="unitdata.h">
+      <Filter>game_common</Filter>
+    </ClInclude>
+    <ClInclude Include="npc_unitdata.h">
+      <Filter>game_common</Filter>
+    </ClInclude>
+    <ClInclude Include="player_unitdata.h">
+      <Filter>game_common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="unit_id.cpp">
+      <Filter>game_common</Filter>
+    </ClCompile>
+    <ClCompile Include="unit.cpp">
+      <Filter>game_common</Filter>
+    </ClCompile>
+    <ClCompile Include="unitdata.cpp">
+      <Filter>game_common</Filter>
+    </ClCompile>
+    <ClCompile Include="npc_unitdata.cpp">
+      <Filter>game_common</Filter>
+    </ClCompile>
+    <ClCompile Include="player_unitdata.cpp">
       <Filter>game_common</Filter>
     </ClCompile>
   </ItemGroup>

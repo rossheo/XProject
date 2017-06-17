@@ -32,7 +32,7 @@ UnitId::~UnitId()
     _id = 0;
 }
 
-std::wstring UnitId::GetWString() const
+std::wstring UnitId::GetString() const
 {
     return fmt::format(TEXT("UnitId(type: {}, id: {})"), GetType()._to_string(), _id);
 }

@@ -37,13 +37,13 @@ public:
 
     friend std::wostream& operator<<(std::wostream& stream, const UnitId& rhs)
     {
-        return stream << rhs.GetWString();
+        return stream << rhs.GetString();
     }
 
 public:
     uint32 GetId() const { return _id; }
     eUnitType GetType() const { return eUnitType::_from_integral(_type); }
-    std::wstring GetWString() const;
+    std::wstring GetString() const;
 
 private:
     uint32 _type : 8;
