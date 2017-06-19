@@ -29,6 +29,13 @@ bool PrototypeServerApp::Run()
     return true;
 }
 
+void PrototypeServerApp::RemoveSession(const PrototypeClientSession* pSession)
+{
+    ASSERT(pSession);
+    RemovePlayer(pSession);
+    __super::RemoveSession(pSession);
+}
+
 bool PrototypeServerApp::CreatePlayer(const PrototypeClientSession& session,
     PlayerUnitData&& playerUnitData)
 {
@@ -38,6 +45,17 @@ bool PrototypeServerApp::CreatePlayer(const PrototypeClientSession& session,
 
     _sessionManager.AssociateUnitWithSession(session, *pPlayerUnit);
     return true;
+}
+
+void PrototypeServerApp::RemovePlayer(const PrototypeClientSession* pSession)
+{
+    ASSERT(pSession);
+
+    PlayerUnit* pPlayerUnit = nullptr;
+    if (!_sessionManager.Get(pSession, pPlayerUnit))
+        return;
+
+    _unitManager.ReleaseUnit(pPlayerUnit);
 }
 
 } // namespace XP

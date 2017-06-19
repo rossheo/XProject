@@ -14,7 +14,7 @@ public:
     virtual ~ServerApp();
 
 public:
-    void RemoveSession(const TSession* pSession);
+    virtual void RemoveSession(const TSession* pSession);
 
 protected:
     virtual bool Initialize(AppConfig&& appConfig);

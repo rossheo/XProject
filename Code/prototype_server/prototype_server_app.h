@@ -19,8 +19,13 @@ public:
     virtual bool Initialize(AppConfig&& appConfig) override;
     virtual bool Run() override;
 
+    virtual void RemoveSession(const PrototypeClientSession* pSession) override;
+
     bool CreatePlayer(const PrototypeClientSession& session,
         PlayerUnitData&& playerUnitData);
+
+private:
+    void RemovePlayer(const PrototypeClientSession* pSession);
 
 private:
     PrototypeUnitManager _unitManager;
