@@ -47,11 +47,18 @@ IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Auth)
 
     PlayerUnitData playerUnitData;
     playerUnitData.SetName(TEXT("proto_player"));
-    if (!g_PrototypeServerApp.CreatePlayer(session, std::move(playerUnitData)))
+
+    PlayerUnit* pPlayerUnit =
+        g_PrototypeServerApp.CreatePlayer(session, std::move(playerUnitData));
+    if (!pPlayerUnit)
+    {
         login_result = false;
+    }
 
     PS2C_Auth out;
-    out.set_auth_result(login_result ? "auth_success" : "auth_failed");
+    out.set_auth_result(login_result);
+    if (auto pPlayerUnitData = out.mutable_player_unit_data())
+        pPlayerUnitData->set_name(ToUTF8(playerUnitData.GetName()));
     session.SendPacket(out);
     return true;
 }

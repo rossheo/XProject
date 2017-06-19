@@ -22,6 +22,8 @@ public:
     virtual void PostCreate() override;
     virtual void OnCreate() override;
 
+    void GetData(PlayerUnitData& playerUnitData);
+
 protected:
     virtual void Update(float frame) override;
 };

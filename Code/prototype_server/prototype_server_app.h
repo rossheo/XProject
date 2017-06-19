@@ -21,7 +21,7 @@ public:
 
     virtual void RemoveSession(const PrototypeClientSession* pSession) override;
 
-    bool CreatePlayer(const PrototypeClientSession& session,
+    PlayerUnit* CreatePlayer(const PrototypeClientSession& session,
         PlayerUnitData&& playerUnitData);
 
 private:

@@ -3,7 +3,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);_SCL_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
-      <DisableSpecificWarnings>4267;4100;4800;</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4125;4267;4100;4800;</DisableSpecificWarnings>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />

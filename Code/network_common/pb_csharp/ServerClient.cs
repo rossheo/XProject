@@ -23,13 +23,14 @@ namespace PS2C {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChNzZXJ2ZXJfY2xpZW50LnByb3RvEgRQUzJDGgxjb21tb24ucHJvdG8iFwoE",
-            "Q2hhdBIPCgdtZXNzYWdlGAEgASgJIhsKBEF1dGgSEwoLYXV0aF9yZXN1bHQY",
-            "ASABKAlQAGIGcHJvdG8z"));
+            "Q2hhdBIPCgdtZXNzYWdlGAEgASgJIkYKBEF1dGgSEwoLYXV0aF9yZXN1bHQY",
+            "ASABKAgSKQoQcGxheWVyX3VuaXRfZGF0YRgCIAEoCzIPLlBsYXllclVuaXRE",
+            "YXRhUABiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PS2C.Chat), global::PS2C.Chat.Parser, new[]{ "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PS2C.Auth), global::PS2C.Auth.Parser, new[]{ "AuthResult" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PS2C.Auth), global::PS2C.Auth.Parser, new[]{ "AuthResult", "PlayerUnitData" }, null, null, null)
           }));
     }
     #endregion
@@ -178,6 +179,7 @@ namespace PS2C {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Auth(Auth other) : this() {
       authResult_ = other.authResult_;
+      PlayerUnitData = other.playerUnitData_ != null ? other.PlayerUnitData.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -187,12 +189,23 @@ namespace PS2C {
 
     /// <summary>Field number for the "auth_result" field.</summary>
     public const int AuthResultFieldNumber = 1;
-    private string authResult_ = "";
+    private bool authResult_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string AuthResult {
+    public bool AuthResult {
       get { return authResult_; }
       set {
-        authResult_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        authResult_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "player_unit_data" field.</summary>
+    public const int PlayerUnitDataFieldNumber = 2;
+    private global::PlayerUnitData playerUnitData_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::PlayerUnitData PlayerUnitData {
+      get { return playerUnitData_; }
+      set {
+        playerUnitData_ = value;
       }
     }
 
@@ -210,13 +223,15 @@ namespace PS2C {
         return true;
       }
       if (AuthResult != other.AuthResult) return false;
+      if (!object.Equals(PlayerUnitData, other.PlayerUnitData)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (AuthResult.Length != 0) hash ^= AuthResult.GetHashCode();
+      if (AuthResult != false) hash ^= AuthResult.GetHashCode();
+      if (playerUnitData_ != null) hash ^= PlayerUnitData.GetHashCode();
       return hash;
     }
 
@@ -227,17 +242,24 @@ namespace PS2C {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (AuthResult.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(AuthResult);
+      if (AuthResult != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(AuthResult);
+      }
+      if (playerUnitData_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(PlayerUnitData);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (AuthResult.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthResult);
+      if (AuthResult != false) {
+        size += 1 + 1;
+      }
+      if (playerUnitData_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerUnitData);
       }
       return size;
     }
@@ -247,8 +269,14 @@ namespace PS2C {
       if (other == null) {
         return;
       }
-      if (other.AuthResult.Length != 0) {
+      if (other.AuthResult != false) {
         AuthResult = other.AuthResult;
+      }
+      if (other.playerUnitData_ != null) {
+        if (playerUnitData_ == null) {
+          playerUnitData_ = new global::PlayerUnitData();
+        }
+        PlayerUnitData.MergeFrom(other.PlayerUnitData);
       }
     }
 
@@ -260,8 +288,15 @@ namespace PS2C {
           default:
             input.SkipLastField();
             break;
-          case 10: {
-            AuthResult = input.ReadString();
+          case 8: {
+            AuthResult = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (playerUnitData_ == null) {
+              playerUnitData_ = new global::PlayerUnitData();
+            }
+            input.ReadMessage(playerUnitData_);
             break;
           }
         }

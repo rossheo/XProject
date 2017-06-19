@@ -36,15 +36,15 @@ void PrototypeServerApp::RemoveSession(const PrototypeClientSession* pSession)
     __super::RemoveSession(pSession);
 }
 
-bool PrototypeServerApp::CreatePlayer(const PrototypeClientSession& session,
+PlayerUnit* PrototypeServerApp::CreatePlayer(const PrototypeClientSession& session,
     PlayerUnitData&& playerUnitData)
 {
     PlayerUnit* pPlayerUnit = _unitManager.CreatePlayerUnit(std::move(playerUnitData));
     if (!pPlayerUnit)
-        return false;
+        return nullptr;
 
     _sessionManager.AssociateUnitWithSession(session, *pPlayerUnit);
-    return true;
+    return pPlayerUnit;
 }
 
 void PrototypeServerApp::RemovePlayer(const PrototypeClientSession* pSession)

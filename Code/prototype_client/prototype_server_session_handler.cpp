@@ -35,6 +35,7 @@ IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Chat)
 IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Auth)
 {
     LOG_INFO(LOG_FILTER_CLIENT, "FromServer(Auth): {}", packet.auth_result());
+    LOG_INFO(LOG_FILTER_CLIENT, "PlayerUnitData: {}", packet.player_unit_data().name());
 
     return true;
 }

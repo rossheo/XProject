@@ -1,1 +1,11 @@
 ﻿syntax = "proto3";
+
+message PlayerUnitData
+{
+    string name = 1;
+}
+
+message NPCUnitData
+{
+    string name = 1;
+}

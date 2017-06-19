@@ -10,5 +10,6 @@ message Chat
 
 message Auth
 {
-    string auth_result = 1;
+    bool auth_result = 1;
+    PlayerUnitData player_unit_data = 2;
 }

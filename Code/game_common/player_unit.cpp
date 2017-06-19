@@ -24,6 +24,14 @@ void PlayerUnit::OnCreate()
 {
 }
 
+void PlayerUnit::GetData(PlayerUnitData& playerUnitData)
+{
+    if (auto pPlayerUnitData = _unitData.GetPlayerUnitData())
+    {
+        playerUnitData = *pPlayerUnitData;
+    }
+}
+
 void PlayerUnit::Update(float frame)
 {
     UNREFERENCED_PARAMETER(frame);
