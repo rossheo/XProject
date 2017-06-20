@@ -30,7 +30,7 @@ public:
         {
             LOCK_W(_lock);
 
-            if (!_sendBuffer.SetPacket(packet))
+            if (!_sendBuffer.AppendPacket(packet))
             {
                 LOG_ERROR(LOG_FILTER_PACKET_BUFFER, "Fail to SetPacket().");
                 return false;

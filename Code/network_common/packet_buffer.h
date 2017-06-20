@@ -8,6 +8,7 @@ public:
 
 public:
     explicit PacketBuffer();
+    explicit PacketBuffer(const char* pBuffer, uint16 size);
     ~PacketBuffer();
 
 public:
@@ -39,7 +40,7 @@ public:
     uint16 GetPayloadBufferSize() const;
 
     template<typename TPacket>
-    bool SetPacket(const TPacket& packet)
+    bool AppendPacket(const TPacket& packet)
     {
         const uint16 packetSize =
             GetHeaderSize() + static_cast<uint16>(packet.ByteSize());
@@ -80,7 +81,7 @@ private:
     bool SetPacketNo(uint16 packetNo);
 
 private:
-    std::array<char, MAX_BUF_SIZE> _buffer;
+    std::vector<char> _buffer;
     uint16 _readPos;
     uint16 _writePos;
 };

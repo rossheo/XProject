@@ -5,7 +5,17 @@ PacketBuffer::PacketBuffer()
     : _readPos(0)
     , _writePos(0)
 {
-    _buffer.assign(0);
+    _buffer.resize(MAX_BUF_SIZE);
+}
+
+PacketBuffer::PacketBuffer(const char* pBuffer, uint16 size)
+    : _readPos(0)
+    , _writePos(0)
+{
+    ASSERT(size <= MAX_BUF_SIZE);
+
+    _buffer.resize(size);
+    std::copy(pBuffer, pBuffer + size, _buffer.begin());
 }
 
 PacketBuffer::~PacketBuffer()
@@ -139,7 +149,6 @@ void PacketBuffer::Clear() noexcept
 {
     _readPos = 0;
     _writePos = 0;
-    _buffer.assign(0);
 }
 
 bool PacketBuffer::AppendBuffer(const char* pBuffer, uint16 size)
