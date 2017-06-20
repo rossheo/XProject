@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include <algorithm>
 #include <queue>
+#include <initializer_list>
 
 #include <string>
 #include <codecvt>

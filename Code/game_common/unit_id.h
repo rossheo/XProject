@@ -15,7 +15,7 @@ public:
 public:
     explicit UnitId();
     explicit UnitId(eUnitType unitType, uint32 id);
-    explicit UnitId(const UnitId& rhs);
+    UnitId(const UnitId& rhs);
     ~UnitId();
 
     UnitId& operator= (const UnitId& rhs);
