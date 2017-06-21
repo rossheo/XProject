@@ -15,13 +15,21 @@ PacketBuffer::PacketBuffer(const char* pBuffer, uint16 size)
     ASSERT(size <= MAX_BUF_SIZE);
 
     _buffer.resize(size);
-    std::copy(pBuffer, pBuffer + size, _buffer.begin());
+    AppendBuffer(pBuffer, size);
+}
+
+PacketBuffer::PacketBuffer(const PacketBuffer& rhs)
+    : _readPos(0)
+    , _writePos(0)
+{
+    _buffer.resize(rhs.GetBufferSize());
+    AppendBuffer(rhs);
 }
 
 PacketBuffer::~PacketBuffer()
 {
     Clear();
-}
+};
 
 uint16 PacketBuffer::GetPacketNo() const
 {
@@ -145,13 +153,18 @@ uint16 PacketBuffer::GetPayloadBufferSize() const
     return GetPacketSize() - GetHeaderSize();
 }
 
+bool PacketBuffer::AppendBuffer(const PacketBuffer& packetBuffer) noexcept
+{
+    return AppendBuffer(packetBuffer.GetBuffer(), packetBuffer.GetBufferSize());
+}
+
 void PacketBuffer::Clear() noexcept
 {
     _readPos = 0;
     _writePos = 0;
 }
 
-bool PacketBuffer::AppendBuffer(const char* pBuffer, uint16 size)
+bool PacketBuffer::AppendBuffer(const char* pBuffer, uint16 size) noexcept
 {
     if (!pBuffer)
         return false;

@@ -9,6 +9,7 @@ public:
 public:
     explicit PacketBuffer();
     explicit PacketBuffer(const char* pBuffer, uint16 size);
+    explicit PacketBuffer(const PacketBuffer& rhs);
     ~PacketBuffer();
 
 public:
@@ -61,7 +62,7 @@ public:
         if (!SetPacketNo(TPacket::PROTOCOL_NUMBER))
             return false;
 
-        std::array<char, MAX_BUF_SIZE> serializedBuffer = {0};
+        std::array<char, MAX_BUF_SIZE> serializedBuffer;
         if (!packet.SerializeToArray(serializedBuffer.data(),
             static_cast<int>(serializedBuffer.size())))
             return false;
@@ -73,9 +74,11 @@ public:
         return true;
     }
 
+    bool AppendBuffer(const PacketBuffer& packetBuffer) noexcept;
+
 private:
     void Clear() noexcept;
-    bool AppendBuffer(const char* pBuffer, uint16 size);
+    bool AppendBuffer(const char* pBuffer, uint16 size) noexcept;
 
     bool SetPacketSize(uint16 packetSize);
     bool SetPacketNo(uint16 packetNo);
