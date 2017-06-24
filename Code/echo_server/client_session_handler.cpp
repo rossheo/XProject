@@ -24,7 +24,8 @@ IMPLEMENT_HANDLER(ClientSession, PC2S_Chat)
 
     PS2C_Chat out;
     out.set_message(packet.message());
-    session.SendPacket(out);
+    //session.SendPacket(out);
+    session.BroadcastPacket(out);
     return true;
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "packet_handler_manager.h"
+#include "session_manager.h"
 
 namespace XP
 {
@@ -12,7 +13,8 @@ public:
     static TPacketHandlerManager _s_packet_handler_manager;
 
 public:
-    explicit Session(boost::asio::io_service& ioservice);
+    explicit Session(boost::asio::io_service& ioservice,
+        SessionManager<TSession>* pSessionManager = nullptr);
     virtual ~Session();
 
 protected:
@@ -24,27 +26,19 @@ public:
     bool PostReceive();
     void PostWrite();
 
-    template<typename T>
-    bool SendPacket(const T& packet)
-    {
-        {
-            LOCK_W(_lock);
+    template <typename T>
+    bool SendPacket(const T& packet);
 
-            if (!_sendBuffer.AppendPacket(packet))
-            {
-                LOG_ERROR(LOG_FILTER_PACKET_BUFFER, "Fail to SetPacket().");
-                return false;
-            }
-        }
-
-        PostWrite();
-        return true;
-    }
+    template <typename T>
+    bool BroadcastPacket(const T& packet);
 
     boost::asio::ip::tcp::socket& GetSocket() { return _socket; }
 
+    bool HaveRemoteEndPoint() const;
+
 protected:
     boost::asio::ip::tcp::socket _socket;
+    SessionManager<TSession>* _pSessionManager;
 
     PacketBuffer _recvBuffer;
     PacketBuffer _sendBuffer;
@@ -53,8 +47,10 @@ protected:
 };
 
 template <typename TSession>
-Session<TSession>::Session(boost::asio::io_service& ioservice)
+Session<TSession>::Session(boost::asio::io_service& ioservice,
+    SessionManager<TSession>* pSessionManager /*= nullptr*/)
     : _socket(ioservice)
+    , _pSessionManager(pSessionManager)
 {
 }
 
@@ -288,6 +284,51 @@ void Session<TSession>::PostWrite()
 
         PostWrite();
     });
+}
+
+template <typename TSession>
+template <typename T>
+bool Session<TSession>::SendPacket(const T& packet)
+{
+    {
+        LOCK_W(_lock);
+
+        if (!_sendBuffer.AppendPacket(packet))
+        {
+            LOG_ERROR(LOG_FILTER_PACKET_BUFFER, "Fail to SetPacket().");
+            return false;
+        }
+    }
+
+    PostWrite();
+    return true;
+}
+
+template <typename TSession>
+template <typename T>
+bool Session<TSession>::BroadcastPacket(const T& packet)
+{
+    if (!_pSessionManager)
+        return false;
+
+    _pSessionManager->Visitor(
+        [&packet](std::shared_ptr<TSession>&& spSession)
+    {
+        spSession->SendPacket(packet);
+    });
+
+    return true;
+}
+
+template <typename TSession>
+bool Session<TSession>::HaveRemoteEndPoint() const
+{
+    boost::system::error_code errorCode;
+    boost::asio::ip::tcp::endpoint endPoint = _socket.remote_endpoint(errorCode);
+    if (errorCode)
+        return false;
+
+    return true;
 }
 
 } // namespace XP

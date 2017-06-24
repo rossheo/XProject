@@ -13,9 +13,6 @@ public:
     explicit ServerApp();
     virtual ~ServerApp();
 
-public:
-    virtual void RemoveSession(const TSession* pSession);
-
 protected:
     virtual bool Initialize(AppConfig&& appConfig);
     virtual bool Run();
@@ -116,13 +113,6 @@ void ServerApp<TSession>::Clear() noexcept
         _ioservice.stop();
 
     LOG_INFO(LOG_FILTER_SERVER, "{} is stopped.", _appConfig.GetAppName());
-}
-
-template <typename TSession>
-void ServerApp<TSession>::RemoveSession(const TSession* pSession)
-{
-    ASSERT(pSession);
-    _sessionManager.RemoveSession(pSession);
 }
 
 template <typename TSession>

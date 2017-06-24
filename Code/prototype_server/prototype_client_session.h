@@ -7,7 +7,8 @@ namespace XP
 class PrototypeClientSession : public Session<PrototypeClientSession>
 {
 public:
-    explicit PrototypeClientSession(boost::asio::io_service& ioservice);
+    explicit PrototypeClientSession(boost::asio::io_service& ioservice,
+        SessionManager<PrototypeClientSession>* pSessionManager);
     virtual ~PrototypeClientSession();
 };
 

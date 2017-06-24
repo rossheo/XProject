@@ -29,13 +29,6 @@ bool PrototypeServerApp::Run()
     return true;
 }
 
-void PrototypeServerApp::RemoveSession(const PrototypeClientSession* pSession)
-{
-    ASSERT(pSession);
-    RemovePlayer(pSession);
-    __super::RemoveSession(pSession);
-}
-
 PlayerUnit* PrototypeServerApp::CreatePlayer(const PrototypeClientSession& session,
     PlayerUnitData&& playerUnitData)
 {

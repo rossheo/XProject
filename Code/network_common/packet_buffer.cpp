@@ -8,6 +8,14 @@ PacketBuffer::PacketBuffer()
     _buffer.resize(MAX_BUF_SIZE);
 }
 
+PacketBuffer::PacketBuffer(const PacketBuffer& rhs)
+    : _readPos(0)
+    , _writePos(0)
+{
+    _buffer.resize(rhs.GetBufferSize());
+    AppendBuffer(rhs);
+}
+
 PacketBuffer::PacketBuffer(const char* pBuffer, uint16 size)
     : _readPos(0)
     , _writePos(0)
@@ -18,18 +26,10 @@ PacketBuffer::PacketBuffer(const char* pBuffer, uint16 size)
     AppendBuffer(pBuffer, size);
 }
 
-PacketBuffer::PacketBuffer(const PacketBuffer& rhs)
-    : _readPos(0)
-    , _writePos(0)
-{
-    _buffer.resize(rhs.GetBufferSize());
-    AppendBuffer(rhs);
-}
-
 PacketBuffer::~PacketBuffer()
 {
     Clear();
-};
+}
 
 uint16 PacketBuffer::GetPacketNo() const
 {
@@ -51,7 +51,7 @@ bool PacketBuffer::IsEmptyData() const
 
 bool PacketBuffer::IsNotEnoughBuffer() const
 {
-    return (GetRemainSize() < MIN_BUF_SIZE);
+    return (GetRemainSize() < _buffer.size() / 2);
 }
 
 bool PacketBuffer::IsAbleToGetPacket() const

@@ -4,14 +4,17 @@
 
 namespace XP
 {
-ClientSession::ClientSession(boost::asio::io_service& ioservice)
-    : Session(ioservice)
+
+ClientSession::ClientSession(boost::asio::io_service& ioservice,
+    SessionManager<ClientSession>* pSessionManager)
+    : Session(ioservice, pSessionManager)
 {
 }
 
 ClientSession::~ClientSession()
 {
-    g_EchoServerApp.RemoveSession(this);
+    if (_pSessionManager)
+        _pSessionManager->RemoveSession(this);
 }
 
 } // namespace XP

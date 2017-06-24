@@ -50,6 +50,9 @@ public:
     > SessionMultiIndex;
 
 public:
+    template <typename Fn>
+    void Visitor(const Fn& functor);
+
     std::shared_ptr<TSession> CreateSession(boost::asio::io_service& ioservice);
     void RemoveSession(const TSession* pSession);
 
@@ -84,10 +87,26 @@ SessionManager<TSession>::~SessionManager()
 }
 
 template <typename TSession>
+template <typename Fn>
+void SessionManager<TSession>::Visitor(const Fn& functor)
+{
+    LOCK_W(_lock);
+
+    for (const auto& wpSession : _sessions)
+    {
+        auto spSession = wpSession.lock();
+        if (!spSession || !spSession->HaveRemoteEndPoint())
+            continue;
+
+        functor(std::move(spSession));
+    }
+}
+
+template <typename TSession>
 std::shared_ptr<TSession> SessionManager<TSession>::CreateSession(
     boost::asio::io_service& ioservice)
 {
-    if (auto spSession = std::make_shared<TSession>(ioservice))
+    if (auto spSession = std::make_shared<TSession>(ioservice, this))
     {
         std::weak_ptr<TSession> wpSession(spSession);
         AddSession(std::move(wpSession));

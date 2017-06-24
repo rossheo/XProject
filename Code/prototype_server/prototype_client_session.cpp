@@ -4,14 +4,17 @@
 
 namespace XP
 {
-PrototypeClientSession::PrototypeClientSession(boost::asio::io_service& ioservice)
-    : Session(ioservice)
+
+PrototypeClientSession::PrototypeClientSession(boost::asio::io_service& ioservice,
+    SessionManager<PrototypeClientSession>* pSessionManager)
+    : Session(ioservice, pSessionManager)
 {
 }
 
 PrototypeClientSession::~PrototypeClientSession()
 {
-    g_PrototypeServerApp.RemoveSession(this);
+    if (_pSessionManager)
+        _pSessionManager->RemoveSession(this);
 }
 
 } // namespace XP

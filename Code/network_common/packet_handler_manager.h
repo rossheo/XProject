@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include <google/protobuf/message_lite.h>
 #include "packet_buffer.h"
 
 // Packet 정의
@@ -34,8 +33,8 @@ template<typename TSession>
 class PacketFunctorBase
 {
 public:
-    explicit PacketFunctorBase() {};
-    virtual ~PacketFunctorBase() {};
+    explicit PacketFunctorBase() {}
+    virtual ~PacketFunctorBase() {}
 
     virtual bool Handle(TSession& session, PacketBuffer& packetBuffer) const = 0;
 };
@@ -44,8 +43,8 @@ template<typename TSession, typename TProtoBuf>
 class PacketFunctor : PacketFunctorBase<TSession>
 {
 public:
-    explicit PacketFunctor() {};
-    virtual ~PacketFunctor() {};
+    explicit PacketFunctor() {}
+    virtual ~PacketFunctor() {}
 
     virtual bool Handle(TSession& session, PacketBuffer& packetBuffer) const override
     {
@@ -71,12 +70,12 @@ public:
     {
         ClearPacketFunctors();
         Initialize(*this);
-    };
+    }
 
     ~PacketHandlerManager() 
     {
         ClearPacketFunctors();
-    };
+    }
 
     template<class TProtoBuf>
     bool Register(uint16 protocolNumber)

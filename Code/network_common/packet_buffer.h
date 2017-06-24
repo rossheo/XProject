@@ -4,12 +4,11 @@ class PacketBuffer
 {
 public:
     static const uint16 MAX_BUF_SIZE = boost::integer_traits<uint16>::max();
-    static const uint16 MIN_BUF_SIZE = MAX_BUF_SIZE / 2;
 
 public:
     explicit PacketBuffer();
-    explicit PacketBuffer(const char* pBuffer, uint16 size);
     explicit PacketBuffer(const PacketBuffer& rhs);
+    explicit PacketBuffer(const char* pBuffer, uint16 size);
     ~PacketBuffer();
 
 public:
@@ -41,38 +40,7 @@ public:
     uint16 GetPayloadBufferSize() const;
 
     template<typename TPacket>
-    bool AppendPacket(const TPacket& packet)
-    {
-        const uint16 packetSize =
-            GetHeaderSize() + static_cast<uint16>(packet.ByteSize());
-        if (packetSize > GetRemainSize())
-        {
-            ReArrange();
-        }
-
-        if (packetSize > GetRemainSize())
-        {
-            LOG_ERROR(LOG_FILTER_PACKET_BUFFER, "Not enough remain buffer.");
-            return false;
-        }
-
-        if (!SetPacketSize(packetSize))
-            return false;
-
-        if (!SetPacketNo(TPacket::PROTOCOL_NUMBER))
-            return false;
-
-        std::array<char, MAX_BUF_SIZE> serializedBuffer;
-        if (!packet.SerializeToArray(serializedBuffer.data(),
-            static_cast<int>(serializedBuffer.size())))
-            return false;
-
-        if (!AppendBuffer(serializedBuffer.data(),
-            static_cast<uint16>(packet.ByteSize())))
-            return false;
-
-        return true;
-    }
+    bool AppendPacket(const TPacket& packet);
 
     bool AppendBuffer(const PacketBuffer& packetBuffer) noexcept;
 
@@ -88,3 +56,37 @@ private:
     uint16 _readPos;
     uint16 _writePos;
 };
+
+template<typename TPacket>
+bool PacketBuffer::AppendPacket(const TPacket& packet)
+{
+    const uint16 packetSize =
+        GetHeaderSize() + static_cast<uint16>(packet.ByteSize());
+    if (packetSize > GetRemainSize())
+    {
+        ReArrange();
+    }
+
+    if (packetSize > GetRemainSize())
+    {
+        LOG_ERROR(LOG_FILTER_PACKET_BUFFER, "Not enough remain buffer.");
+        return false;
+    }
+
+    if (!SetPacketSize(packetSize))
+        return false;
+
+    if (!SetPacketNo(TPacket::PROTOCOL_NUMBER))
+        return false;
+
+    std::array<char, MAX_BUF_SIZE> serializedBuffer;
+    if (!packet.SerializeToArray(serializedBuffer.data(),
+        static_cast<int>(serializedBuffer.size())))
+        return false;
+
+    if (!AppendBuffer(serializedBuffer.data(),
+        static_cast<uint16>(packet.ByteSize())))
+        return false;
+
+    return true;
+}
