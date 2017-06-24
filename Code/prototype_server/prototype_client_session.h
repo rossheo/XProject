@@ -10,6 +10,11 @@ public:
     explicit PrototypeClientSession(boost::asio::io_service& ioservice,
         SessionManager<PrototypeClientSession>* pSessionManager);
     virtual ~PrototypeClientSession();
+
+    void OnConnect();
+    void OnDisconnect(boost::asio::socket_base::shutdown_type shutdownType);
+
+    UnitId GetUnitId() const;
 };
 
 } // namespace XP

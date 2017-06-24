@@ -98,9 +98,17 @@ public:
     inline T GetLatestId() const { return MIN_VALUE + _allocatedCount; }
     inline T GetRemainSize() const { return MAX_VALUE - GetLatestId(); }
 
+    struct IdPoolCompare
+    {
+        bool operator()(const T& lhs, const T& rhs) const
+        {
+            return lhs > rhs;
+        }
+    };
+
 private:
     T _allocatedCount;
-    boost::heap::priority_queue<T> _priorityQueue;
+    boost::heap::priority_queue<T, boost::heap::compare<IdPoolCompare>> _priorityQueue;
 };
 
 } // namespace XP

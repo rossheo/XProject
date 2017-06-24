@@ -212,7 +212,7 @@ bool SessionManager<TSession>::Get(const TSession* pSession, UnitId& unitId) con
 {
     if (!pSession)
     {
-        unitId = UnitId::INVALID:
+        unitId = UnitId::INVALID;
         return false;
     }
 
@@ -226,7 +226,7 @@ bool SessionManager<TSession>::Get(const TSession* pSession, UnitId& unitId) con
         return true;
     }
 
-    unitId = UnitId::INVALID:
+    unitId = UnitId::INVALID;
     return false;
 }
 

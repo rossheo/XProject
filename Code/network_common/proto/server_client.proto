@@ -3,6 +3,11 @@ import public "common.proto";
 
 package PS2C;
 
+message Who
+{
+    string message = 1;
+}
+
 message Chat
 {
     string message = 1;

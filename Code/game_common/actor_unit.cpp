@@ -12,6 +12,10 @@ ActorUnit::~ActorUnit()
 {
 }
 
+void ActorUnit::Initialize()
+{
+}
+
 void ActorUnit::PostCreate()
 {
 }

@@ -18,11 +18,13 @@ public:
 public:
     void Clear() noexcept;
 
-    void CreatePlayerUnitData(PlayerUnitData&& playerUnitData);
-    PlayerUnitData* GetPlayerUnitData() const { return _upPlayerUnitData.get(); }
+    void CreatePlayerUnitData(PlayerUnitData&& unitData);
+    PlayerUnitData* GetPlayerUnitData() const;
+    void SetPlayerUnitData(const PlayerUnitData& unitData);
 
-    void CreateNpcUnitData(NpcUnitData&& npcUnitData);
-    NpcUnitData* GetNpcUnitData() const { return _upNpcUnitData.get(); }
+    void CreateNpcUnitData(NpcUnitData&& unitData);
+    NpcUnitData* GetNpcUnitData() const;
+    void SetNpcUnitData(const NpcUnitData& unitData);
 
 private:
     std::unique_ptr<PlayerUnitData> _upPlayerUnitData;

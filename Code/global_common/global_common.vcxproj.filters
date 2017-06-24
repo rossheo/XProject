@@ -50,6 +50,9 @@
     <ClInclude Include="enum.h">
       <Filter>enum</Filter>
     </ClInclude>
+    <ClInclude Include="msdn_define.h">
+      <Filter>defines</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />

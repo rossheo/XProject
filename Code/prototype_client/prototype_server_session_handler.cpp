@@ -7,13 +7,25 @@
 namespace XP
 {
 
+DECLARE_HANDLER(PrototypeServerSession, PS2C_Who);
 DECLARE_HANDLER(PrototypeServerSession, PS2C_Chat);
 DECLARE_HANDLER(PrototypeServerSession, PS2C_Auth);
 
 IMPLEMENT_INITIALIZE(PrototypeServerSession)
 {
+    REGISTER_HANDLER(PS2C_Who);
     REGISTER_HANDLER(PS2C_Chat);
     REGISTER_HANDLER(PS2C_Auth);
+}
+
+IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Who)
+{
+    PC2S_Auth out;
+    out.set_id("proto_id");
+    out.set_password("proto_pw");
+    session.SendPacket(out);
+
+    return true;
 }
 
 IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Chat)
@@ -36,6 +48,10 @@ IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Auth)
 {
     LOG_INFO(LOG_FILTER_CLIENT, "FromServer(Auth): {}", packet.auth_result());
     LOG_INFO(LOG_FILTER_CLIENT, "PlayerUnitData: {}", packet.player_unit_data().name());
+
+    PC2S_Rename out;
+    out.set_name(ToUTF8(TEXT("player_rename")));
+    session.SendPacket(out);
 
     return true;
 }

@@ -11,6 +11,9 @@
     <Filter Include="game_common\unit_datas">
       <UniqueIdentifier>{bbc92dda-3f98-46db-9ce7-fb416244e203}</UniqueIdentifier>
     </Filter>
+    <Filter Include="game_common\unit_lock">
+      <UniqueIdentifier>{be164640-4102-40f7-afc5-83d79a1da1a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -47,6 +50,9 @@
     <ClInclude Include="unit_manager.h">
       <Filter>game_common</Filter>
     </ClInclude>
+    <ClInclude Include="unit_lock.h">
+      <Filter>game_common\unit_lock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -79,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="unit_manager.cpp">
       <Filter>game_common</Filter>
+    </ClCompile>
+    <ClCompile Include="unit_lock.cpp">
+      <Filter>game_common\unit_lock</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

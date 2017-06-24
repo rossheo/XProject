@@ -29,6 +29,16 @@ bool PrototypeServerApp::Run()
     return true;
 }
 
+PrototypeUnitManager& PrototypeServerApp::GetUnitManager()
+{
+    return _unitManager;
+}
+
+SessionManager<PrototypeClientSession>& PrototypeServerApp::GetSessionManager()
+{
+    return _sessionManager;
+}
+
 PlayerUnit* PrototypeServerApp::CreatePlayer(const PrototypeClientSession& session,
     PlayerUnitData&& playerUnitData)
 {

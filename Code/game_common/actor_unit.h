@@ -16,6 +16,7 @@ public:
 public:
     virtual eUnitType GetType() const override = 0;
 
+    virtual void Initialize();
     virtual void PostCreate();
     virtual void OnCreate() = 0;
 };

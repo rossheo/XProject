@@ -78,6 +78,7 @@
     <ClInclude Include="global_common.h" />
     <ClInclude Include="log4plus_define.h" />
     <ClInclude Include="macro_define.h" />
+    <ClInclude Include="msdn_define.h" />
     <ClInclude Include="rw_lock.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="stdafx.h" />

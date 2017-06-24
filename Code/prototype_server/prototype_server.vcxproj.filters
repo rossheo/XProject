@@ -28,6 +28,9 @@
     <ClInclude Include="prototype_unit_manager.h">
       <Filter>unit_manager</Filter>
     </ClInclude>
+    <ClInclude Include="prototype_unitlock.h">
+      <Filter>unit_manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype_server.cpp">
@@ -44,6 +47,9 @@
       <Filter>sessions</Filter>
     </ClCompile>
     <ClCompile Include="prototype_unit_manager.cpp">
+      <Filter>unit_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype_unitlock.cpp">
       <Filter>unit_manager</Filter>
     </ClCompile>
   </ItemGroup>

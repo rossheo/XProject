@@ -19,10 +19,15 @@ public:
     static const eUnitType unitType;
     virtual eUnitType GetType() const override { return unitType; }
 
+    virtual void Initialize() override;
     virtual void PostCreate() override;
     virtual void OnCreate() override;
 
-    void GetData(PlayerUnitData& playerUnitData);
+    void GetData(PlayerUnitData& unitData) const;
+    void SetData(const PlayerUnitData& unitData);
+
+    void SetName(const std::wstring& name);
+    std::wstring GetName() const;
 
 protected:
     virtual void Update(float frame) override;

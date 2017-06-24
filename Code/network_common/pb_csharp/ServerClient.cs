@@ -22,13 +22,14 @@ namespace PS2C {
     static ServerClientReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChNzZXJ2ZXJfY2xpZW50LnByb3RvEgRQUzJDGgxjb21tb24ucHJvdG8iFwoE",
-            "Q2hhdBIPCgdtZXNzYWdlGAEgASgJIkYKBEF1dGgSEwoLYXV0aF9yZXN1bHQY",
-            "ASABKAgSKQoQcGxheWVyX3VuaXRfZGF0YRgCIAEoCzIPLlBsYXllclVuaXRE",
-            "YXRhUABiBnByb3RvMw=="));
+            "ChNzZXJ2ZXJfY2xpZW50LnByb3RvEgRQUzJDGgxjb21tb24ucHJvdG8iFgoD",
+            "V2hvEg8KB21lc3NhZ2UYASABKAkiFwoEQ2hhdBIPCgdtZXNzYWdlGAEgASgJ",
+            "IkYKBEF1dGgSEwoLYXV0aF9yZXN1bHQYASABKAgSKQoQcGxheWVyX3VuaXRf",
+            "ZGF0YRgCIAEoCzIPLlBsYXllclVuaXREYXRhUABiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::CommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::PS2C.Who), global::PS2C.Who.Parser, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PS2C.Chat), global::PS2C.Chat.Parser, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PS2C.Auth), global::PS2C.Auth.Parser, new[]{ "AuthResult", "PlayerUnitData" }, null, null, null)
           }));
@@ -37,6 +38,123 @@ namespace PS2C {
 
   }
   #region Messages
+  public sealed partial class Who : pb::IMessage<Who> {
+    private static readonly pb::MessageParser<Who> _parser = new pb::MessageParser<Who>(() => new Who());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Who> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PS2C.ServerClientReflection.Descriptor.MessageTypes[0]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Who() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Who(Who other) : this() {
+      message_ = other.message_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Who Clone() {
+      return new Who(this);
+    }
+
+    /// <summary>Field number for the "message" field.</summary>
+    public const int MessageFieldNumber = 1;
+    private string message_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Message {
+      get { return message_; }
+      set {
+        message_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Who);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Who other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Message != other.Message) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Message.Length != 0) hash ^= Message.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Message.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Message);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Message.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Who other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Message.Length != 0) {
+        Message = other.Message;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Message = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   public sealed partial class Chat : pb::IMessage<Chat> {
     private static readonly pb::MessageParser<Chat> _parser = new pb::MessageParser<Chat>(() => new Chat());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44,7 +162,7 @@ namespace PS2C {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PS2C.ServerClientReflection.Descriptor.MessageTypes[0]; }
+      get { return global::PS2C.ServerClientReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -161,7 +279,7 @@ namespace PS2C {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PS2C.ServerClientReflection.Descriptor.MessageTypes[1]; }
+      get { return global::PS2C.ServerClientReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

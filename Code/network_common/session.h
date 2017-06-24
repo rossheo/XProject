@@ -1,6 +1,7 @@
 #pragma once
 #include "packet_handler_manager.h"
 #include "session_manager.h"
+#include "unit_lock.h"
 
 namespace XP
 {
@@ -23,6 +24,9 @@ protected:
         boost::asio::socket_base::shutdown_type::shutdown_both) noexcept;
 
 public:
+    void OnConnect();
+    void OnDisconnect(boost::asio::socket_base::shutdown_type shutdownType);
+
     bool PostReceive();
     void PostWrite();
 
@@ -52,12 +56,14 @@ Session<TSession>::Session(boost::asio::io_service& ioservice,
     : _socket(ioservice)
     , _pSessionManager(pSessionManager)
 {
+    UnitThreadLocalStorage::Initialize();
 }
 
 template <typename TSession>
 Session<TSession>::~Session()
 {
     Shutdown();
+    UnitThreadLocalStorage::Release();
 }
 
 namespace
@@ -85,14 +91,9 @@ void Session<TSession>::Shutdown(
     if (!_socket.is_open())
         return;
 
-    const auto& local_endpoint = _socket.local_endpoint();
-    LOG_INFO(LOG_FILTER_SERVER, "Session is disconnected({}). ip: {}, port: {}",
-        GetShutdownTypeString(shutdownType),
-        local_endpoint.address().to_string(),
-        local_endpoint.port());
-
     try
     {
+        OnDisconnect(shutdownType);
         _socket.shutdown(shutdownType);
         _socket.close();
     }
@@ -102,6 +103,27 @@ void Session<TSession>::Shutdown(
             " error_code: {}, error_message: {}",
             errorCode.value(), errorCode.message());
     }
+}
+
+template <typename TSession>
+void Session<TSession>::OnConnect()
+{
+    const boost::asio::ip::tcp::endpoint& remoteEndpoint = _socket.remote_endpoint();
+
+    LOG_INFO(LOG_FILTER_CONNECTION, "Session connected."
+        " address: {}, port: {}",
+        remoteEndpoint.address().to_string(), remoteEndpoint.port());
+}
+
+template <typename TSession>
+void Session<TSession>::OnDisconnect(boost::asio::socket_base::shutdown_type shutdownType)
+{
+    const boost::asio::ip::tcp::endpoint& remoteEndpoint = _socket.remote_endpoint();
+
+    LOG_INFO(LOG_FILTER_CONNECTION, "Session disconnected.({})"
+        " address: {}, port: {}",
+        GetShutdownTypeString(shutdownType),
+        remoteEndpoint.address().to_string(), remoteEndpoint.port());
 }
 
 template <typename TSession>

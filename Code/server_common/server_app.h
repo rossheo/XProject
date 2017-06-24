@@ -140,17 +140,12 @@ void ServerApp<TSession>::PostAccept()
             return;
         }
 
-        const boost::asio::ip::tcp::endpoint& remoteEndPoint =
-            spServerSessionMoved->GetSocket().remote_endpoint();
-
-        LOG_INFO(LOG_FILTER_CONNECTION, "Client connected."
-            " address: {}, port: {}",
-            remoteEndPoint.address().to_string(), remoteEndPoint.port());
-
         if (!spServerSessionMoved->PostReceive())
         {
             _sessionManager.RemoveSession(spServerSessionMoved.get());
         }
+
+        spServerSessionMoved->OnConnect();
 
         PostAccept();
     });

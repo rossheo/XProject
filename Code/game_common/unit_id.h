@@ -3,7 +3,10 @@
 namespace XP
 {
 
-BETTER_ENUM(eUnitType, int, INVALID = 0, PLAYER_UNIT, NPC_UNIT);
+BETTER_ENUM(eUnitType, int,\
+    INVALID = 0,\
+    PLAYER_UNIT,\
+    NPC_UNIT);
 
 class UnitId
 {

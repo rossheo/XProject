@@ -13,3 +13,8 @@ message Auth
     string id = 1;
     string password = 2;
 }
+
+message Rename
+{
+    string name = 1;
+}

@@ -10,6 +10,8 @@
 namespace XP
 {
 
+UnitManager::ConcurrentUnits UnitManager::_s_concurrent_units;
+
 UnitManager::UnitManager()
 {
 }
@@ -34,6 +36,28 @@ PlayerUnit* UnitManager::CreatePlayerUnit(PlayerUnitData&& playerUnitData)
     PlayerUnit* pPlayerUnit = _playerUnitPool.construct(unitId, playerUnitData);
     if (pPlayerUnit)
     {
+        auto pairIb = _s_concurrent_units.insert(
+            ConcurrentUnits::value_type
+            (
+                unitId,
+                UnitLockTraits::tuple
+                (
+                    std::make_unique<SlimRWLock>(),
+                    static_cast<Unit*>(pPlayerUnit)
+                )
+            )
+        );
+
+        if (!pairIb.second)
+        {
+            LOG_ERROR(LOG_FILTER_UNIT, "Fail to insert into _s_units. UnitId: {}",
+                unitId.GetString());
+
+            _playerUnitPool.destroy(pPlayerUnit);
+            return nullptr;
+        }
+
+        pPlayerUnit->Initialize();
         return pPlayerUnit;
     }
 

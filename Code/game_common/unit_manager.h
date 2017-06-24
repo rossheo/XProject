@@ -1,6 +1,7 @@
 #pragma once
 #include "unit_id.h"
 #include "id_pool.h"
+#include "rw_lock.h"
 
 namespace XP
 {
@@ -15,6 +16,10 @@ class UnitManager
 {
 public:
     typedef IdPool<uint32, UnitId::MIN_ID_VALUE, UnitId::MAX_ID_VALUE> TIdPool;
+
+    typedef std::tuple<std::unique_ptr<SlimRWLock>, Unit*> UnitLockTraits;
+    typedef concurrency::concurrent_unordered_map<UnitId, UnitLockTraits> ConcurrentUnits;
+    static ConcurrentUnits _s_concurrent_units;
 
 public:
     explicit UnitManager();

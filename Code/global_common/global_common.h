@@ -10,6 +10,7 @@
 #include "macro_define.h"
 #include "stl_define.h"
 #include "boost_define.h"
+#include "msdn_define.h"
 #include "log4plus_define.h"
 #include "format.h"
 #include "enum.h"

@@ -17,4 +17,14 @@ ClientSession::~ClientSession()
         _pSessionManager->RemoveSession(this);
 }
 
+void ClientSession::OnConnect()
+{
+    __super::OnConnect();
+}
+
+void ClientSession::OnDisconnect(boost::asio::socket_base::shutdown_type shutdownType)
+{
+    __super::OnDisconnect(shutdownType);
+}
+
 } // namespace XP

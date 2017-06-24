@@ -9,8 +9,10 @@ namespace PC2S
     {
         Chat,
         Auth,
+        Rename
     };
 }
 
 DECLARE_PACKET_TYPE(PC2S, Chat);
 DECLARE_PACKET_TYPE(PC2S, Auth);
+DECLARE_PACKET_TYPE(PC2S, Rename);
