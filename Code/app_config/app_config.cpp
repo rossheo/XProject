@@ -91,7 +91,7 @@ void AppConfig::CreateLogDirectory() noexcept
 
 void AppConfig::Cleanup() noexcept
 {
-    log4cplus::threadCleanup();
+    log4cplus::Logger::shutdown();
 }
 
 void AppConfig::SetAddress(const std::wstring& ipAddress)

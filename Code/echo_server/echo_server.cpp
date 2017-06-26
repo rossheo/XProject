@@ -7,6 +7,7 @@
 int main()
 {
     using namespace XP;
+    log4cplus::Initializer initializer;
 
     std::locale::global(std::locale("korean"));
     std::wcout.imbue(std::locale("korean"));
