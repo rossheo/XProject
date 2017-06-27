@@ -22,6 +22,26 @@ PlayerUnitData::~PlayerUnitData()
 {
 }
 
+PlayerUnitData& PlayerUnitData::operator=(const PlayerUnitData& rhs)
+{
+    if (this != &rhs)
+    {
+        _name = rhs._name;
+    }
+
+    return *this;
+}
+
+PlayerUnitData& PlayerUnitData::operator=(PlayerUnitData&& rhs)
+{
+    if (this != &rhs)
+    {
+        _name = std::move(rhs._name);
+    }
+
+    return *this;
+}
+
 void PlayerUnitData::SetName(const std::wstring& name)
 {
     _name = name;

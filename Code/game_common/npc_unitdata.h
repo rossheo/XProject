@@ -11,25 +11,8 @@ public:
     explicit NpcUnitData(NpcUnitData&& npcUnitData);
     ~NpcUnitData();
 
-    NpcUnitData& operator= (const NpcUnitData& rhs)
-    {
-        if (this != &rhs)
-        {
-            _name = rhs._name;
-        }
-
-        return *this;
-    }
-
-    NpcUnitData& operator= (NpcUnitData&& rhs)
-    {
-        if (this != &rhs)
-        {
-            _name = std::move(rhs._name);
-        }
-
-        return *this;
-    }
+    NpcUnitData& operator= (const NpcUnitData& rhs);
+    NpcUnitData& operator= (NpcUnitData&& rhs);
 
 public:
     void SetName(const std::wstring& name);

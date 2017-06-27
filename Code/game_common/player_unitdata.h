@@ -11,25 +11,8 @@ public:
     explicit PlayerUnitData(PlayerUnitData&& playerUnitData);
     ~PlayerUnitData();
 
-    PlayerUnitData& operator= (const PlayerUnitData& rhs)
-    {
-        if (this != &rhs)
-        {
-            _name = rhs._name;
-        }
-
-        return *this;
-    }
-
-    PlayerUnitData& operator= (PlayerUnitData&& rhs)
-    {
-        if (this != &rhs)
-        {
-            _name = std::move(rhs._name);
-        }
-
-        return *this;
-    }
+    PlayerUnitData& operator= (const PlayerUnitData& rhs);
+    PlayerUnitData& operator= (PlayerUnitData&& rhs);
 
 public:
     void SetName(const std::wstring& name);
