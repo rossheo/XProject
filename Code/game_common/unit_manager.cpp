@@ -81,6 +81,28 @@ NpcUnit* UnitManager::CreateNpcUnit(const NpcUnitData& npcUnitData)
     NpcUnit* pNpcUnit = _npcUnitPool.construct(unitId, npcUnitData);
     if (pNpcUnit)
     {
+        auto pairIb = _s_concurrent_units.insert(
+            ConcurrentUnits::value_type
+            (
+                unitId,
+                UnitLockTraits::tuple
+                (
+                    std::make_unique<SlimRWLock>(),
+                    static_cast<Unit*>(pNpcUnit)
+                )
+            )
+        );
+
+        if (!pairIb.second)
+        {
+            LOG_ERROR(LOG_FILTER_UNIT, "Fail to insert into _s_units. UnitId: {}",
+                unitId.GetString());
+
+            _npcUnitPool.destroy(pNpcUnit);
+            return nullptr;
+        }
+
+        pNpcUnit->Initialize();
         return pNpcUnit;
     }
 
@@ -124,6 +146,7 @@ void UnitManager::ReleasePlayerUnit(PlayerUnit* pPlayerUnit)
             unitId.GetString());
     }
 
+    _s_concurrent_units.unsafe_erase(unitId);
     _playerIdPool.Free(unitId.GetId());
     _playerUnitPool.destroy(pPlayerUnit);
 }
@@ -142,6 +165,7 @@ void UnitManager::ReleaseNpcUnit(NpcUnit* pNpcUnit)
             unitId.GetString());
     }
 
+    _s_concurrent_units.unsafe_erase(unitId);
     _npcIdPool.Free(unitId.GetId());
     _npcUnitPool.destroy(pNpcUnit);
 }

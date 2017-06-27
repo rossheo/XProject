@@ -206,7 +206,6 @@ void SessionManager<TSession>::AssociateUnitWithSession(
     _sessionMultiIndex.insert({ &session, unit.GetUnitId(), &unit });
 }
 
-
 template <typename TSession>
 bool SessionManager<TSession>::Get(const TSession* pSession, UnitId& unitId) const
 {

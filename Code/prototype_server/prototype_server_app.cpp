@@ -59,6 +59,7 @@ void PrototypeServerApp::RemovePlayer(const PrototypeClientSession* pSession)
         return;
 
     _unitManager.ReleaseUnit(pPlayerUnit);
+    _sessionManager.RemoveSession(pSession);
 }
 
 } // namespace XP
