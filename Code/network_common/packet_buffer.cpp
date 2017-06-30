@@ -8,6 +8,13 @@ PacketBuffer::PacketBuffer()
     _buffer.resize(MAX_BUF_SIZE);
 }
 
+PacketBuffer::PacketBuffer(PacketBuffer&& rhs)
+    : _readPos(rhs._readPos)
+    , _writePos(rhs._writePos)
+{
+    _buffer = std::move(rhs._buffer);
+}
+
 PacketBuffer::PacketBuffer(const PacketBuffer& rhs)
     : _readPos(0)
     , _writePos(0)

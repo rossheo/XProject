@@ -36,7 +36,6 @@ IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Chat)
     PS2C_Chat out;
     out.set_message(packet.message());
     session.SendPacket(out);
-    return true;
 }
 
 IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Auth)
@@ -67,7 +66,6 @@ IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Auth)
     if (auto pPlayerUnitData = out.mutable_player_unit_data())
         pPlayerUnitData->set_name(ToUTF8(playerUnitData.GetName()));
     session.SendPacket(out);
-    return true;
 }
 
 IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Rename)
@@ -78,14 +76,13 @@ IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Rename)
     UnitScopeLock<PrototypeUnitLock> unitScopeLock({ unitId });
     PlayerUnit* pPlayer = UnitLock::GetPlayerUnit(unitId);
     if (!pPlayer)
-        return false;
+        return;
 
     std::wstring name = pPlayer->GetName();
 
     pPlayer->SetName(FromUTF8(packet.name()));
 
     LOG_INFO(LOG_FILTER_SERVER, "Player Rename. {} -> {}", name, pPlayer->GetName());
-    return true;
 }
 
 } // namespace XP

@@ -26,8 +26,6 @@ IMPLEMENT_HANDLER(ServerSession, PS2C_Chat)
         out.set_message(packet.message());
         session.SendPacket(packet);
     }
-
-    return true;
 }
 
 } // namespace XP

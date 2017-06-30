@@ -10,13 +10,14 @@ template <>\
 class PacketHandler<TSession, TProtoBuf>\
 {\
 public:\
-    bool operator()(TSession& session, TProtoBuf&& packet);\
+    void operator()(TSession& session, TProtoBuf&& packet);\
 };
 
 // Static 함수 초기화 선언
 #define IMPLEMENT_INITIALIZE(TSession)\
-TSession::TPacketHandlerManager Session<TSession>::_s_packet_handler_manager;\
-static void Initialize(TSession::TPacketHandlerManager& packetHandlerManager)
+template <>\
+PacketHandlerManager<TSession> Session<TSession>::_s_packet_handler_manager;\
+static void Initialize(PacketHandlerManager<TSession>& packetHandlerManager)
 
 // 패킷 함수 핸들러에 등록
 #define REGISTER_HANDLER(TProtoBuf)\
@@ -24,7 +25,7 @@ packetHandlerManager.Register<TProtoBuf>(TProtoBuf::PROTOCOL_NUMBER)
 
 // 패킷 핸들러 구현
 #define IMPLEMENT_HANDLER(TSession, TProtoBuf)\
-bool PacketHandler<TSession, TProtoBuf>::operator()(TSession& session, TProtoBuf&& packet)
+void PacketHandler<TSession, TProtoBuf>::operator()(TSession& session, TProtoBuf&& packet)
 
 namespace XP
 {
@@ -58,11 +59,12 @@ public:
 
         packetBuffer.ConsumePacket();
 
-        return PacketHandler<TSession, TProtoBuf>()(session, std::move(protobuf));
+        PacketHandler<TSession, TProtoBuf>()(session, std::move(protobuf));
+        return true;
     }
 };
 
-template<typename TSession>
+template <typename TSession>
 class PacketHandlerManager
 {
 public:
@@ -77,7 +79,7 @@ public:
         ClearPacketFunctors();
     }
 
-    template<class TProtoBuf>
+    template <typename TProtoBuf>
     bool Register(uint16 protocolNumber)
     {
         if (protocolNumber > _packetFunctors.size())

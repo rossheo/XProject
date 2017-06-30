@@ -7,6 +7,7 @@ public:
 
 public:
     explicit PacketBuffer();
+    explicit PacketBuffer(PacketBuffer&& rhs);
     explicit PacketBuffer(const PacketBuffer& rhs);
     explicit PacketBuffer(const char* pBuffer, uint16 size);
     ~PacketBuffer();

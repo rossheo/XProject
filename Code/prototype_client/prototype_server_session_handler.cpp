@@ -24,8 +24,6 @@ IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Who)
     out.set_id("proto_id");
     out.set_password("proto_pw");
     session.SendPacket(out);
-
-    return true;
 }
 
 IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Chat)
@@ -40,8 +38,6 @@ IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Chat)
         out.set_message(packet.message());
         session.SendPacket(packet);
     }
-
-    return true;
 }
 
 IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Auth)
@@ -52,8 +48,6 @@ IMPLEMENT_HANDLER(PrototypeServerSession, PS2C_Auth)
     PC2S_Rename out;
     out.set_name(ToUTF8(TEXT("player_rename")));
     session.SendPacket(out);
-
-    return true;
 }
 
 } // namespace XP

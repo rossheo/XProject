@@ -26,7 +26,6 @@ IMPLEMENT_HANDLER(ClientSession, PC2S_Chat)
     out.set_message(packet.message());
     //session.SendPacket(out);
     session.BroadcastPacket(out);
-    return true;
 }
 
 } // namespace XP

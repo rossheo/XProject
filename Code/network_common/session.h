@@ -10,8 +10,7 @@ template <typename TSession>
 class Session : public std::enable_shared_from_this<TSession>
 {
 public:
-    typedef PacketHandlerManager<TSession> TPacketHandlerManager;
-    static TPacketHandlerManager _s_packet_handler_manager;
+    static PacketHandlerManager<TSession> _s_packet_handler_manager;
 
 public:
     explicit Session(boost::asio::io_service& ioservice,
