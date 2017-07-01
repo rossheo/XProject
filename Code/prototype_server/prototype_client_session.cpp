@@ -2,7 +2,7 @@
 #include "prototype_client_session.h"
 #include "prototype_server_app.h"
 
-#include "p_server_client.h"
+#include "p_prototype_server_client.h"
 
 namespace XP
 {

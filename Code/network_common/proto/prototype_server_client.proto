@@ -1,7 +1,7 @@
 ﻿syntax = "proto3";
-import public "common.proto";
+import public "prototype_common.proto";
 
-package PS2C;
+package prototype.PS2C;
 
 message Who
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include "session.h"
-#include "p_client_server.h"
+#include "p_prototype_client_server.h"
 
 namespace XP
 {

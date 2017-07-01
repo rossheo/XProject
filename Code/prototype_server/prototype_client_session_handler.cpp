@@ -1,15 +1,14 @@
 #include "stdafx.h"
 #include "prototype_client_session.h"
 
-#include "p_client_server.h"
-#include "p_server_client.h"
-
 #include "prototype_server_app.h"
 #include "player_unitdata.h"
 #include "unit_lock.h"
 #include "unit_id.h"
 #include "prototype_unitlock.h"
 
+#include "p_prototype_client_server.h"
+#include "p_prototype_server_client.h"
 
 namespace XP
 {

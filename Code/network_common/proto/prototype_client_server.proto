@@ -1,7 +1,7 @@
 ﻿syntax = "proto3";
-import public "common.proto";
+import public "prototype_common.proto";
 
-package PC2S;
+package prototype.PC2S;
 
 message Chat
 {

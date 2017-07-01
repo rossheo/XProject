@@ -50,7 +50,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PreprocessorDefinitions>_DEBUG;_LIB;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
@@ -73,7 +73,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -103,37 +103,39 @@
     <ClInclude Include="packet_buffer.h" />
     <ClInclude Include="packet_define.h" />
     <ClInclude Include="packet_handler_manager.h" />
-    <ClInclude Include="pb_cpp\client_server.pb.h" />
-    <ClInclude Include="pb_cpp\common.pb.h" />
-    <ClInclude Include="pb_cpp\server_client.pb.h" />
-    <ClInclude Include="p_client_server.h" />
-    <ClInclude Include="p_server_client.h" />
+    <ClInclude Include="pb_cpp\echo_client_server.pb.h" />
+    <ClInclude Include="pb_cpp\echo_common.pb.h" />
+    <ClInclude Include="pb_cpp\echo_server_client.pb.h" />
+    <ClInclude Include="pb_cpp\prototype_client_server.pb.h" />
+    <ClInclude Include="pb_cpp\prototype_common.pb.h" />
+    <ClInclude Include="pb_cpp\prototype_server_client.pb.h" />
+    <ClInclude Include="p_echo_client_server.h" />
+    <ClInclude Include="p_echo_server_client.h" />
+    <ClInclude Include="p_prototype_client_server.h" />
+    <ClInclude Include="p_prototype_server_client.h" />
     <ClInclude Include="session.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="packet_buffer.cpp" />
-    <ClCompile Include="pb_cpp\client_server.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="pb_cpp\common.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="pb_cpp\server_client.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="pb_cpp\echo_client_server.pb.cc" />
+    <ClCompile Include="pb_cpp\echo_common.pb.cc" />
+    <ClCompile Include="pb_cpp\echo_server_client.pb.cc" />
+    <ClCompile Include="pb_cpp\prototype_client_server.pb.cc" />
+    <ClCompile Include="pb_cpp\prototype_common.pb.cc" />
+    <ClCompile Include="pb_cpp\prototype_server_client.pb.cc" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="proto\client_server.proto" />
-    <None Include="proto\common.proto" />
-    <None Include="proto\server_client.proto" />
+    <None Include="proto\echo_client_server.proto" />
+    <None Include="proto\echo_common.proto" />
+    <None Include="proto\echo_server_client.proto" />
+    <None Include="proto\prototype_client_server.proto" />
+    <None Include="proto\prototype_common.proto" />
+    <None Include="proto\prototype_server_client.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

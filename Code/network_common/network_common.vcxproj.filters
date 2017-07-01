@@ -8,14 +8,32 @@
     <Filter Include="proto">
       <UniqueIdentifier>{f7c62487-fbd1-4608-8d78-3c98ad40e503}</UniqueIdentifier>
     </Filter>
-    <Filter Include="packet_header">
-      <UniqueIdentifier>{0dfffc69-4b22-43e0-8a55-69d754f018cf}</UniqueIdentifier>
-    </Filter>
     <Filter Include="sessions">
       <UniqueIdentifier>{864c609c-d5fb-42b2-8d98-7e5e3cda61a2}</UniqueIdentifier>
     </Filter>
     <Filter Include="pb_cpp">
       <UniqueIdentifier>{412e9c80-0dea-4450-8011-d0a821f477e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto\echo">
+      <UniqueIdentifier>{57c98481-eeda-4593-aae8-3cb5e8378159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pb_cpp\echo">
+      <UniqueIdentifier>{d8e467b1-cb80-44bb-b382-509023c278d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="proto\prototype">
+      <UniqueIdentifier>{4d2a9745-01cb-46d2-a820-7e27f53e64ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pb_cpp\prototype">
+      <UniqueIdentifier>{21276f7d-8474-4d02-8c77-b806bc8e40c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="packet_declare">
+      <UniqueIdentifier>{0dfffc69-4b22-43e0-8a55-69d754f018cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="packet_declare\echo">
+      <UniqueIdentifier>{767bb7bd-661c-4b95-b21e-e463ee007481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="packet_declare\prototype">
+      <UniqueIdentifier>{b55d0073-7625-4bad-b70a-aa9367268ab9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -29,23 +47,38 @@
     <ClInclude Include="packet_define.h">
       <Filter>network_common</Filter>
     </ClInclude>
-    <ClInclude Include="p_client_server.h">
-      <Filter>packet_header</Filter>
-    </ClInclude>
-    <ClInclude Include="p_server_client.h">
-      <Filter>packet_header</Filter>
-    </ClInclude>
     <ClInclude Include="session.h">
       <Filter>sessions</Filter>
     </ClInclude>
-    <ClInclude Include="pb_cpp\client_server.pb.h">
-      <Filter>pb_cpp</Filter>
+    <ClInclude Include="pb_cpp\echo_client_server.pb.h">
+      <Filter>pb_cpp\echo</Filter>
     </ClInclude>
-    <ClInclude Include="pb_cpp\common.pb.h">
-      <Filter>pb_cpp</Filter>
+    <ClInclude Include="pb_cpp\echo_common.pb.h">
+      <Filter>pb_cpp\echo</Filter>
     </ClInclude>
-    <ClInclude Include="pb_cpp\server_client.pb.h">
-      <Filter>pb_cpp</Filter>
+    <ClInclude Include="pb_cpp\echo_server_client.pb.h">
+      <Filter>pb_cpp\echo</Filter>
+    </ClInclude>
+    <ClInclude Include="pb_cpp\prototype_client_server.pb.h">
+      <Filter>pb_cpp\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="pb_cpp\prototype_common.pb.h">
+      <Filter>pb_cpp\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="pb_cpp\prototype_server_client.pb.h">
+      <Filter>pb_cpp\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="p_echo_client_server.h">
+      <Filter>packet_declare\echo</Filter>
+    </ClInclude>
+    <ClInclude Include="p_echo_server_client.h">
+      <Filter>packet_declare\echo</Filter>
+    </ClInclude>
+    <ClInclude Include="p_prototype_client_server.h">
+      <Filter>packet_declare\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="p_prototype_server_client.h">
+      <Filter>packet_declare\prototype</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -53,25 +86,43 @@
     <ClCompile Include="packet_buffer.cpp">
       <Filter>network_common</Filter>
     </ClCompile>
-    <ClCompile Include="pb_cpp\client_server.pb.cc">
-      <Filter>pb_cpp</Filter>
+    <ClCompile Include="pb_cpp\echo_client_server.pb.cc">
+      <Filter>pb_cpp\echo</Filter>
     </ClCompile>
-    <ClCompile Include="pb_cpp\common.pb.cc">
-      <Filter>pb_cpp</Filter>
+    <ClCompile Include="pb_cpp\echo_common.pb.cc">
+      <Filter>pb_cpp\echo</Filter>
     </ClCompile>
-    <ClCompile Include="pb_cpp\server_client.pb.cc">
-      <Filter>pb_cpp</Filter>
+    <ClCompile Include="pb_cpp\echo_server_client.pb.cc">
+      <Filter>pb_cpp\echo</Filter>
+    </ClCompile>
+    <ClCompile Include="pb_cpp\prototype_client_server.pb.cc">
+      <Filter>pb_cpp\prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="pb_cpp\prototype_common.pb.cc">
+      <Filter>pb_cpp\prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="pb_cpp\prototype_server_client.pb.cc">
+      <Filter>pb_cpp\prototype</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="proto\client_server.proto">
-      <Filter>proto</Filter>
+    <None Include="proto\echo_client_server.proto">
+      <Filter>proto\echo</Filter>
     </None>
-    <None Include="proto\common.proto">
-      <Filter>proto</Filter>
+    <None Include="proto\echo_common.proto">
+      <Filter>proto\echo</Filter>
     </None>
-    <None Include="proto\server_client.proto">
-      <Filter>proto</Filter>
+    <None Include="proto\echo_server_client.proto">
+      <Filter>proto\echo</Filter>
+    </None>
+    <None Include="proto\prototype_client_server.proto">
+      <Filter>proto\prototype</Filter>
+    </None>
+    <None Include="proto\prototype_common.proto">
+      <Filter>proto\prototype</Filter>
+    </None>
+    <None Include="proto\prototype_server_client.proto">
+      <Filter>proto\prototype</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "prototype_server_session.h"
 
-#include "p_client_server.h"
-#include "p_server_client.h"
+#include "p_prototype_client_server.h"
+#include "p_prototype_server_client.h"
 
 namespace XP
 {

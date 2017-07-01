@@ -1,5 +1,7 @@
 ﻿syntax = "proto3";
 
+package prototype;
+
 message PlayerUnitData
 {
     string name = 1;

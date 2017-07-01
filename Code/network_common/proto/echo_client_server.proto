@@ -1,0 +1,9 @@
+﻿syntax = "proto3";
+import public "echo_common.proto";
+
+package echo.PC2S;
+
+message Chat
+{
+    string message = 1;
+}
