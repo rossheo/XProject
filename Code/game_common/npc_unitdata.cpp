@@ -42,6 +42,16 @@ NpcUnitData& NpcUnitData::operator=(NpcUnitData&& rhs)
     return *this;
 }
 
+void NpcUnitData::To(prototype::NPCUnitData& pbUnitData)
+{
+    pbUnitData.set_name(ToUTF8(_name));
+}
+
+void NpcUnitData::From(const prototype::NPCUnitData& pbUnitData)
+{
+    _name = FromUTF8(pbUnitData.name());
+}
+
 void NpcUnitData::SetName(const std::wstring& name)
 {
     _name = name;

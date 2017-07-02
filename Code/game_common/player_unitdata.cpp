@@ -42,6 +42,16 @@ PlayerUnitData& PlayerUnitData::operator=(PlayerUnitData&& rhs)
     return *this;
 }
 
+void PlayerUnitData::To(prototype::PlayerUnitData& pbUnitData)
+{
+    pbUnitData.set_name(ToUTF8(_name));
+}
+
+void PlayerUnitData::From(const prototype::PlayerUnitData& pbUnitData)
+{
+    _name = FromUTF8(pbUnitData.name());
+}
+
 void PlayerUnitData::SetName(const std::wstring& name)
 {
     _name = name;
