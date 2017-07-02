@@ -27,7 +27,7 @@ public:
 
 public:
     PlayerUnit* CreatePlayerUnit(PlayerUnitData&& playerUnitData);
-    NpcUnit* CreateNpcUnit(const NpcUnitData& npcUnitData);
+    NpcUnit* CreateNpcUnit(NpcUnitData&& npcUnitData);
     void ReleaseUnit(Unit* pUnit);
 
 private:

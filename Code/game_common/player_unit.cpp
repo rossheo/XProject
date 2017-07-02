@@ -6,9 +6,9 @@ namespace XP
 {
 const eUnitType PlayerUnit::unitType = eUnitType::PLAYER_UNIT;
 
-PlayerUnit::PlayerUnit(const UnitId& unitId, const PlayerUnitData& playerUnitData)
+PlayerUnit::PlayerUnit(const PlayerUnitData& playerUnitData)
 {
-    SetUnitId(unitId);
+    SetUnitId(playerUnitData.GetUnitId());
     _unitData.CreatePlayerUnitData(PlayerUnitData(playerUnitData));
 }
 

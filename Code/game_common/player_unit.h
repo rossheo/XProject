@@ -9,7 +9,7 @@ class PlayerUnitData;
 class PlayerUnit : public ActorUnit
 {
 public:
-    explicit PlayerUnit(const UnitId& unitId, const PlayerUnitData& playerUnitData);
+    explicit PlayerUnit(const PlayerUnitData& playerUnitData);
     virtual ~PlayerUnit();
 
     PlayerUnit(const PlayerUnit&) = delete;

@@ -32,8 +32,9 @@ PlayerUnit* UnitManager::CreatePlayerUnit(PlayerUnitData&& playerUnitData)
     }
 
     UnitId unitId(PlayerUnit::unitType, id);
+    playerUnitData.SetUnitId(unitId);
 
-    PlayerUnit* pPlayerUnit = _playerUnitPool.construct(unitId, playerUnitData);
+    PlayerUnit* pPlayerUnit = _playerUnitPool.construct(playerUnitData);
     if (pPlayerUnit)
     {
         auto pairIb = _s_concurrent_units.insert(
@@ -65,7 +66,7 @@ PlayerUnit* UnitManager::CreatePlayerUnit(PlayerUnitData&& playerUnitData)
     return nullptr;
 }
 
-NpcUnit* UnitManager::CreateNpcUnit(const NpcUnitData& npcUnitData)
+NpcUnit* UnitManager::CreateNpcUnit(NpcUnitData&& npcUnitData)
 {
     LOCK_W(_lock);
 
@@ -77,8 +78,9 @@ NpcUnit* UnitManager::CreateNpcUnit(const NpcUnitData& npcUnitData)
     }
 
     UnitId unitId(NpcUnit::unitType, id);
+    npcUnitData.SetUnitId(unitId);
 
-    NpcUnit* pNpcUnit = _npcUnitPool.construct(unitId, npcUnitData);
+    NpcUnit* pNpcUnit = _npcUnitPool.construct(npcUnitData);
     if (pNpcUnit)
     {
         auto pairIb = _s_concurrent_units.insert(

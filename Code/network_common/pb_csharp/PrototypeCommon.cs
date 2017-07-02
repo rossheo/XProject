@@ -22,14 +22,15 @@ namespace Prototype {
     static PrototypeCommonReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChZwcm90b3R5cGVfY29tbW9uLnByb3RvEglwcm90b3R5cGUiHgoOUGxheWVy",
-            "VW5pdERhdGESDAoEbmFtZRgBIAEoCSIbCgtOUENVbml0RGF0YRIMCgRuYW1l",
-            "GAEgASgJYgZwcm90bzM="));
+            "ChZwcm90b3R5cGVfY29tbW9uLnByb3RvEglwcm90b3R5cGUiQgoOUGxheWVy",
+            "VW5pdERhdGESEQoJdW5pdF90eXBlGAEgASgFEg8KB3VuaXRfaWQYAiABKA0S",
+            "DAoEbmFtZRgDIAEoCSI/CgtOUENVbml0RGF0YRIRCgl1bml0X3R5cGUYASAB",
+            "KAUSDwoHdW5pdF9pZBgCIAEoDRIMCgRuYW1lGAMgASgJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.PlayerUnitData), global::Prototype.PlayerUnitData.Parser, new[]{ "Name" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.NPCUnitData), global::Prototype.NPCUnitData.Parser, new[]{ "Name" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.PlayerUnitData), global::Prototype.PlayerUnitData.Parser, new[]{ "UnitType", "UnitId", "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.NPCUnitData), global::Prototype.NPCUnitData.Parser, new[]{ "UnitType", "UnitId", "Name" }, null, null, null)
           }));
     }
     #endregion
@@ -60,6 +61,8 @@ namespace Prototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerUnitData(PlayerUnitData other) : this() {
+      unitType_ = other.unitType_;
+      unitId_ = other.unitId_;
       name_ = other.name_;
     }
 
@@ -68,8 +71,30 @@ namespace Prototype {
       return new PlayerUnitData(this);
     }
 
+    /// <summary>Field number for the "unit_type" field.</summary>
+    public const int UnitTypeFieldNumber = 1;
+    private int unitType_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int UnitType {
+      get { return unitType_; }
+      set {
+        unitType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "unit_id" field.</summary>
+    public const int UnitIdFieldNumber = 2;
+    private uint unitId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint UnitId {
+      get { return unitId_; }
+      set {
+        unitId_ = value;
+      }
+    }
+
     /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 1;
+    public const int NameFieldNumber = 3;
     private string name_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Name {
@@ -92,6 +117,8 @@ namespace Prototype {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (UnitType != other.UnitType) return false;
+      if (UnitId != other.UnitId) return false;
       if (Name != other.Name) return false;
       return true;
     }
@@ -99,6 +126,8 @@ namespace Prototype {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (UnitId != 0) hash ^= UnitId.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       return hash;
     }
@@ -110,8 +139,16 @@ namespace Prototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (UnitType != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(UnitType);
+      }
+      if (UnitId != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(UnitId);
+      }
       if (Name.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(26);
         output.WriteString(Name);
       }
     }
@@ -119,6 +156,12 @@ namespace Prototype {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (UnitType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      }
+      if (UnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnitId);
+      }
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
@@ -129,6 +172,12 @@ namespace Prototype {
     public void MergeFrom(PlayerUnitData other) {
       if (other == null) {
         return;
+      }
+      if (other.UnitType != 0) {
+        UnitType = other.UnitType;
+      }
+      if (other.UnitId != 0) {
+        UnitId = other.UnitId;
       }
       if (other.Name.Length != 0) {
         Name = other.Name;
@@ -143,7 +192,15 @@ namespace Prototype {
           default:
             input.SkipLastField();
             break;
-          case 10: {
+          case 8: {
+            UnitType = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            UnitId = input.ReadUInt32();
+            break;
+          }
+          case 26: {
             Name = input.ReadString();
             break;
           }
@@ -177,6 +234,8 @@ namespace Prototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public NPCUnitData(NPCUnitData other) : this() {
+      unitType_ = other.unitType_;
+      unitId_ = other.unitId_;
       name_ = other.name_;
     }
 
@@ -185,8 +244,30 @@ namespace Prototype {
       return new NPCUnitData(this);
     }
 
+    /// <summary>Field number for the "unit_type" field.</summary>
+    public const int UnitTypeFieldNumber = 1;
+    private int unitType_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int UnitType {
+      get { return unitType_; }
+      set {
+        unitType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "unit_id" field.</summary>
+    public const int UnitIdFieldNumber = 2;
+    private uint unitId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint UnitId {
+      get { return unitId_; }
+      set {
+        unitId_ = value;
+      }
+    }
+
     /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 1;
+    public const int NameFieldNumber = 3;
     private string name_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Name {
@@ -209,6 +290,8 @@ namespace Prototype {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (UnitType != other.UnitType) return false;
+      if (UnitId != other.UnitId) return false;
       if (Name != other.Name) return false;
       return true;
     }
@@ -216,6 +299,8 @@ namespace Prototype {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (UnitId != 0) hash ^= UnitId.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       return hash;
     }
@@ -227,8 +312,16 @@ namespace Prototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (UnitType != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(UnitType);
+      }
+      if (UnitId != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(UnitId);
+      }
       if (Name.Length != 0) {
-        output.WriteRawTag(10);
+        output.WriteRawTag(26);
         output.WriteString(Name);
       }
     }
@@ -236,6 +329,12 @@ namespace Prototype {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (UnitType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
+      }
+      if (UnitId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnitId);
+      }
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
       }
@@ -246,6 +345,12 @@ namespace Prototype {
     public void MergeFrom(NPCUnitData other) {
       if (other == null) {
         return;
+      }
+      if (other.UnitType != 0) {
+        UnitType = other.UnitType;
+      }
+      if (other.UnitId != 0) {
+        UnitId = other.UnitId;
       }
       if (other.Name.Length != 0) {
         Name = other.Name;
@@ -260,7 +365,15 @@ namespace Prototype {
           default:
             input.SkipLastField();
             break;
-          case 10: {
+          case 8: {
+            UnitType = input.ReadInt32();
+            break;
+          }
+          case 16: {
+            UnitId = input.ReadUInt32();
+            break;
+          }
+          case 26: {
             Name = input.ReadString();
             break;
           }

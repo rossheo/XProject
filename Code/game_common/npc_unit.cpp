@@ -6,9 +6,9 @@ namespace XP
 {
 const eUnitType NpcUnit::unitType = eUnitType::NPC_UNIT;
 
-NpcUnit::NpcUnit(const UnitId& unitId, const NpcUnitData& npcUnitData)
+NpcUnit::NpcUnit(const NpcUnitData& npcUnitData)
 {
-    SetUnitId(unitId);
+    SetUnitId(npcUnitData.GetUnitId());
     _unitData.CreateNpcUnitData(NpcUnitData(npcUnitData));
 }
 

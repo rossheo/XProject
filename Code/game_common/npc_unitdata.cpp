@@ -44,12 +44,27 @@ NpcUnitData& NpcUnitData::operator=(NpcUnitData&& rhs)
 
 void NpcUnitData::To(prototype::NPCUnitData& pbUnitData)
 {
+    pbUnitData.set_unit_type(_unitId.GetType());
+    pbUnitData.set_unit_id(_unitId.GetId());
     pbUnitData.set_name(ToUTF8(_name));
 }
 
 void NpcUnitData::From(const prototype::NPCUnitData& pbUnitData)
 {
+    UnitId fromUnitId(eUnitType::_from_integral(pbUnitData.unit_type()), pbUnitData.unit_id());
+    ASSERT(_unitId == fromUnitId);
+
     _name = FromUTF8(pbUnitData.name());
+}
+
+void NpcUnitData::SetUnitId(const UnitId& unitId)
+{
+    _unitId = unitId;
+}
+
+UnitId NpcUnitData::GetUnitId() const
+{
+    return _unitId;
 }
 
 void NpcUnitData::SetName(const std::wstring& name)

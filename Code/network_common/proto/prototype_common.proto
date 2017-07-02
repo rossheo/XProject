@@ -4,10 +4,14 @@ package prototype;
 
 message PlayerUnitData
 {
-    string name = 1;
+    int32 unit_type = 1;
+    uint32 unit_id = 2;
+    string name = 3;
 }
 
 message NPCUnitData
 {
-    string name = 1;
+    int32 unit_type = 1;
+    uint32 unit_id = 2;
+    string name = 3;
 }

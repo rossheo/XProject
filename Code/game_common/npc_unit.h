@@ -9,7 +9,7 @@ class NpcUnitData;
 class NpcUnit : public ActorUnit
 {
 public:
-    explicit NpcUnit(const UnitId& unitId, const NpcUnitData& npcUnitData);
+    explicit NpcUnit(const NpcUnitData& npcUnitData);
     virtual ~NpcUnit();
 
     NpcUnit(const NpcUnit&) = delete;

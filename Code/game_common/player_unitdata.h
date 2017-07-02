@@ -1,4 +1,5 @@
 #pragma once
+#include "unit_id.h"
 #include "prototype_common.pb.h"
 
 namespace XP
@@ -19,10 +20,14 @@ public:
     void From(const prototype::PlayerUnitData& pbUnitData);
 
 public:
+    void SetUnitId(const UnitId& unitId);
+    UnitId GetUnitId() const;
+
     void SetName(const std::wstring& name);
     std::wstring GetName() const { return _name; }
 
 private:
+    UnitId _unitId;
     std::wstring _name;
 };
 
