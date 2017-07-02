@@ -23,9 +23,6 @@ public:
     virtual void PostCreate() override;
     virtual void OnCreate() override;
 
-    void GetData(PlayerUnitData& unitData) const;
-    void SetData(const PlayerUnitData& unitData);
-
     void SetName(const std::wstring& name);
     std::wstring GetName() const;
 

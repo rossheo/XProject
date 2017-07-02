@@ -15,40 +15,70 @@ UnitData::~UnitData()
 {
 }
 
-void UnitData::Clear() noexcept
-{
-    _upPlayerUnitData.reset();
-    _upNpcUnitData.reset();
-}
-
 void UnitData::CreatePlayerUnitData(PlayerUnitData&& unitData)
 {
-    _upPlayerUnitData = std::make_unique<PlayerUnitData>(std::move(unitData));
+    _data = unitData;
 }
 
-PlayerUnitData* UnitData::GetPlayerUnitData() const
+bool UnitData::IsPlayerUnitData() const
 {
-    return _upPlayerUnitData.get();
+    const PlayerUnitData* pUnitData = boost::get<PlayerUnitData>(&_data);
+    if (!pUnitData)
+        return false;
+
+    return true;
 }
 
-void UnitData::SetPlayerUnitData(const PlayerUnitData& unitData)
+bool UnitData::GetPlayerUnitData(PlayerUnitData*& pUnitData)
 {
-    (*_upPlayerUnitData) = unitData;
+    if (!IsPlayerUnitData())
+        return false;
+
+    pUnitData = boost::get<PlayerUnitData>(&_data);
+    return true;
+}
+
+const PlayerUnitData& UnitData::GetPlayerUnitData() const
+{
+    if (!IsPlayerUnitData())
+    {
+        ASSERT(false);
+    }
+
+    return boost::get<PlayerUnitData>(_data);
 }
 
 void UnitData::CreateNpcUnitData(NpcUnitData&& unitData)
 {
-    _upNpcUnitData = std::make_unique<NpcUnitData>(std::move(unitData));
+    _data = unitData;
 }
 
-NpcUnitData* UnitData::GetNpcUnitData() const
+bool UnitData::IsNpcUnitData() const
 {
-    return _upNpcUnitData.get();
+    const NpcUnitData* pUnitData = boost::get<NpcUnitData>(&_data);
+    if (!pUnitData)
+        return false;
+
+    return true;
 }
 
-void UnitData::SetNpcUnitData(const NpcUnitData& unitData)
+bool UnitData::GetNpcUnitData(NpcUnitData*& pUnitData)
 {
-    (*_upNpcUnitData) = unitData;
+    if (!IsNpcUnitData())
+        return false;
+
+    pUnitData = boost::get<NpcUnitData>(&_data);
+    return true;
+}
+
+const NpcUnitData& UnitData::GetNpcUnitData() const
+{
+    if (!IsNpcUnitData())
+    {
+        ASSERT(false);
+    }
+
+    return boost::get<NpcUnitData>(_data);
 }
 
 } // namespace XP

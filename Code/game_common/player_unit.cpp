@@ -28,35 +28,21 @@ void PlayerUnit::OnCreate()
 {
 }
 
-void PlayerUnit::GetData(PlayerUnitData& unitData) const
-{
-    if (auto pUnitData = _unitData.GetPlayerUnitData())
-    {
-        unitData = *pUnitData;
-    }
-}
-
-void PlayerUnit::SetData(const PlayerUnitData& unitData)
-{
-    _unitData.SetPlayerUnitData(unitData);
-}
-
 void PlayerUnit::SetName(const std::wstring& name)
 {
-    PlayerUnitData unitData;
-    GetData(unitData);
+    PlayerUnitData* pUnitData;
+    if (!_unitData.GetPlayerUnitData(pUnitData))
+    {
+        ASSERT(false);
+        return;
+    }
 
-    unitData.SetName(name);
-
-    SetData(unitData);
+    pUnitData->SetName(name);
 }
 
 std::wstring PlayerUnit::GetName() const
 {
-    PlayerUnitData unitData;
-    GetData(unitData);
-
-    return unitData.GetName();
+    return _unitData.GetPlayerUnitData().GetName();
 }
 
 void PlayerUnit::Update(float frame)

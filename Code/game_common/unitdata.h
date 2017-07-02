@@ -1,10 +1,9 @@
 #pragma once
+#include "player_unitdata.h"
+#include "npc_unitdata.h"
 
 namespace XP
 {
-
-class PlayerUnitData;
-class NpcUnitData;
 
 class UnitData
 {
@@ -16,19 +15,18 @@ public:
     UnitData& operator= (const UnitData&) = delete;
 
 public:
-    void Clear() noexcept;
-
     void CreatePlayerUnitData(PlayerUnitData&& unitData);
-    PlayerUnitData* GetPlayerUnitData() const;
-    void SetPlayerUnitData(const PlayerUnitData& unitData);
+    bool IsPlayerUnitData() const;
+    bool GetPlayerUnitData(PlayerUnitData*& pUnitData);
+    const PlayerUnitData& GetPlayerUnitData() const;
 
     void CreateNpcUnitData(NpcUnitData&& unitData);
-    NpcUnitData* GetNpcUnitData() const;
-    void SetNpcUnitData(const NpcUnitData& unitData);
+    bool IsNpcUnitData() const;
+    bool GetNpcUnitData(NpcUnitData*& pUnitData);
+    const NpcUnitData& GetNpcUnitData() const;
 
 private:
-    std::unique_ptr<PlayerUnitData> _upPlayerUnitData;
-    std::unique_ptr<NpcUnitData> _upNpcUnitData;
+    boost::variant<PlayerUnitData, NpcUnitData> _data;
 };
 
 } // namespace XP
