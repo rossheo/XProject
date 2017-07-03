@@ -176,9 +176,6 @@ bool PacketBuffer::AppendBuffer(const char* pBuffer, uint16 size) noexcept
     if (!pBuffer)
         return false;
 
-    if (size == 0)
-        return false;
-
     if (size > GetRemainSize())
     {
         ReArrange();

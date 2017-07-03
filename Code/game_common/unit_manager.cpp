@@ -54,6 +54,7 @@ PlayerUnit* UnitManager::CreatePlayerUnit(PlayerUnitData&& playerUnitData)
             LOG_ERROR(LOG_FILTER_UNIT, "Fail to insert into _s_units. UnitId: {}",
                 unitId.GetString());
 
+            _playerIdPool.Free(id);
             _playerUnitPool.destroy(pPlayerUnit);
             return nullptr;
         }
@@ -63,6 +64,7 @@ PlayerUnit* UnitManager::CreatePlayerUnit(PlayerUnitData&& playerUnitData)
     }
 
     LOG_ERROR(LOG_FILTER_UNIT, "Fail to create PlayerUnit. {}", unitId.GetString());
+    _playerIdPool.Free(id);
     return nullptr;
 }
 
@@ -100,6 +102,7 @@ NpcUnit* UnitManager::CreateNpcUnit(NpcUnitData&& npcUnitData)
             LOG_ERROR(LOG_FILTER_UNIT, "Fail to insert into _s_units. UnitId: {}",
                 unitId.GetString());
 
+            _npcIdPool.Free(id);
             _npcUnitPool.destroy(pNpcUnit);
             return nullptr;
         }
@@ -109,6 +112,7 @@ NpcUnit* UnitManager::CreateNpcUnit(NpcUnitData&& npcUnitData)
     }
 
     LOG_ERROR(LOG_FILTER_UNIT, "Fail to create NpcUnit. {}", unitId.GetString());
+    _npcIdPool.Free(id);
     return nullptr;
 }
 

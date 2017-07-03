@@ -13,7 +13,6 @@ UnitLock::UnitLock()
 
 UnitLock::~UnitLock()
 {
-    _unitIds.clear();
 }
 
 void UnitLock::SetUnit(std::initializer_list<UnitId> unitIds)
