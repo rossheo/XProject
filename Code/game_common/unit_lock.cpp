@@ -15,10 +15,27 @@ UnitLock::~UnitLock()
 {
 }
 
-void UnitLock::SetUnit(std::initializer_list<UnitId> unitIds)
+void UnitLock::SetUnit(const std::initializer_list<UnitId>& unitIds)
 {
     _unitIds.clear();
-    _unitIds.insert(unitIds);
+
+    for (const auto& unitId : unitIds)
+    {
+        _unitIds.insert(unitId);
+    }
+}
+
+void UnitLock::SetUnit(const std::initializer_list<std::set<UnitId>>& unitIds)
+{
+    _unitIds.clear();
+
+    for (const auto& setUnitIds : unitIds)
+    {
+        for (const auto& unitId : setUnitIds)
+        {
+            _unitIds.insert(unitId);
+        }
+    }
 }
 
 PlayerUnit* UnitLock::GetPlayerUnit(const UnitId& unitId)

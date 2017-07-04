@@ -25,7 +25,6 @@ public:
     PlayerUnit* CreatePlayer(const PrototypeClientSession& session,
         PlayerUnitData&& playerUnitData);
 
-private:
     void RemovePlayer(const PrototypeClientSession* pSession);
 
 private:

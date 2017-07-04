@@ -14,7 +14,8 @@ public:
     explicit UnitLock();
     ~UnitLock();
 
-    void SetUnit(std::initializer_list<UnitId> unitIds);
+    void SetUnit(const std::initializer_list<UnitId>& unitIds);
+    void SetUnit(const std::initializer_list<std::set<UnitId>>& unitIds);
 
     virtual void Lock() = 0;
     virtual void UnLock() = 0;
@@ -30,7 +31,8 @@ template <typename TUnitLock>
 class UnitScopeLock
 {
 public:
-    explicit UnitScopeLock(std::initializer_list<UnitId> unitIds);
+    explicit UnitScopeLock(const std::initializer_list<UnitId>& unitIds);
+    explicit UnitScopeLock(const std::initializer_list<std::set<UnitId>>& unitIds);
     ~UnitScopeLock();
 
 private:
@@ -38,10 +40,16 @@ private:
 };
 
 template <typename TUnitLock>
-UnitScopeLock<TUnitLock>::UnitScopeLock(std::initializer_list<UnitId> unitIds)
+UnitScopeLock<TUnitLock>::UnitScopeLock(const std::initializer_list<UnitId>& unitIds)
 {
     _lock.SetUnit(unitIds);
+    _lock.Lock();
+}
 
+template <typename TUnitLock>
+UnitScopeLock<TUnitLock>::UnitScopeLock(const std::initializer_list<std::set<UnitId>>& unitIds)
+{
+    _lock.SetUnit(unitIds);
     _lock.Lock();
 }
 
