@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "npc_unitdata.h"
 
+
 namespace XP
 {
 
@@ -42,18 +43,19 @@ NpcUnitData& NpcUnitData::operator=(NpcUnitData&& rhs)
     return *this;
 }
 
-void NpcUnitData::To(pb_prototype::NPCUnitData& pbUnitData)
+void NpcUnitData::To(pb_prototype::NPCUnitData& pbUnitData) const
 {
-    pbUnitData.set_unit_type(_unitId.GetType());
-    pbUnitData.set_unit_id(_unitId.GetId());
+    auto& pbUnitId = *pbUnitData.mutable_unit_id();
+    _unitId.To(pbUnitId);
+
     pbUnitData.set_name(ToUTF8(_name));
 }
 
 void NpcUnitData::From(const pb_prototype::NPCUnitData& pbUnitData)
 {
-    UnitId fromUnitId(eUnitType::_from_integral(pbUnitData.unit_type()), pbUnitData.unit_id());
-    ASSERT(_unitId == fromUnitId);
+    ASSERT(eUnitType::PLAYER_UNIT == pbUnitData.unit_id().unit_type());
 
+    _unitId.From(pbUnitData.unit_id());
     _name = FromUTF8(pbUnitData.name());
 }
 

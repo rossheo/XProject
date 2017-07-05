@@ -22,21 +22,169 @@ namespace PbPrototype {
     static PrototypeCommonReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChZwcm90b3R5cGVfY29tbW9uLnByb3RvEgxwYl9wcm90b3R5cGUiQgoOUGxh",
-            "eWVyVW5pdERhdGESEQoJdW5pdF90eXBlGAEgASgFEg8KB3VuaXRfaWQYAiAB",
-            "KA0SDAoEbmFtZRgDIAEoCSI/CgtOUENVbml0RGF0YRIRCgl1bml0X3R5cGUY",
-            "ASABKAUSDwoHdW5pdF9pZBgCIAEoDRIMCgRuYW1lGAMgASgJYgZwcm90bzM="));
+            "ChZwcm90b3R5cGVfY29tbW9uLnByb3RvEgxwYl9wcm90b3R5cGUiLAoGVW5p",
+            "dElkEhEKCXVuaXRfdHlwZRgBIAEoDRIPCgd1bml0X2lkGAIgASgNIkUKDlBs",
+            "YXllclVuaXREYXRhEiUKB3VuaXRfaWQYASABKAsyFC5wYl9wcm90b3R5cGUu",
+            "VW5pdElkEgwKBG5hbWUYAiABKAkiQgoLTlBDVW5pdERhdGESJQoHdW5pdF9p",
+            "ZBgBIAEoCzIULnBiX3Byb3RvdHlwZS5Vbml0SWQSDAoEbmFtZRgCIAEoCWIG",
+            "cHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PlayerUnitData), global::PbPrototype.PlayerUnitData.Parser, new[]{ "UnitType", "UnitId", "Name" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.NPCUnitData), global::PbPrototype.NPCUnitData.Parser, new[]{ "UnitType", "UnitId", "Name" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.UnitId), global::PbPrototype.UnitId.Parser, new[]{ "UnitType", "UnitId_" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PlayerUnitData), global::PbPrototype.PlayerUnitData.Parser, new[]{ "UnitId", "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.NPCUnitData), global::PbPrototype.NPCUnitData.Parser, new[]{ "UnitId", "Name" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
+  public sealed partial class UnitId : pb::IMessage<UnitId> {
+    private static readonly pb::MessageParser<UnitId> _parser = new pb::MessageParser<UnitId>(() => new UnitId());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<UnitId> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::PbPrototype.PrototypeCommonReflection.Descriptor.MessageTypes[0]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UnitId() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UnitId(UnitId other) : this() {
+      unitType_ = other.unitType_;
+      unitId_ = other.unitId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public UnitId Clone() {
+      return new UnitId(this);
+    }
+
+    /// <summary>Field number for the "unit_type" field.</summary>
+    public const int UnitTypeFieldNumber = 1;
+    private uint unitType_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint UnitType {
+      get { return unitType_; }
+      set {
+        unitType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "unit_id" field.</summary>
+    public const int UnitId_FieldNumber = 2;
+    private uint unitId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint UnitId_ {
+      get { return unitId_; }
+      set {
+        unitId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as UnitId);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(UnitId other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (UnitType != other.UnitType) return false;
+      if (UnitId_ != other.UnitId_) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (UnitType != 0) hash ^= UnitType.GetHashCode();
+      if (UnitId_ != 0) hash ^= UnitId_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (UnitType != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(UnitType);
+      }
+      if (UnitId_ != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(UnitId_);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (UnitType != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnitType);
+      }
+      if (UnitId_ != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnitId_);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(UnitId other) {
+      if (other == null) {
+        return;
+      }
+      if (other.UnitType != 0) {
+        UnitType = other.UnitType;
+      }
+      if (other.UnitId_ != 0) {
+        UnitId_ = other.UnitId_;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            UnitType = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            UnitId_ = input.ReadUInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   public sealed partial class PlayerUnitData : pb::IMessage<PlayerUnitData> {
     private static readonly pb::MessageParser<PlayerUnitData> _parser = new pb::MessageParser<PlayerUnitData>(() => new PlayerUnitData());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -44,7 +192,7 @@ namespace PbPrototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PbPrototype.PrototypeCommonReflection.Descriptor.MessageTypes[0]; }
+      get { return global::PbPrototype.PrototypeCommonReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -61,8 +209,7 @@ namespace PbPrototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PlayerUnitData(PlayerUnitData other) : this() {
-      unitType_ = other.unitType_;
-      unitId_ = other.unitId_;
+      UnitId = other.unitId_ != null ? other.UnitId.Clone() : null;
       name_ = other.name_;
     }
 
@@ -71,22 +218,11 @@ namespace PbPrototype {
       return new PlayerUnitData(this);
     }
 
-    /// <summary>Field number for the "unit_type" field.</summary>
-    public const int UnitTypeFieldNumber = 1;
-    private int unitType_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
-      set {
-        unitType_ = value;
-      }
-    }
-
     /// <summary>Field number for the "unit_id" field.</summary>
-    public const int UnitIdFieldNumber = 2;
-    private uint unitId_;
+    public const int UnitIdFieldNumber = 1;
+    private global::PbPrototype.UnitId unitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint UnitId {
+    public global::PbPrototype.UnitId UnitId {
       get { return unitId_; }
       set {
         unitId_ = value;
@@ -94,7 +230,7 @@ namespace PbPrototype {
     }
 
     /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 3;
+    public const int NameFieldNumber = 2;
     private string name_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Name {
@@ -117,8 +253,7 @@ namespace PbPrototype {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UnitType != other.UnitType) return false;
-      if (UnitId != other.UnitId) return false;
+      if (!object.Equals(UnitId, other.UnitId)) return false;
       if (Name != other.Name) return false;
       return true;
     }
@@ -126,8 +261,7 @@ namespace PbPrototype {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
-      if (UnitId != 0) hash ^= UnitId.GetHashCode();
+      if (unitId_ != null) hash ^= UnitId.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       return hash;
     }
@@ -139,16 +273,12 @@ namespace PbPrototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UnitType != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
-      }
-      if (UnitId != 0) {
-        output.WriteRawTag(16);
-        output.WriteUInt32(UnitId);
+      if (unitId_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(UnitId);
       }
       if (Name.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(Name);
       }
     }
@@ -156,11 +286,8 @@ namespace PbPrototype {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
-      }
-      if (UnitId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnitId);
+      if (unitId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(UnitId);
       }
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
@@ -173,11 +300,11 @@ namespace PbPrototype {
       if (other == null) {
         return;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
-      }
-      if (other.UnitId != 0) {
-        UnitId = other.UnitId;
+      if (other.unitId_ != null) {
+        if (unitId_ == null) {
+          unitId_ = new global::PbPrototype.UnitId();
+        }
+        UnitId.MergeFrom(other.UnitId);
       }
       if (other.Name.Length != 0) {
         Name = other.Name;
@@ -192,15 +319,14 @@ namespace PbPrototype {
           default:
             input.SkipLastField();
             break;
-          case 8: {
-            UnitType = input.ReadInt32();
+          case 10: {
+            if (unitId_ == null) {
+              unitId_ = new global::PbPrototype.UnitId();
+            }
+            input.ReadMessage(unitId_);
             break;
           }
-          case 16: {
-            UnitId = input.ReadUInt32();
-            break;
-          }
-          case 26: {
+          case 18: {
             Name = input.ReadString();
             break;
           }
@@ -217,7 +343,7 @@ namespace PbPrototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::PbPrototype.PrototypeCommonReflection.Descriptor.MessageTypes[1]; }
+      get { return global::PbPrototype.PrototypeCommonReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -234,8 +360,7 @@ namespace PbPrototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public NPCUnitData(NPCUnitData other) : this() {
-      unitType_ = other.unitType_;
-      unitId_ = other.unitId_;
+      UnitId = other.unitId_ != null ? other.UnitId.Clone() : null;
       name_ = other.name_;
     }
 
@@ -244,22 +369,11 @@ namespace PbPrototype {
       return new NPCUnitData(this);
     }
 
-    /// <summary>Field number for the "unit_type" field.</summary>
-    public const int UnitTypeFieldNumber = 1;
-    private int unitType_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int UnitType {
-      get { return unitType_; }
-      set {
-        unitType_ = value;
-      }
-    }
-
     /// <summary>Field number for the "unit_id" field.</summary>
-    public const int UnitIdFieldNumber = 2;
-    private uint unitId_;
+    public const int UnitIdFieldNumber = 1;
+    private global::PbPrototype.UnitId unitId_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint UnitId {
+    public global::PbPrototype.UnitId UnitId {
       get { return unitId_; }
       set {
         unitId_ = value;
@@ -267,7 +381,7 @@ namespace PbPrototype {
     }
 
     /// <summary>Field number for the "name" field.</summary>
-    public const int NameFieldNumber = 3;
+    public const int NameFieldNumber = 2;
     private string name_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string Name {
@@ -290,8 +404,7 @@ namespace PbPrototype {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (UnitType != other.UnitType) return false;
-      if (UnitId != other.UnitId) return false;
+      if (!object.Equals(UnitId, other.UnitId)) return false;
       if (Name != other.Name) return false;
       return true;
     }
@@ -299,8 +412,7 @@ namespace PbPrototype {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (UnitType != 0) hash ^= UnitType.GetHashCode();
-      if (UnitId != 0) hash ^= UnitId.GetHashCode();
+      if (unitId_ != null) hash ^= UnitId.GetHashCode();
       if (Name.Length != 0) hash ^= Name.GetHashCode();
       return hash;
     }
@@ -312,16 +424,12 @@ namespace PbPrototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (UnitType != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(UnitType);
-      }
-      if (UnitId != 0) {
-        output.WriteRawTag(16);
-        output.WriteUInt32(UnitId);
+      if (unitId_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(UnitId);
       }
       if (Name.Length != 0) {
-        output.WriteRawTag(26);
+        output.WriteRawTag(18);
         output.WriteString(Name);
       }
     }
@@ -329,11 +437,8 @@ namespace PbPrototype {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (UnitType != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(UnitType);
-      }
-      if (UnitId != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(UnitId);
+      if (unitId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(UnitId);
       }
       if (Name.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
@@ -346,11 +451,11 @@ namespace PbPrototype {
       if (other == null) {
         return;
       }
-      if (other.UnitType != 0) {
-        UnitType = other.UnitType;
-      }
-      if (other.UnitId != 0) {
-        UnitId = other.UnitId;
+      if (other.unitId_ != null) {
+        if (unitId_ == null) {
+          unitId_ = new global::PbPrototype.UnitId();
+        }
+        UnitId.MergeFrom(other.UnitId);
       }
       if (other.Name.Length != 0) {
         Name = other.Name;
@@ -365,15 +470,14 @@ namespace PbPrototype {
           default:
             input.SkipLastField();
             break;
-          case 8: {
-            UnitType = input.ReadInt32();
+          case 10: {
+            if (unitId_ == null) {
+              unitId_ = new global::PbPrototype.UnitId();
+            }
+            input.ReadMessage(unitId_);
             break;
           }
-          case 16: {
-            UnitId = input.ReadUInt32();
-            break;
-          }
-          case 26: {
+          case 18: {
             Name = input.ReadString();
             break;
           }

@@ -1,5 +1,10 @@
 #pragma once
 
+namespace pb_prototype
+{
+class UnitId;
+}
+
 namespace XP
 {
 
@@ -31,6 +36,9 @@ public:
     UnitId& operator= (const uint32& rhs) = delete;
     UnitId& operator= (const int64& rhs) = delete;
     UnitId& operator= (const uint64& rhs) = delete;
+
+    void To(pb_prototype::UnitId& pbUnitId) const;
+    void From(const pb_prototype::UnitId& pbUnitId);
 
     explicit operator uint32() const { return *reinterpret_cast<const uint32*>(this); }
     bool IsInvalid() const

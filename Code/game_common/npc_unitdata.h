@@ -16,7 +16,7 @@ public:
     NpcUnitData& operator= (const NpcUnitData& rhs);
     NpcUnitData& operator= (NpcUnitData&& rhs);
 
-    void To(pb_prototype::NPCUnitData& pbUnitData);
+    void To(pb_prototype::NPCUnitData& pbUnitData) const;
     void From(const pb_prototype::NPCUnitData& pbUnitData);
 
 public:

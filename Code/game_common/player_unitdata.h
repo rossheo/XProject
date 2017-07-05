@@ -16,7 +16,7 @@ public:
     PlayerUnitData& operator= (const PlayerUnitData& rhs);
     PlayerUnitData& operator= (PlayerUnitData&& rhs);
 
-    void To(pb_prototype::PlayerUnitData& pbUnitData);
+    void To(pb_prototype::PlayerUnitData& pbUnitData) const;
     void From(const pb_prototype::PlayerUnitData& pbUnitData);
 
 public:

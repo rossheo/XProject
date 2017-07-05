@@ -42,18 +42,19 @@ PlayerUnitData& PlayerUnitData::operator=(PlayerUnitData&& rhs)
     return *this;
 }
 
-void PlayerUnitData::To(pb_prototype::PlayerUnitData& pbUnitData)
+void PlayerUnitData::To(pb_prototype::PlayerUnitData& pbUnitData) const
 {
-    pbUnitData.set_unit_type(_unitId.GetType());
-    pbUnitData.set_unit_id(_unitId.GetId());
+    auto& pbUnitId = *pbUnitData.mutable_unit_id();
+    _unitId.To(pbUnitId);
+
     pbUnitData.set_name(ToUTF8(_name));
 }
 
 void PlayerUnitData::From(const pb_prototype::PlayerUnitData& pbUnitData)
 {
-    UnitId fromUnitId(eUnitType::_from_integral(pbUnitData.unit_type()), pbUnitData.unit_id());
-    ASSERT(_unitId == fromUnitId);
+    ASSERT(eUnitType::PLAYER_UNIT == pbUnitData.unit_id().unit_type());
 
+    _unitId.From(pbUnitData.unit_id());
     _name = FromUTF8(pbUnitData.name());
 }
 
