@@ -3,7 +3,7 @@
 class PacketBuffer
 {
 public:
-    static const uint16 MAX_BUF_SIZE = 16384;
+    static const uint16 MAX_BUF_SIZE = 16356; // remain stack size
 
 public:
     explicit PacketBuffer();
