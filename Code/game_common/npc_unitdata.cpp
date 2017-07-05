@@ -42,14 +42,14 @@ NpcUnitData& NpcUnitData::operator=(NpcUnitData&& rhs)
     return *this;
 }
 
-void NpcUnitData::To(prototype::NPCUnitData& pbUnitData)
+void NpcUnitData::To(pb_prototype::NPCUnitData& pbUnitData)
 {
     pbUnitData.set_unit_type(_unitId.GetType());
     pbUnitData.set_unit_id(_unitId.GetId());
     pbUnitData.set_name(ToUTF8(_name));
 }
 
-void NpcUnitData::From(const prototype::NPCUnitData& pbUnitData)
+void NpcUnitData::From(const pb_prototype::NPCUnitData& pbUnitData)
 {
     UnitId fromUnitId(eUnitType::_from_integral(pbUnitData.unit_type()), pbUnitData.unit_id());
     ASSERT(_unitId == fromUnitId);

@@ -119,6 +119,8 @@ NpcUnit* UnitManager::CreateNpcUnit(NpcUnitData&& npcUnitData)
 void UnitManager::ReleaseUnit(Unit* pUnit)
 {
     ASSERT(pUnit);
+    if (!pUnit)
+        return;
 
     switch (pUnit->GetType())
     {

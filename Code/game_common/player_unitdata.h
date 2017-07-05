@@ -16,8 +16,8 @@ public:
     PlayerUnitData& operator= (const PlayerUnitData& rhs);
     PlayerUnitData& operator= (PlayerUnitData&& rhs);
 
-    void To(prototype::PlayerUnitData& pbUnitData);
-    void From(const prototype::PlayerUnitData& pbUnitData);
+    void To(pb_prototype::PlayerUnitData& pbUnitData);
+    void From(const pb_prototype::PlayerUnitData& pbUnitData);
 
 public:
     void SetUnitId(const UnitId& unitId);

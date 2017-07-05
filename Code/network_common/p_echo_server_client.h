@@ -3,7 +3,7 @@
 #include "packet_define.h"
 #include "echo_server_client.pb.h"
 
-namespace echo
+namespace pb_echo
 {
 namespace PS2C
 {
@@ -16,6 +16,6 @@ enum ProtocolNumber : uint16
 
 DECLARE_PACKET_TYPE(PS2C, Chat);
 
-} // namespace echo
+} // namespace pb_echo
 
-using namespace echo;
+using namespace pb_echo;

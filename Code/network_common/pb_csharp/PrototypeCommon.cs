@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Prototype {
+namespace PbPrototype {
 
   /// <summary>Holder for reflection information generated from prototype_common.proto</summary>
   public static partial class PrototypeCommonReflection {
@@ -22,15 +22,15 @@ namespace Prototype {
     static PrototypeCommonReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChZwcm90b3R5cGVfY29tbW9uLnByb3RvEglwcm90b3R5cGUiQgoOUGxheWVy",
-            "VW5pdERhdGESEQoJdW5pdF90eXBlGAEgASgFEg8KB3VuaXRfaWQYAiABKA0S",
-            "DAoEbmFtZRgDIAEoCSI/CgtOUENVbml0RGF0YRIRCgl1bml0X3R5cGUYASAB",
-            "KAUSDwoHdW5pdF9pZBgCIAEoDRIMCgRuYW1lGAMgASgJYgZwcm90bzM="));
+            "ChZwcm90b3R5cGVfY29tbW9uLnByb3RvEgxwYl9wcm90b3R5cGUiQgoOUGxh",
+            "eWVyVW5pdERhdGESEQoJdW5pdF90eXBlGAEgASgFEg8KB3VuaXRfaWQYAiAB",
+            "KA0SDAoEbmFtZRgDIAEoCSI/CgtOUENVbml0RGF0YRIRCgl1bml0X3R5cGUY",
+            "ASABKAUSDwoHdW5pdF9pZBgCIAEoDRIMCgRuYW1lGAMgASgJYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.PlayerUnitData), global::Prototype.PlayerUnitData.Parser, new[]{ "UnitType", "UnitId", "Name" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.NPCUnitData), global::Prototype.NPCUnitData.Parser, new[]{ "UnitType", "UnitId", "Name" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PlayerUnitData), global::PbPrototype.PlayerUnitData.Parser, new[]{ "UnitType", "UnitId", "Name" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.NPCUnitData), global::PbPrototype.NPCUnitData.Parser, new[]{ "UnitType", "UnitId", "Name" }, null, null, null)
           }));
     }
     #endregion
@@ -44,7 +44,7 @@ namespace Prototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Prototype.PrototypeCommonReflection.Descriptor.MessageTypes[0]; }
+      get { return global::PbPrototype.PrototypeCommonReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -217,7 +217,7 @@ namespace Prototype {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Prototype.PrototypeCommonReflection.Descriptor.MessageTypes[1]; }
+      get { return global::PbPrototype.PrototypeCommonReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

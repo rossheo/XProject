@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Echo {
+namespace PbEcho {
 
   /// <summary>Holder for reflection information generated from echo_common.proto</summary>
   public static partial class EchoCommonReflection {
@@ -22,7 +22,7 @@ namespace Echo {
     static EchoCommonReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChFlY2hvX2NvbW1vbi5wcm90bxIEZWNob2IGcHJvdG8z"));
+            "ChFlY2hvX2NvbW1vbi5wcm90bxIHcGJfZWNob2IGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null));

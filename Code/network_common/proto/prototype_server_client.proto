@@ -1,7 +1,7 @@
 ﻿syntax = "proto3";
 import public "prototype_common.proto";
 
-package prototype.PS2C;
+package pb_prototype.PS2C;
 
 message Who
 {

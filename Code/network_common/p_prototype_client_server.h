@@ -3,7 +3,7 @@
 #include "packet_define.h"
 #include "prototype_client_server.pb.h"
 
-namespace prototype
+namespace pb_prototype
 {
 namespace PC2S
 {
@@ -20,6 +20,6 @@ DECLARE_PACKET_TYPE(PC2S, Chat);
 DECLARE_PACKET_TYPE(PC2S, Auth);
 DECLARE_PACKET_TYPE(PC2S, Rename);
 
-} // namespace prototype
+} // namespace pb_prototype
 
-using namespace prototype;
+using namespace pb_prototype;

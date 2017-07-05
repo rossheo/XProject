@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Prototype.PC2S {
+namespace PbPrototype.PC2S {
 
   /// <summary>Holder for reflection information generated from prototype_client_server.proto</summary>
   public static partial class PrototypeClientServerReflection {
@@ -22,16 +22,16 @@ namespace Prototype.PC2S {
     static PrototypeClientServerReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Ch1wcm90b3R5cGVfY2xpZW50X3NlcnZlci5wcm90bxIOcHJvdG90eXBlLlBD",
-            "MlMaFnByb3RvdHlwZV9jb21tb24ucHJvdG8iFwoEQ2hhdBIPCgdtZXNzYWdl",
-            "GAEgASgJIiQKBEF1dGgSCgoCaWQYASABKAkSEAoIcGFzc3dvcmQYAiABKAki",
-            "FgoGUmVuYW1lEgwKBG5hbWUYASABKAlQAGIGcHJvdG8z"));
+            "Ch1wcm90b3R5cGVfY2xpZW50X3NlcnZlci5wcm90bxIRcGJfcHJvdG90eXBl",
+            "LlBDMlMaFnByb3RvdHlwZV9jb21tb24ucHJvdG8iFwoEQ2hhdBIPCgdtZXNz",
+            "YWdlGAEgASgJIiQKBEF1dGgSCgoCaWQYASABKAkSEAoIcGFzc3dvcmQYAiAB",
+            "KAkiFgoGUmVuYW1lEgwKBG5hbWUYASABKAlQAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Prototype.PrototypeCommonReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::PbPrototype.PrototypeCommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.PC2S.Chat), global::Prototype.PC2S.Chat.Parser, new[]{ "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.PC2S.Auth), global::Prototype.PC2S.Auth.Parser, new[]{ "Id", "Password" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.PC2S.Rename), global::Prototype.PC2S.Rename.Parser, new[]{ "Name" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PC2S.Chat), global::PbPrototype.PC2S.Chat.Parser, new[]{ "Message" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PC2S.Auth), global::PbPrototype.PC2S.Auth.Parser, new[]{ "Id", "Password" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PC2S.Rename), global::PbPrototype.PC2S.Rename.Parser, new[]{ "Name" }, null, null, null)
           }));
     }
     #endregion
@@ -45,7 +45,7 @@ namespace Prototype.PC2S {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Prototype.PC2S.PrototypeClientServerReflection.Descriptor.MessageTypes[0]; }
+      get { return global::PbPrototype.PC2S.PrototypeClientServerReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -162,7 +162,7 @@ namespace Prototype.PC2S {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Prototype.PC2S.PrototypeClientServerReflection.Descriptor.MessageTypes[1]; }
+      get { return global::PbPrototype.PC2S.PrototypeClientServerReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -307,7 +307,7 @@ namespace Prototype.PC2S {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Prototype.PC2S.PrototypeClientServerReflection.Descriptor.MessageTypes[2]; }
+      get { return global::PbPrototype.PC2S.PrototypeClientServerReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -16,8 +16,8 @@ public:
     NpcUnitData& operator= (const NpcUnitData& rhs);
     NpcUnitData& operator= (NpcUnitData&& rhs);
 
-    void To(prototype::NPCUnitData& pbUnitData);
-    void From(const prototype::NPCUnitData& pbUnitData);
+    void To(pb_prototype::NPCUnitData& pbUnitData);
+    void From(const pb_prototype::NPCUnitData& pbUnitData);
 
 public:
     void SetUnitId(const UnitId& unitId);

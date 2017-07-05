@@ -3,7 +3,7 @@
 class PacketBuffer
 {
 public:
-    static const uint16 MAX_BUF_SIZE = boost::integer_traits<uint16>::max();
+    static const uint16 MAX_BUF_SIZE = 16384;
 
 public:
     explicit PacketBuffer();

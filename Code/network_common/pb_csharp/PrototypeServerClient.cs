@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Prototype.PS2C {
+namespace PbPrototype.PS2C {
 
   /// <summary>Holder for reflection information generated from prototype_server_client.proto</summary>
   public static partial class PrototypeServerClientReflection {
@@ -22,17 +22,17 @@ namespace Prototype.PS2C {
     static PrototypeServerClientReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Ch1wcm90b3R5cGVfc2VydmVyX2NsaWVudC5wcm90bxIOcHJvdG90eXBlLlBT",
-            "MkMaFnByb3RvdHlwZV9jb21tb24ucHJvdG8iFgoDV2hvEg8KB21lc3NhZ2UY",
-            "ASABKAkiFwoEQ2hhdBIPCgdtZXNzYWdlGAEgASgJIlAKBEF1dGgSEwoLYXV0",
-            "aF9yZXN1bHQYASABKAgSMwoQcGxheWVyX3VuaXRfZGF0YRgCIAEoCzIZLnBy",
-            "b3RvdHlwZS5QbGF5ZXJVbml0RGF0YVAAYgZwcm90bzM="));
+            "Ch1wcm90b3R5cGVfc2VydmVyX2NsaWVudC5wcm90bxIRcGJfcHJvdG90eXBl",
+            "LlBTMkMaFnByb3RvdHlwZV9jb21tb24ucHJvdG8iFgoDV2hvEg8KB21lc3Nh",
+            "Z2UYASABKAkiFwoEQ2hhdBIPCgdtZXNzYWdlGAEgASgJIlMKBEF1dGgSEwoL",
+            "YXV0aF9yZXN1bHQYASABKAgSNgoQcGxheWVyX3VuaXRfZGF0YRgCIAEoCzIc",
+            "LnBiX3Byb3RvdHlwZS5QbGF5ZXJVbml0RGF0YVAAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Prototype.PrototypeCommonReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::PbPrototype.PrototypeCommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.PS2C.Who), global::Prototype.PS2C.Who.Parser, new[]{ "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.PS2C.Chat), global::Prototype.PS2C.Chat.Parser, new[]{ "Message" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Prototype.PS2C.Auth), global::Prototype.PS2C.Auth.Parser, new[]{ "AuthResult", "PlayerUnitData" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PS2C.Who), global::PbPrototype.PS2C.Who.Parser, new[]{ "Message" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PS2C.Chat), global::PbPrototype.PS2C.Chat.Parser, new[]{ "Message" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PS2C.Auth), global::PbPrototype.PS2C.Auth.Parser, new[]{ "AuthResult", "PlayerUnitData" }, null, null, null)
           }));
     }
     #endregion
@@ -46,7 +46,7 @@ namespace Prototype.PS2C {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Prototype.PS2C.PrototypeServerClientReflection.Descriptor.MessageTypes[0]; }
+      get { return global::PbPrototype.PS2C.PrototypeServerClientReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -163,7 +163,7 @@ namespace Prototype.PS2C {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Prototype.PS2C.PrototypeServerClientReflection.Descriptor.MessageTypes[1]; }
+      get { return global::PbPrototype.PS2C.PrototypeServerClientReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -280,7 +280,7 @@ namespace Prototype.PS2C {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Prototype.PS2C.PrototypeServerClientReflection.Descriptor.MessageTypes[2]; }
+      get { return global::PbPrototype.PS2C.PrototypeServerClientReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -319,9 +319,9 @@ namespace Prototype.PS2C {
 
     /// <summary>Field number for the "player_unit_data" field.</summary>
     public const int PlayerUnitDataFieldNumber = 2;
-    private global::Prototype.PlayerUnitData playerUnitData_;
+    private global::PbPrototype.PlayerUnitData playerUnitData_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::Prototype.PlayerUnitData PlayerUnitData {
+    public global::PbPrototype.PlayerUnitData PlayerUnitData {
       get { return playerUnitData_; }
       set {
         playerUnitData_ = value;
@@ -393,7 +393,7 @@ namespace Prototype.PS2C {
       }
       if (other.playerUnitData_ != null) {
         if (playerUnitData_ == null) {
-          playerUnitData_ = new global::Prototype.PlayerUnitData();
+          playerUnitData_ = new global::PbPrototype.PlayerUnitData();
         }
         PlayerUnitData.MergeFrom(other.PlayerUnitData);
       }
@@ -413,7 +413,7 @@ namespace Prototype.PS2C {
           }
           case 18: {
             if (playerUnitData_ == null) {
-              playerUnitData_ = new global::Prototype.PlayerUnitData();
+              playerUnitData_ = new global::PbPrototype.PlayerUnitData();
             }
             input.ReadMessage(playerUnitData_);
             break;

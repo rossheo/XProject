@@ -1,6 +1,6 @@
 ﻿syntax = "proto3";
 
-package prototype;
+package pb_prototype;
 
 message PlayerUnitData
 {

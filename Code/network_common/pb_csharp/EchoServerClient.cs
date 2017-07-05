@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace Echo.PS2C {
+namespace PbEcho.PS2C {
 
   /// <summary>Holder for reflection information generated from echo_server_client.proto</summary>
   public static partial class EchoServerClientReflection {
@@ -22,13 +22,13 @@ namespace Echo.PS2C {
     static EchoServerClientReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChhlY2hvX3NlcnZlcl9jbGllbnQucHJvdG8SCWVjaG8uUFMyQxoRZWNob19j",
-            "b21tb24ucHJvdG8iFwoEQ2hhdBIPCgdtZXNzYWdlGAEgASgJUABiBnByb3Rv",
-            "Mw=="));
+            "ChhlY2hvX3NlcnZlcl9jbGllbnQucHJvdG8SDHBiX2VjaG8uUFMyQxoRZWNo",
+            "b19jb21tb24ucHJvdG8iFwoEQ2hhdBIPCgdtZXNzYWdlGAEgASgJUABiBnBy",
+            "b3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::Echo.EchoCommonReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::PbEcho.EchoCommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Echo.PS2C.Chat), global::Echo.PS2C.Chat.Parser, new[]{ "Message" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::PbEcho.PS2C.Chat), global::PbEcho.PS2C.Chat.Parser, new[]{ "Message" }, null, null, null)
           }));
     }
     #endregion
@@ -42,7 +42,7 @@ namespace Echo.PS2C {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Echo.PS2C.EchoServerClientReflection.Descriptor.MessageTypes[0]; }
+      get { return global::PbEcho.PS2C.EchoServerClientReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
