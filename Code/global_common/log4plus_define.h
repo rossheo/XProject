@@ -9,7 +9,7 @@
 // Logging Macro
 #define ASSERT(condition) \
     LOG4CPLUS_ASSERT(log4cplus::Logger::getInstance(LOG4CPLUS_TEXT(##LOG_FILTER_ASSERT##)), \
-    condition)
+     condition); _ASSERT(condition);
 
 #define LOG_TRACE(LOG_FILTER_, FORMAT_STR, ...) \
     LOG4CPLUS_TRACE_STR(log4cplus::Logger::getInstance(LOG4CPLUS_TEXT(##LOG_FILTER_##)), \

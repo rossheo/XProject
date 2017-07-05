@@ -9,5 +9,5 @@ log4cplus.appender.R.File=logs/echo_client.log
 log4cplus.appender.R.MaxFileSize=1000KB
 log4cplus.appender.R.MaxBackupIndex=5
 log4cplus.appender.R.layout=log4cplus::PatternLayout
-log4cplus.appender.R.layout.ConversionPattern=%D{%Y-%m-%d %H:%M:%S.%q} [%-5p/%-6t/%c{2}] [%-20.50M] %m%n
+log4cplus.appender.R.layout.ConversionPattern=%D{%Y-%m-%d %H:%M:%S.%q} [%-5p/%-6t/%-10c{2}][%-20.50M] %m%n
 
