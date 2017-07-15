@@ -16,6 +16,9 @@
     <Filter Include="enum">
       <UniqueIdentifier>{7b68536c-ec30-4dc1-bdcc-b3cdef94098e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="random">
+      <UniqueIdentifier>{7678c944-751b-4fb8-9332-1c3a446511fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boost_define.h">
@@ -53,11 +56,17 @@
     <ClInclude Include="msdn_define.h">
       <Filter>defines</Filter>
     </ClInclude>
+    <ClInclude Include="random_engine.h">
+      <Filter>random</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="format.cc">
       <Filter>cppformat</Filter>
+    </ClCompile>
+    <ClCompile Include="random_engine.cpp">
+      <Filter>random</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
