@@ -17,11 +17,11 @@
     <ClInclude Include="targetver.h">
       <Filter>echo_server</Filter>
     </ClInclude>
-    <ClInclude Include="client_session.h">
-      <Filter>sessions</Filter>
-    </ClInclude>
     <ClInclude Include="echo_server_app.h">
       <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="echo_client_session.h">
+      <Filter>sessions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -29,14 +29,14 @@
     <ClCompile Include="echo_server.cpp">
       <Filter>echo_server</Filter>
     </ClCompile>
-    <ClCompile Include="client_session.cpp">
-      <Filter>sessions</Filter>
-    </ClCompile>
-    <ClCompile Include="client_session_handler.cpp">
-      <Filter>sessions</Filter>
-    </ClCompile>
     <ClCompile Include="echo_server_app.cpp">
       <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="echo_client_session.cpp">
+      <Filter>sessions</Filter>
+    </ClCompile>
+    <ClCompile Include="echo_client_session_handler.cpp">
+      <Filter>sessions</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

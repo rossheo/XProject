@@ -2,6 +2,25 @@
 
 #include "packet_buffer.h"
 
+// Session Util 정의
+#define SESSION_UTIL(TSession, SessionManagerInstance)\
+template <typename TPacket>\
+void SendPacket(const UnitId& unitId, TPacket&& packet)\
+{\
+    TSession* pSession;\
+    if (!SessionManagerInstance.Get(unitId, pSession))\
+        return;\
+    pSession->SendPacket(packet);\
+}\
+template <typename TPacket>\
+void Broadcast(const std::set<UnitId>& unitIds, TPacket&& packet)\
+{\
+    for (const auto& unitId : unitIds)\
+    {\
+        SendPacket(unitId, packet);\
+    }\
+}
+
 // Packet 정의
 #define DECLARE_HANDLER(TSession, TProtoBuf)\
 template<typename TSession, typename TProtoBuf>\

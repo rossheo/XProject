@@ -12,6 +12,7 @@
 
 namespace XP
 {
+SESSION_UTIL(PrototypeClientSession, g_SessionManager);
 
 DECLARE_HANDLER(PrototypeClientSession, PC2S_Chat);
 DECLARE_HANDLER(PrototypeClientSession, PC2S_Auth);

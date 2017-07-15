@@ -1,20 +1,21 @@
 #include "stdafx.h"
-#include "client_session.h"
+#include "echo_client_session.h"
 
 #include "p_echo_client_server.h"
 #include "p_echo_server_client.h"
 
 namespace XP
 {
+SESSION_UTIL(EchoClientSession, g_SessionManager)
 
-DECLARE_HANDLER(ClientSession, PC2S_Chat);
+DECLARE_HANDLER(EchoClientSession, PC2S_Chat);
 
-IMPLEMENT_INITIALIZE(ClientSession)
+IMPLEMENT_INITIALIZE(EchoClientSession)
 {
     REGISTER_HANDLER(PC2S_Chat);
 }
 
-IMPLEMENT_HANDLER(ClientSession, PC2S_Chat)
+IMPLEMENT_HANDLER(EchoClientSession, PC2S_Chat)
 {
     const auto& remoteEndpoint = session.GetSocket().remote_endpoint();
     LOG_INFO(LOG_FILTER_SERVER, "IP:{}, PORT:{}, Message:{}",

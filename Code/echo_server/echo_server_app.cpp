@@ -29,4 +29,9 @@ bool EchoServerApp::Run()
     return true;
 }
 
+SessionManager<EchoClientSession>& EchoServerApp::GetSessionManager()
+{
+    return _sessionManager;
+}
+
 } // namespace XP
