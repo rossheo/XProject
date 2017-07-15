@@ -58,10 +58,10 @@ public:
 
     void AssociateUnitWithSession(const TSession& session, const PlayerUnit& unit);
     bool Get(const TSession* pSession, UnitId& unitId) const;
-    bool Get(const TSession* pSession, PlayerUnit* pUnit) const;
-    bool Get(const UnitId& unitId, TSession* pSession) const;
-    bool Get(const UnitId& unitId, PlayerUnit* pUnit) const;
-    bool Get(const PlayerUnit* pUnit, TSession* pSession) const;
+    bool Get(const TSession* pSession, PlayerUnit*& pUnit) const;
+    bool Get(const UnitId& unitId, TSession*& pSession) const;
+    bool Get(const UnitId& unitId, PlayerUnit*& pUnit) const;
+    bool Get(const PlayerUnit* pUnit, TSession*& pSession) const;
     bool Get(const PlayerUnit* pUnit, UnitId& unitId) const;
 
 private:
@@ -230,7 +230,7 @@ bool SessionManager<TSession>::Get(const TSession* pSession, UnitId& unitId) con
 }
 
 template <typename TSession>
-bool SessionManager<TSession>::Get(const TSession* pSession, PlayerUnit* pUnit) const
+bool SessionManager<TSession>::Get(const TSession* pSession, PlayerUnit*& pUnit) const
 {
     if (!pSession)
     {
@@ -253,7 +253,7 @@ bool SessionManager<TSession>::Get(const TSession* pSession, PlayerUnit* pUnit) 
 }
 
 template <typename TSession>
-bool SessionManager<TSession>::Get(const UnitId& unitId, TSession* pSession) const
+bool SessionManager<TSession>::Get(const UnitId& unitId, TSession*& pSession) const
 {
     if (unitId.IsInvalid())
     {
@@ -267,7 +267,7 @@ bool SessionManager<TSession>::Get(const UnitId& unitId, TSession* pSession) con
     auto it = unitId_index.find(unitId);
     if (it != unitId_index.end())
     {
-        pSession = (*it).pSession;
+        pSession = const_cast<TSession*>((*it).pSession);
         return true;
     }
 
@@ -276,7 +276,7 @@ bool SessionManager<TSession>::Get(const UnitId& unitId, TSession* pSession) con
 }
 
 template <typename TSession>
-bool SessionManager<TSession>::Get(const UnitId& unitId, PlayerUnit* pUnit) const
+bool SessionManager<TSession>::Get(const UnitId& unitId, PlayerUnit*& pUnit) const
 {
     if (unitId.IsInvalid())
     {
@@ -290,7 +290,7 @@ bool SessionManager<TSession>::Get(const UnitId& unitId, PlayerUnit* pUnit) cons
     auto it = unitId_index.find(unitId);
     if (it != unitId_index.end())
     {
-        pUnit = (*it).pUnit;
+        pUnit = const_cast<PlayerUnit*>((*it).pUnit);
         return true;
     }
 
@@ -299,7 +299,7 @@ bool SessionManager<TSession>::Get(const UnitId& unitId, PlayerUnit* pUnit) cons
 }
 
 template <typename TSession>
-bool SessionManager<TSession>::Get(const PlayerUnit* pUnit, TSession* pSession) const
+bool SessionManager<TSession>::Get(const PlayerUnit* pUnit, TSession*& pSession) const
 {
     if (!pUnit)
     {
@@ -313,7 +313,7 @@ bool SessionManager<TSession>::Get(const PlayerUnit* pUnit, TSession* pSession) 
     auto it = unit_index.find(pUnit);
     if (it != unit_index.end())
     {
-        pSession = (*it).pSession;
+        pSession = const_cast<TSession*>((*it).pSession);
         return true;
     }
 
