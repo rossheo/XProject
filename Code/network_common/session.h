@@ -10,7 +10,7 @@ template <typename TSession>
 class Session : public std::enable_shared_from_this<TSession>
 {
 public:
-    static PacketHandlerManager<TSession> _s_packet_handler_manager;
+    static PacketHandlerManager<TSession> _s_packetHandlerManager;
 
 public:
     explicit Session(boost::asio::io_service& ioservice,
@@ -206,7 +206,7 @@ bool Session<TSession>::PostReceive()
 
         while (_recvBuffer.IsAbleToGetPacket())
         {
-            if (!_s_packet_handler_manager.Handle(
+            if (!_s_packetHandlerManager.Handle(
                 static_cast<TSession&>(*this), _recvBuffer))
             {
                 LOG_ERROR(LOG_FILTER_CONNECTION, "Receive Handler failed."
@@ -227,13 +227,13 @@ bool Session<TSession>::PostReceive()
 template <typename TSession>
 void Session<TSession>::PostWrite()
 {
-    LOCK_W(_lock);
-
     if (!_socket.is_open())
     {
         LOG_ERROR(LOG_FILTER_CONNECTION, "Fail to PostWrite. socket is closed.");
         return;
     }
+
+    LOCK_R(_lock);
 
     if (_sendBuffer.IsEmptyData())
         return;
@@ -244,15 +244,15 @@ void Session<TSession>::PostWrite()
         [this, selfMoved = std::move(self)](
             const boost::system::error_code& errorCode, std::size_t bytes_transferred)
     {
+        if (!_socket.is_open())
+        {
+            LOG_ERROR(LOG_FILTER_CONNECTION, "Fail to PostWrite."
+                " Session is disconnected.");
+            return;
+        }
+
         {
             LOCK_W(_lock);
-
-            if (!_socket.is_open())
-            {
-                LOG_ERROR(LOG_FILTER_CONNECTION, "Fail to PostWrite."
-                    " Session is disconnected.");
-                return;
-            }
 
             const auto& remoteEndPoint = _socket.remote_endpoint();
 
@@ -311,8 +311,13 @@ template <typename TSession>
 template <typename T>
 bool Session<TSession>::SendPacket(const T& packet)
 {
+    bool callPostWrite = false;
+
     {
         LOCK_W(_lock);
+
+        if (_sendBuffer.IsEmptyData())
+            callPostWrite = true;
 
         if (!_sendBuffer.AppendPacket(packet))
         {
@@ -321,7 +326,9 @@ bool Session<TSession>::SendPacket(const T& packet)
         }
     }
 
-    PostWrite();
+    if (callPostWrite)
+        PostWrite();
+
     return true;
 }
 

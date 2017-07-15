@@ -16,7 +16,7 @@ public:\
 // Static 함수 초기화 선언
 #define IMPLEMENT_INITIALIZE(TSession)\
 template <>\
-PacketHandlerManager<TSession> Session<TSession>::_s_packet_handler_manager;\
+PacketHandlerManager<TSession> Session<TSession>::_s_packetHandlerManager;\
 static void Initialize(PacketHandlerManager<TSession>& packetHandlerManager)
 
 // 패킷 함수 핸들러에 등록

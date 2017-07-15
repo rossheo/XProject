@@ -108,7 +108,9 @@ bool PacketBuffer::AppendWriteSize(uint16 size)
 void PacketBuffer::ReArrange()
 {
     const uint16 bufferSize = GetBufferSize();
-    MoveMemory(_buffer.data(), GetBuffer(), bufferSize);
+    if (bufferSize > 0)
+        MoveMemory(_buffer.data(), GetBuffer(), bufferSize);
+
     _readPos = 0;
     _writePos = bufferSize;
 }
