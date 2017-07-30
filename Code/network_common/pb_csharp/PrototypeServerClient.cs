@@ -26,10 +26,11 @@ namespace PbPrototype.PS2C {
             "LlBTMkMaFnByb3RvdHlwZV9jb21tb24ucHJvdG8iFgoDV2hvEg8KB21lc3Nh",
             "Z2UYASABKAkiFwoEQ2hhdBIPCgdtZXNzYWdlGAEgASgJIlMKBEF1dGgSEwoL",
             "YXV0aF9yZXN1bHQYASABKAgSNgoQcGxheWVyX3VuaXRfZGF0YRgCIAEoCzIc",
-            "LnBiX3Byb3RvdHlwZS5QbGF5ZXJVbml0RGF0YVAAYgZwcm90bzM="));
+            "LnBiX3Byb3RvdHlwZS5QbGF5ZXJVbml0RGF0YSowCg5Qcm90b2NvbE51bWJl",
+            "chIICgRFV2hvEAASCQoFRUNoYXQQARIJCgVFQXV0aBACUABiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PbPrototype.PrototypeCommonReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PbPrototype.PS2C.ProtocolNumber), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PS2C.Who), global::PbPrototype.PS2C.Who.Parser, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PS2C.Chat), global::PbPrototype.PS2C.Chat.Parser, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PS2C.Auth), global::PbPrototype.PS2C.Auth.Parser, new[]{ "AuthResult", "PlayerUnitData" }, null, null, null)
@@ -38,6 +39,15 @@ namespace PbPrototype.PS2C {
     #endregion
 
   }
+  #region Enums
+  public enum ProtocolNumber {
+    [pbr::OriginalName("EWho")] Ewho = 0,
+    [pbr::OriginalName("EChat")] Echat = 1,
+    [pbr::OriginalName("EAuth")] Eauth = 2,
+  }
+
+  #endregion
+
   #region Messages
   public sealed partial class Who : pb::IMessage<Who> {
     private static readonly pb::MessageParser<Who> _parser = new pb::MessageParser<Who>(() => new Who());

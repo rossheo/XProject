@@ -23,17 +23,24 @@ namespace PbEcho.PC2S {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChhlY2hvX2NsaWVudF9zZXJ2ZXIucHJvdG8SDHBiX2VjaG8uUEMyUxoRZWNo",
-            "b19jb21tb24ucHJvdG8iFwoEQ2hhdBIPCgdtZXNzYWdlGAEgASgJUABiBnBy",
-            "b3RvMw=="));
+            "b19jb21tb24ucHJvdG8iFwoEQ2hhdBIPCgdtZXNzYWdlGAEgASgJKhsKDlBy",
+            "b3RvY29sTnVtYmVyEgkKBUVDaGF0EABQAGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PbEcho.EchoCommonReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PbEcho.PC2S.ProtocolNumber), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PbEcho.PC2S.Chat), global::PbEcho.PC2S.Chat.Parser, new[]{ "Message" }, null, null, null)
           }));
     }
     #endregion
 
   }
+  #region Enums
+  public enum ProtocolNumber {
+    [pbr::OriginalName("EChat")] Echat = 0,
+  }
+
+  #endregion
+
   #region Messages
   public sealed partial class Chat : pb::IMessage<Chat> {
     private static readonly pb::MessageParser<Chat> _parser = new pb::MessageParser<Chat>(() => new Chat());

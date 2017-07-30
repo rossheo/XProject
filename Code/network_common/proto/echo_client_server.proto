@@ -3,6 +3,11 @@ import public "echo_common.proto";
 
 package pb_echo.PC2S;
 
+enum ProtocolNumber
+{
+    EChat = 0;
+}
+
 message Chat
 {
     string message = 1;

@@ -5,14 +5,6 @@
 
 namespace pb_echo
 {
-namespace PC2S
-{
-enum ProtocolNumber : uint16
-{
-    Chat,
-};
-
-} // namespace PC2S
 
 DECLARE_PACKET_TYPE(PC2S, Chat);
 

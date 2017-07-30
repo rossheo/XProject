@@ -5,16 +5,6 @@
 
 namespace pb_prototype
 {
-namespace PS2C
-{
-enum ProtocolNumber : uint16
-{
-    Who,
-    Chat,
-    Auth,
-};
-
-} // namespace PS2C
 
 DECLARE_PACKET_TYPE(PS2C, Who);
 DECLARE_PACKET_TYPE(PS2C, Chat);

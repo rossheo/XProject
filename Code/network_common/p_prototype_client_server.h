@@ -5,16 +5,6 @@
 
 namespace pb_prototype
 {
-namespace PC2S
-{
-enum ProtocolNumber : uint16
-{
-    Chat,
-    Auth,
-    Rename
-};
-
-} // namespace PC2S
 
 DECLARE_PACKET_TYPE(PC2S, Chat);
 DECLARE_PACKET_TYPE(PC2S, Auth);

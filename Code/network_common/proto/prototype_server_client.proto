@@ -3,6 +3,13 @@ import public "prototype_common.proto";
 
 package pb_prototype.PS2C;
 
+enum ProtocolNumber
+{
+    EWho = 0;
+    EChat = 1;
+    EAuth = 2;
+}
+
 message Who
 {
     string message = 1;

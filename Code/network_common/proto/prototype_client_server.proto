@@ -3,6 +3,13 @@ import public "prototype_common.proto";
 
 package pb_prototype.PC2S;
 
+enum ProtocolNumber
+{
+    EChat = 0;
+    EAuth = 1;
+    ERename = 2;
+}
+
 message Chat
 {
     string message = 1;

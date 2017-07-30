@@ -25,10 +25,11 @@ namespace PbPrototype.PC2S {
             "Ch1wcm90b3R5cGVfY2xpZW50X3NlcnZlci5wcm90bxIRcGJfcHJvdG90eXBl",
             "LlBDMlMaFnByb3RvdHlwZV9jb21tb24ucHJvdG8iFwoEQ2hhdBIPCgdtZXNz",
             "YWdlGAEgASgJIiQKBEF1dGgSCgoCaWQYASABKAkSEAoIcGFzc3dvcmQYAiAB",
-            "KAkiFgoGUmVuYW1lEgwKBG5hbWUYASABKAlQAGIGcHJvdG8z"));
+            "KAkiFgoGUmVuYW1lEgwKBG5hbWUYASABKAkqMwoOUHJvdG9jb2xOdW1iZXIS",
+            "CQoFRUNoYXQQABIJCgVFQXV0aBABEgsKB0VSZW5hbWUQAlAAYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::PbPrototype.PrototypeCommonReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::PbPrototype.PC2S.ProtocolNumber), }, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PC2S.Chat), global::PbPrototype.PC2S.Chat.Parser, new[]{ "Message" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PC2S.Auth), global::PbPrototype.PC2S.Auth.Parser, new[]{ "Id", "Password" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::PbPrototype.PC2S.Rename), global::PbPrototype.PC2S.Rename.Parser, new[]{ "Name" }, null, null, null)
@@ -37,6 +38,15 @@ namespace PbPrototype.PC2S {
     #endregion
 
   }
+  #region Enums
+  public enum ProtocolNumber {
+    [pbr::OriginalName("EChat")] Echat = 0,
+    [pbr::OriginalName("EAuth")] Eauth = 1,
+    [pbr::OriginalName("ERename")] Erename = 2,
+  }
+
+  #endregion
+
   #region Messages
   public sealed partial class Chat : pb::IMessage<Chat> {
     private static readonly pb::MessageParser<Chat> _parser = new pb::MessageParser<Chat>(() => new Chat());
