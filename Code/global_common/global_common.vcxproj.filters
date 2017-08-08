@@ -19,6 +19,9 @@
     <Filter Include="random">
       <UniqueIdentifier>{7678c944-751b-4fb8-9332-1c3a446511fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="uuid">
+      <UniqueIdentifier>{5441fad0-783e-4d4b-ac3a-4dc994ca5a5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boost_define.h">
@@ -59,6 +62,9 @@
     <ClInclude Include="random_engine.h">
       <Filter>random</Filter>
     </ClInclude>
+    <ClInclude Include="uuid.h">
+      <Filter>uuid</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
@@ -67,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="random_engine.cpp">
       <Filter>random</Filter>
+    </ClCompile>
+    <ClCompile Include="uuid.cpp">
+      <Filter>uuid</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

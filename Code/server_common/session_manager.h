@@ -14,19 +14,23 @@ public:
 public:
     struct SessionTag
     {
-        SessionTag(const TSession* pSession_, const UnitId& unitId_, const PlayerUnit* pUnit_)
+        SessionTag(const TSession* pSession_, Uuid uuid_,
+            const UnitId& unitId_, const PlayerUnit* pUnit_)
             : pSession(pSession_)
+            , uuid(uuid_)
             , unitId(unitId_)
             , pUnit(pUnit_)
         {
         }
 
         const TSession* pSession;
+        Uuid uuid;
         UnitId unitId;
         const PlayerUnit* pUnit;
     };
 
     struct tagSession {};
+    struct tagSessionUuid {};
     struct tagUnitId {};
     struct tagUnit {};
 
@@ -39,10 +43,14 @@ public:
         boost::multi_index::member<SessionTag, const TSession*, &SessionTag::pSession>
         >,
         boost::multi_index::hashed_unique<
+        boost::multi_index::tag<tagSessionUuid>,
+        boost::multi_index::member<SessionTag, Uuid, &SessionTag::uuid>
+        >,
+        boost::multi_index::hashed_non_unique<
         boost::multi_index::tag<tagUnitId>,
         boost::multi_index::member<SessionTag, UnitId, &SessionTag::unitId>
         >,
-        boost::multi_index::hashed_unique<
+        boost::multi_index::hashed_non_unique<
         boost::multi_index::tag<tagUnit>,
         boost::multi_index::member<SessionTag, const PlayerUnit*, &SessionTag::pUnit>
         >
@@ -59,6 +67,7 @@ public:
     void AssociateUnitWithSession(const TSession& session, const PlayerUnit& unit);
     bool Get(const TSession* pSession, UnitId& unitId) const;
     bool Get(const TSession* pSession, PlayerUnit*& pUnit) const;
+    bool Get(const Uuid& uuid, TSession*& pSession) const;
     bool Get(const UnitId& unitId, TSession*& pSession) const;
     bool Get(const UnitId& unitId, PlayerUnit*& pUnit) const;
     bool Get(const PlayerUnit* pUnit, TSession*& pSession) const;
@@ -180,6 +189,16 @@ void SessionManager<TSession>::AddSession(std::weak_ptr<TSession>&& wpSession)
             return;
         }
 
+        TSession* pSession = wpSession.lock().get();
+        auto pairIb = _sessionMultiIndex.insert(
+            { pSession, pSession->GetUuid(), UnitId::INVALID, nullptr });
+        if (!pairIb.second)
+        {
+            LOG_ERROR(LOG_FILTER_SERVER, "Fail to insert session. uuid: {}",
+                pSession->GetUuid().GetString());
+            return;
+        }
+
         _sessions.push_back(std::move(wpSession));
     }
 }
@@ -190,11 +209,11 @@ void SessionManager<TSession>::RemoveSessionMultiIndex(const TSession* pSession)
     if (!pSession)
         return;
 
-    auto& session_index = _sessionMultiIndex.get<tagSession>();
-    auto it = session_index.find(pSession);
-    if (it != session_index.end())
+    auto& sessionIndex = _sessionMultiIndex.get<tagSession>();
+    auto it = sessionIndex.find(pSession);
+    if (it != sessionIndex.end())
     {
-        session_index.erase(it);
+        sessionIndex.erase(it);
     }
 }
 
@@ -203,7 +222,22 @@ void SessionManager<TSession>::AssociateUnitWithSession(
     const TSession& session, const PlayerUnit& unit)
 {
     LOCK_W(_lock);
-    _sessionMultiIndex.insert({ &session, unit.GetUnitId(), &unit });
+
+    auto& sessionIndex = _sessionMultiIndex.get<tagSession>();
+    auto it = sessionIndex.find(&session);
+    if (it != sessionIndex.end())
+    {
+        sessionIndex.modify(it, [&session, &unit](SessionTag& tag)
+        {
+            tag.uuid = session.GetUuid();
+            tag.unitId = unit.GetUnitId();
+            tag.pUnit = &unit;
+        });
+    }
+    else
+    {
+        LOG_ERROR(LOG_FILTER_SERVER, "Fail to associate with session.");
+    }
 }
 
 template <typename TSession>
@@ -217,9 +251,9 @@ bool SessionManager<TSession>::Get(const TSession* pSession, UnitId& unitId) con
 
     LOCK_R(_lock);
 
-    auto& session_index = _sessionMultiIndex.get<tagSession>();
-    auto it = session_index.find(pSession);
-    if (it != session_index.end())
+    auto& sessionIndex = _sessionMultiIndex.get<tagSession>();
+    auto it = sessionIndex.find(pSession);
+    if (it != sessionIndex.end())
     {
         unitId = (*it).unitId;
         return true;
@@ -240,15 +274,38 @@ bool SessionManager<TSession>::Get(const TSession* pSession, PlayerUnit*& pUnit)
 
     LOCK_R(_lock);
 
-    auto& session_index = _sessionMultiIndex.get<tagSession>();
-    auto it = session_index.find(pSession);
-    if (it != session_index.end())
+    auto& sessionIndex = _sessionMultiIndex.get<tagSession>();
+    auto it = sessionIndex.find(pSession);
+    if (it != sessionIndex.end())
     {
         pUnit = const_cast<PlayerUnit*>((*it).pUnit);
         return true;
     }
 
     pUnit = nullptr;
+    return false;
+}
+
+template <typename TSession>
+bool SessionManager<TSession>::Get(const Uuid& uuid, TSession*& pSession) const
+{
+    if (uuid.is_nil())
+    {
+        pSession = nullptr;
+        return false;
+    }
+
+    LOCK_R(_lock);
+
+    auto& uuidIndex = _sessionMultiIndex.get<tagSessionUuid>();
+    auto it = uuidIndex.find(uuid);
+    if (it != uuidIndex.end())
+    {
+        pSession = const_cast<TSession*>((*it).pSession);
+        return true;
+    }
+
+    pSession = nullptr;
     return false;
 }
 
@@ -263,9 +320,9 @@ bool SessionManager<TSession>::Get(const UnitId& unitId, TSession*& pSession) co
 
     LOCK_R(_lock);
 
-    auto& unitId_index = _sessionMultiIndex.get<tagUnitId>();
-    auto it = unitId_index.find(unitId);
-    if (it != unitId_index.end())
+    auto& unitIdIndex = _sessionMultiIndex.get<tagUnitId>();
+    auto it = unitIdIndex.find(unitId);
+    if (it != unitIdIndex.end())
     {
         pSession = const_cast<TSession*>((*it).pSession);
         return true;
@@ -286,9 +343,9 @@ bool SessionManager<TSession>::Get(const UnitId& unitId, PlayerUnit*& pUnit) con
 
     LOCK_R(_lock);
 
-    auto& unitId_index = _sessionMultiIndex.get<tagUnitId>();
-    auto it = unitId_index.find(unitId);
-    if (it != unitId_index.end())
+    auto& unitIdIndex = _sessionMultiIndex.get<tagUnitId>();
+    auto it = unitIdIndex.find(unitId);
+    if (it != unitIdIndex.end())
     {
         pUnit = const_cast<PlayerUnit*>((*it).pUnit);
         return true;
@@ -309,9 +366,9 @@ bool SessionManager<TSession>::Get(const PlayerUnit* pUnit, TSession*& pSession)
 
     LOCK_R(_lock);
 
-    auto& unit_index = _sessionMultiIndex.get<tagUnit>();
-    auto it = unit_index.find(pUnit);
-    if (it != unit_index.end())
+    auto& unitIndex = _sessionMultiIndex.get<tagUnit>();
+    auto it = unitIndex.find(pUnit);
+    if (it != unitIndex.end())
     {
         pSession = const_cast<TSession*>((*it).pSession);
         return true;
@@ -332,9 +389,9 @@ bool SessionManager<TSession>::Get(const PlayerUnit* pUnit, UnitId& unitId) cons
 
     LOCK_R(_lock);
 
-    auto& unit_index = _sessionMultiIndex.get<tagUnit>();
-    auto it = unit_index.find(pUnit);
-    if (it != unit_index.end())
+    auto& unitIndex = _sessionMultiIndex.get<tagUnit>();
+    auto it = unitIndex.find(pUnit);
+    if (it != unitIndex.end())
     {
         unitId = (*it).unitId;
         return true;

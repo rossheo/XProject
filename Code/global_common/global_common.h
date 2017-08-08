@@ -15,6 +15,7 @@
 #include "format.h"
 #include "enum.h"
 #include "utf8.h"
+#include "uuid.h"
 #include "rw_lock.h"
 
 #define LOKI_WINDOWS_H

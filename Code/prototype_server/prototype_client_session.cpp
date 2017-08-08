@@ -28,7 +28,8 @@ void PrototypeClientSession::OnConnect()
     SendPacket(out);
 }
 
-void PrototypeClientSession::OnDisconnect(boost::asio::socket_base::shutdown_type shutdownType)
+void PrototypeClientSession::OnDisconnect(
+    boost::asio::socket_base::shutdown_type shutdownType)
 {
     __super::OnDisconnect(shutdownType);
 }

@@ -46,15 +46,11 @@ public:
         return static_cast<uint32>(*this) == static_cast<uint32>(INVALID); 
     }
 
-    friend std::wostream& operator<<(std::wostream& stream, const UnitId& rhs)
-    {
-        return stream << rhs.GetString();
-    }
-
 public:
     uint32 GetId() const { return _id; }
     eUnitType GetType() const { return eUnitType::_from_integral(_type); }
-    std::wstring GetString() const;
+    std::string GetString() const;
+    std::wstring GetWString() const;
 
 private:
     uint32 _type : 8;

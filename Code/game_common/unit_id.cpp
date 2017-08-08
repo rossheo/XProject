@@ -45,7 +45,12 @@ void UnitId::From(const pb_prototype::UnitId& pbUnitId)
     _id = pbUnitId.unit_id();
 }
 
-std::wstring UnitId::GetString() const
+std::string UnitId::GetString() const
+{
+    return fmt::format("UnitId(type: {}, id: {})", GetType()._to_string(), _id);
+}
+
+std::wstring UnitId::GetWString() const
 {
     return fmt::format(TEXT("UnitId(type: {}, id: {})"), GetType()._to_string(), _id);
 }

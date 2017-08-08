@@ -70,6 +70,11 @@ bool ServerApp<TSession>::Initialize(AppConfig&& appConfig)
             errorCode.value(), errorCode.message());
         return false;
     }
+    catch (const std::exception& ex)
+    {
+        LOG_ERROR(LOG_FILTER_SERVER, "Fail to initialized. ex: {}", ex.what());
+        return false;
+    }
 
     const auto& local_endpoint = _acceptor.local_endpoint();
     LOG_INFO(LOG_FILTER_SERVER, "{} is initialized. ip: {}, port: {}",

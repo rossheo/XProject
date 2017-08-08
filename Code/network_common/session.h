@@ -38,9 +38,11 @@ public:
     boost::asio::ip::tcp::socket& GetSocket() { return _socket; }
 
     bool HaveRemoteEndPoint() const;
+    Uuid GetUuid() const;
 
 protected:
     boost::asio::ip::tcp::socket _socket;
+    Uuid _uuid;
     SessionManager<TSession>* _pSessionManager;
 
     PacketBuffer _recvBuffer;
@@ -98,9 +100,13 @@ void Session<TSession>::Shutdown(
     }
     catch (const boost::system::error_code& errorCode)
     {
-        LOG_ERROR(LOG_FILTER_SERVER, "Session fail to close socket."
+        LOG_ERROR(LOG_FILTER_SERVER, "Fail to close socket."
             " error_code: {}, error_message: {}",
             errorCode.value(), errorCode.message());
+    }
+    catch (const std::exception& ex)
+    {
+        LOG_ERROR(LOG_FILTER_SERVER, "Fail to close socket. {}", ex.what());
     }
 }
 
@@ -110,8 +116,8 @@ void Session<TSession>::OnConnect()
     const boost::asio::ip::tcp::endpoint& remoteEndpoint = _socket.remote_endpoint();
 
     LOG_INFO(LOG_FILTER_CONNECTION, "Session connected."
-        " address: {}, port: {}",
-        remoteEndpoint.address().to_string(), remoteEndpoint.port());
+        " address: {}, port: {}, uuid: {}",
+        remoteEndpoint.address().to_string(), remoteEndpoint.port(), _uuid.GetString());
 }
 
 template <typename TSession>
@@ -119,10 +125,10 @@ void Session<TSession>::OnDisconnect(boost::asio::socket_base::shutdown_type shu
 {
     const boost::asio::ip::tcp::endpoint& remoteEndpoint = _socket.remote_endpoint();
 
-    LOG_INFO(LOG_FILTER_CONNECTION, "Session disconnected.({})"
-        " address: {}, port: {}",
+    LOG_INFO(LOG_FILTER_CONNECTION, "Session disconnected.({})."
+        " address: {}, port: {}, uuid: {}",
         GetShutdownTypeString(shutdownType),
-        remoteEndpoint.address().to_string(), remoteEndpoint.port());
+        remoteEndpoint.address().to_string(), remoteEndpoint.port(), _uuid.GetString());
 }
 
 template <typename TSession>
@@ -185,9 +191,11 @@ bool Session<TSession>::PostReceive()
             else
             {
                 LOG_ERROR(LOG_FILTER_CONNECTION, "Connection receive error."
-                    " error_code: {}, error_message: {}, address: {}, port: {}",
+                    " error_code: {}, error_message: {}, address: {}, port: {},"
+                    " uuid: {}",
                     errorCode.value(), errorCode.message(),
-                    remoteEndPoint.address().to_string(), remoteEndPoint.port());
+                    remoteEndPoint.address().to_string(), remoteEndPoint.port(),
+                    _uuid.GetString());
             }
 
             Shutdown(shutdownType);
@@ -357,6 +365,12 @@ bool Session<TSession>::HaveRemoteEndPoint() const
         return false;
 
     return true;
+}
+
+template <typename TSession>
+Uuid Session<TSession>::GetUuid() const
+{
+    return _uuid;
 }
 
 } // namespace XP

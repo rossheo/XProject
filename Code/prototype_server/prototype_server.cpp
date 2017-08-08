@@ -12,7 +12,8 @@ int main()
     std::locale::global(std::locale("korean"));
     std::wcout.imbue(std::locale("korean"));
 
-    AppConfig appConfig(TEXT("PrototypeServerApp"), TEXT("prototype_server_log4cplus.property"));
+    AppConfig appConfig(
+        TEXT("PrototypeServerApp"), TEXT("prototype_server_log4cplus.property"));
     appConfig.SetPort(1280);
 
     if (g_PrototypeServerApp.Initialize(std::move(appConfig)))

@@ -70,6 +70,11 @@ bool ClientApp<TSession>::Initialize(AppConfig&& appConfig)
             errorCode.value(), errorCode.message());
         return false;
     }
+    catch (const std::exception& ex)
+    {
+        LOG_ERROR(LOG_FILTER_CLIENT, "Fail to initialized. ex: {}", ex.what());
+        return false;
+    }
 
     _isInitialized = true;
     return true;
