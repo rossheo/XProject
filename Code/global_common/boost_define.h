@@ -1,5 +1,8 @@
 #pragma once
 
+#include <boost/algorithm/clamp.hpp>
+using boost::algorithm::clamp;
+
 #pragma warning(disable: 4267)
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>

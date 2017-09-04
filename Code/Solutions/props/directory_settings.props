@@ -4,7 +4,7 @@
     <ROOT_DIR>$(SolutionDir)..\..\</ROOT_DIR>
     <CODE_DIR>$(ROOT_DIR)Code\</CODE_DIR>
     <SDKS_DIR>$(ROOT_DIR)..\sdks\</SDKS_DIR>
-    <BOOST_VERSION>boost_1_64_0</BOOST_VERSION>
+    <BOOST_VERSION>boost_1_65_0</BOOST_VERSION>
     <BOOST_LIBRARY>lib64-msvc-14.0</BOOST_LIBRARY>
     <OutDir>$(ROOT_DIR)Bin$(PlatformArchitecture)_$(Configuration)\</OutDir>
     <IntDir>$(ROOT_DIR)BinTemp\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
