@@ -13,8 +13,11 @@
 #include "msdn_define.h"
 #include "log4plus_define.h"
 #include "fmt/format.h"
-#include "enum.h"
+#include "fmt/string.h"
+#include "fmt/ostream.h"
 #include "utf8.h"
+#include "ostream.h"
+#include "enum.h"
 #include "uuid.h"
 #include "rw_lock.h"
 

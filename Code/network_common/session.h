@@ -100,13 +100,11 @@ void Session<TSession>::Shutdown(
     }
     catch (const boost::system::error_code& errorCode)
     {
-        LOG_ERROR(LOG_FILTER_SERVER, "Fail to close socket."
-            " error_code: {}, error_message: {}",
-            errorCode.value(), errorCode.message());
+        LOG_ERROR(LOG_FILTER_SERVER, "Fail to close socket. {}", errorCode);
     }
     catch (const std::exception& ex)
     {
-        LOG_ERROR(LOG_FILTER_SERVER, "Fail to close socket. {}", ex.what());
+        LOG_ERROR(LOG_FILTER_SERVER, "Fail to close socket. {}", ex);
     }
 }
 
@@ -191,10 +189,9 @@ bool Session<TSession>::PostReceive()
             else
             {
                 LOG_ERROR(LOG_FILTER_CONNECTION, "Connection receive error."
-                    " error_code: {}, error_message: {}, address: {}, port: {},"
+                    " {}, address: {}, port: {},"
                     " uuid: {}",
-                    errorCode.value(), errorCode.message(),
-                    remoteEndPoint.address().to_string(), remoteEndPoint.port(),
+                    errorCode, remoteEndPoint.address().to_string(), remoteEndPoint.port(),
                     _uuid.GetString());
             }
 
@@ -293,9 +290,8 @@ void Session<TSession>::PostWrite()
                 else
                 {
                     LOG_ERROR(LOG_FILTER_CONNECTION, "Connection send error."
-                        " error_code: {}, error_message: {}, address: {}, port: {}",
-                        errorCode.value(), errorCode.message(),
-                        remoteEndPoint.address().to_string(), remoteEndPoint.port());
+                        " {}, address: {}, port: {}",
+                        errorCode, remoteEndPoint.address().to_string(), remoteEndPoint.port());
                 }
 
                 Shutdown(shutdownType);

@@ -65,14 +65,12 @@ bool ServerApp<TSession>::Initialize(AppConfig&& appConfig)
     }
     catch (const boost::system::error_code& errorCode)
     {
-        LOG_ERROR(LOG_FILTER_SERVER, "Fail to initialized."
-            " error_code: {}, error_message: {}",
-            errorCode.value(), errorCode.message());
+        LOG_ERROR(LOG_FILTER_SERVER, "Fail to initialized. {}", errorCode);
         return false;
     }
     catch (const std::exception& ex)
     {
-        LOG_ERROR(LOG_FILTER_SERVER, "Fail to initialized. ex: {}", ex.what());
+        LOG_ERROR(LOG_FILTER_SERVER, "Fail to initialized. {}", ex);
         return false;
     }
 
@@ -109,9 +107,7 @@ void ServerApp<TSession>::Clear() noexcept
     _acceptor.close(errorCode);
     if (errorCode)
     {
-        LOG_ERROR(LOG_FILTER_SERVER, "Acceptor close exception."
-            " error_code: {}, error_message: {}",
-            errorCode.value(), errorCode.message());
+        LOG_ERROR(LOG_FILTER_SERVER, "Acceptor close exception. {}", errorCode);
     }
 
     if (!_ioservice.stopped())
@@ -137,9 +133,7 @@ void ServerApp<TSession>::PostAccept()
     {
         if (errorCode)
         {
-            LOG_ERROR(LOG_FILTER_SERVER, "Fail to PostAccept."
-                " error_code: {}, error_message: {}",
-                errorCode.value(), errorCode.message());
+            LOG_ERROR(LOG_FILTER_SERVER, "Fail to PostAccept. {}", errorCode);
 
             _sessionManager.RemoveSession(spServerSessionMoved.get());
             return;

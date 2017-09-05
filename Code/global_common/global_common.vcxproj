@@ -85,6 +85,7 @@
     <ClInclude Include="log4plus_define.h" />
     <ClInclude Include="macro_define.h" />
     <ClInclude Include="msdn_define.h" />
+    <ClInclude Include="ostream.h" />
     <ClInclude Include="random_engine.h" />
     <ClInclude Include="rw_lock.h" />
     <ClInclude Include="singleton.h" />

@@ -26,9 +26,8 @@ public:
         if (errorCode)
         {
             LOG_ERROR(LOG_FILTER_CONNECTION, "Fail to connect."
-                " error_code: {}, error_message: {}, ip: {}, port: {}",
-                errorCode.value(), errorCode.message(),
-                endpoint.address().to_string(), endpoint.port());
+                " {}, ip: {}, port: {}",
+                errorCode, endpoint.address().to_string(), endpoint.port());
             return;
         }
 

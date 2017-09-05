@@ -65,14 +65,12 @@ bool ClientApp<TSession>::Initialize(AppConfig&& appConfig)
     }
     catch (const boost::system::error_code& errorCode)
     {
-        LOG_ERROR(LOG_FILTER_CLIENT, "Fail to initialized."
-            " error_code: {}, error_message: {}",
-            errorCode.value(), errorCode.message());
+        LOG_ERROR(LOG_FILTER_CLIENT, "Fail to initialized. {}", errorCode);
         return false;
     }
     catch (const std::exception& ex)
     {
-        LOG_ERROR(LOG_FILTER_CLIENT, "Fail to initialized. ex: {}", ex.what());
+        LOG_ERROR(LOG_FILTER_CLIENT, "Fail to initialized. {}", ex);
         return false;
     }
 

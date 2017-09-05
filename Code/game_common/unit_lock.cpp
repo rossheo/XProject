@@ -86,7 +86,7 @@ bool UnitThreadLocalStorage::Initialize()
     }
     catch (const std::exception& ex)
     {
-        LOG_ERROR(LOG_FILTER_SYSTEM, "Exception: {}", ex.what());
+        LOG_ERROR(LOG_FILTER_SYSTEM, "{}", ex);
         return false;
     }
 
