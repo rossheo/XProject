@@ -4,9 +4,6 @@
     <Filter Include="defines">
       <UniqueIdentifier>{e2bee56f-11fd-4012-8d16-ded6bf0b299e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="cppformat">
-      <UniqueIdentifier>{3c665b4a-ccb6-4513-b73e-06be23e8b5b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="sync_object">
       <UniqueIdentifier>{71232532-4023-4ebd-8a3a-b216af3dec63}</UniqueIdentifier>
     </Filter>
@@ -21,6 +18,9 @@
     </Filter>
     <Filter Include="uuid">
       <UniqueIdentifier>{5441fad0-783e-4d4b-ac3a-4dc994ca5a5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fmt">
+      <UniqueIdentifier>{3c665b4a-ccb6-4513-b73e-06be23e8b5b3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,9 +37,6 @@
     <ClInclude Include="global_common.h" />
     <ClInclude Include="log4plus_define.h">
       <Filter>defines</Filter>
-    </ClInclude>
-    <ClInclude Include="format.h">
-      <Filter>cppformat</Filter>
     </ClInclude>
     <ClInclude Include="macro_define.h">
       <Filter>defines</Filter>
@@ -65,17 +62,47 @@
     <ClInclude Include="uuid.h">
       <Filter>uuid</Filter>
     </ClInclude>
+    <ClInclude Include="fmt\container.h">
+      <Filter>fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="fmt\format.h">
+      <Filter>fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="fmt\ostream.h">
+      <Filter>fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="fmt\posix.h">
+      <Filter>fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="fmt\printf.h">
+      <Filter>fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="fmt\string.h">
+      <Filter>fmt</Filter>
+    </ClInclude>
+    <ClInclude Include="fmt\time.h">
+      <Filter>fmt</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="format.cc">
-      <Filter>cppformat</Filter>
-    </ClCompile>
     <ClCompile Include="random_engine.cpp">
       <Filter>random</Filter>
     </ClCompile>
     <ClCompile Include="uuid.cpp">
       <Filter>uuid</Filter>
+    </ClCompile>
+    <ClCompile Include="fmt\format.cc">
+      <Filter>fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="fmt\ostream.cc">
+      <Filter>fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="fmt\posix.cc">
+      <Filter>fmt</Filter>
+    </ClCompile>
+    <ClCompile Include="fmt\printf.cc">
+      <Filter>fmt</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

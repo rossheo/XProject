@@ -74,7 +74,13 @@
     <ClInclude Include="boost_define.h" />
     <ClInclude Include="data_type.h" />
     <ClInclude Include="enum.h" />
-    <ClInclude Include="format.h" />
+    <ClInclude Include="fmt\container.h" />
+    <ClInclude Include="fmt\format.h" />
+    <ClInclude Include="fmt\ostream.h" />
+    <ClInclude Include="fmt\posix.h" />
+    <ClInclude Include="fmt\printf.h" />
+    <ClInclude Include="fmt\string.h" />
+    <ClInclude Include="fmt\time.h" />
     <ClInclude Include="global_common.h" />
     <ClInclude Include="log4plus_define.h" />
     <ClInclude Include="macro_define.h" />
@@ -88,7 +94,22 @@
     <ClInclude Include="uuid.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="format.cc" />
+    <ClCompile Include="fmt\format.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="fmt\ostream.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="fmt\posix.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="fmt\printf.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="random_engine.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
