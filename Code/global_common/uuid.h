@@ -15,6 +15,11 @@ public:
 
     std::string GetString() const;
     std::wstring GetWString() const;
+
+    friend std::wostream& operator << (std::wostream& os, const Uuid& rhs)
+    {
+        return os << TEXT("uuid: ") << rhs.GetWString();
+    }
 };
 
 } // namespace XP

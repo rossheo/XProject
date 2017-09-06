@@ -25,14 +25,12 @@ public:
 
         if (errorCode)
         {
-            LOG_ERROR(LOG_FILTER_CONNECTION, "Fail to connect."
-                " {}, ip: {}, port: {}",
-                errorCode, endpoint.address().to_string(), endpoint.port());
+            LOG_ERROR(LOG_FILTER_CONNECTION, "Fail to connect. {}, {}",
+                errorCode, endpoint);
             return;
         }
 
-        LOG_INFO(LOG_FILTER_CONNECTION, "Connected. ip: {}, port: {}",
-            endpoint.address().to_string(), endpoint.port());
+        LOG_INFO(LOG_FILTER_CONNECTION, "Connected. {}", endpoint);
     }
 
     void SendMessage(const std::wstring& message)

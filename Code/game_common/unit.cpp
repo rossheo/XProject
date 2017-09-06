@@ -23,7 +23,7 @@ void Unit::SetUnitId(const UnitId& unitId)
     }
 
     LOG_ERROR(LOG_FILTER_UNIT, "Unit type is difference. this: {}, param: {}",
-        _unitId.GetString(), unitId.GetString());
+        _unitId, unitId);
 }
 
 } // namespace XP

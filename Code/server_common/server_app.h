@@ -75,10 +75,8 @@ bool ServerApp<TSession>::Initialize(AppConfig&& appConfig)
     }
 
     const auto& local_endpoint = _acceptor.local_endpoint();
-    LOG_INFO(LOG_FILTER_SERVER, "{} is initialized. ip: {}, port: {}",
-        _appConfig.GetAppName(),
-        local_endpoint.address().to_string(),
-        local_endpoint.port());
+    LOG_INFO(LOG_FILTER_SERVER, "{} is initialized. {}",
+        _appConfig.GetAppName(), local_endpoint);
 
     _isInitialized = true;
     return true;

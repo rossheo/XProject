@@ -114,8 +114,7 @@ void Session<TSession>::OnConnect()
     const boost::asio::ip::tcp::endpoint& remoteEndpoint = _socket.remote_endpoint();
 
     LOG_INFO(LOG_FILTER_CONNECTION, "Session connected."
-        " address: {}, port: {}, uuid: {}",
-        remoteEndpoint.address().to_string(), remoteEndpoint.port(), _uuid.GetString());
+        " {}, {}", remoteEndpoint, _uuid);
 }
 
 template <typename TSession>
@@ -124,9 +123,8 @@ void Session<TSession>::OnDisconnect(boost::asio::socket_base::shutdown_type shu
     const boost::asio::ip::tcp::endpoint& remoteEndpoint = _socket.remote_endpoint();
 
     LOG_INFO(LOG_FILTER_CONNECTION, "Session disconnected.({})."
-        " address: {}, port: {}, uuid: {}",
-        GetShutdownTypeString(shutdownType),
-        remoteEndpoint.address().to_string(), remoteEndpoint.port(), _uuid.GetString());
+        " {}, {}",
+        GetShutdownTypeString(shutdownType), remoteEndpoint, _uuid);
 }
 
 template <typename TSession>
@@ -170,29 +168,22 @@ bool Session<TSession>::PostReceive()
                 shutdownType =
                     boost::asio::socket_base::shutdown_type::shutdown_both;
 
-                LOG_INFO(LOG_FILTER_CONNECTION, "Disconnected."
-                    " address: {}, port: {}",
-                    remoteEndPoint.address().to_string(), remoteEndPoint.port());
+                LOG_INFO(LOG_FILTER_CONNECTION, "Disconnected. {}", remoteEndPoint);
             }
             else if (errorCode == boost::asio::error::connection_aborted)
             {
-                LOG_INFO(LOG_FILTER_CONNECTION, "Connection aborted."
-                    " address: {}, port: {}",
-                    remoteEndPoint.address().to_string(), remoteEndPoint.port());
+                LOG_INFO(LOG_FILTER_CONNECTION, "Connection aborted. {}", remoteEndPoint);
             }
             else if (bytes_transferred == 0)
             {
                 LOG_INFO(LOG_FILTER_CONNECTION, "Disconnected. 0 bytes transferred."
-                    " address: {}, port: {}",
-                    remoteEndPoint.address().to_string(), remoteEndPoint.port());
+                " {}", remoteEndPoint);
             }
             else
             {
                 LOG_ERROR(LOG_FILTER_CONNECTION, "Connection receive error."
-                    " {}, address: {}, port: {},"
-                    " uuid: {}",
-                    errorCode, remoteEndPoint.address().to_string(), remoteEndPoint.port(),
-                    _uuid.GetString());
+                    " {}, {}, {}",
+                    errorCode, remoteEndPoint, _uuid);
             }
 
             Shutdown(shutdownType);
@@ -271,27 +262,21 @@ void Session<TSession>::PostWrite()
                 {
                     shutdownType = boost::asio::socket_base::shutdown_type::shutdown_both;
 
-                    LOG_INFO(LOG_FILTER_CONNECTION, "Disconnected."
-                        " address: {}, port: {}",
-                        remoteEndPoint.address().to_string(), remoteEndPoint.port());
+                    LOG_INFO(LOG_FILTER_CONNECTION, "Disconnected. {}", remoteEndPoint);
                 }
                 else if (errorCode == boost::asio::error::connection_aborted)
                 {
-                    LOG_INFO(LOG_FILTER_CONNECTION, "Connection aborted."
-                        " address: {}, port: {}",
-                        remoteEndPoint.address().to_string(), remoteEndPoint.port());
+                    LOG_INFO(LOG_FILTER_CONNECTION, "Connection aborted. {}", remoteEndPoint);
                 }
                 else if (bytes_transferred == 0)
                 {
-                    LOG_INFO(LOG_FILTER_CONNECTION, "Disconnected. 0 bytes transferred."
-                        " address: {}, port: {}",
-                        remoteEndPoint.address().to_string(), remoteEndPoint.port());
+                    LOG_INFO(LOG_FILTER_CONNECTION, "Disconnected. 0 bytes transferred. {}",
+                        remoteEndPoint);
                 }
                 else
                 {
-                    LOG_ERROR(LOG_FILTER_CONNECTION, "Connection send error."
-                        " {}, address: {}, port: {}",
-                        errorCode, remoteEndPoint.address().to_string(), remoteEndPoint.port());
+                    LOG_ERROR(LOG_FILTER_CONNECTION, "Connection send error. {}, {}",
+                        errorCode, remoteEndPoint);
                 }
 
                 Shutdown(shutdownType);

@@ -194,8 +194,8 @@ void SessionManager<TSession>::AddSession(std::weak_ptr<TSession>&& wpSession)
             { pSession, pSession->GetUuid(), UnitId::INVALID, nullptr });
         if (!pairIb.second)
         {
-            LOG_ERROR(LOG_FILTER_SERVER, "Fail to insert session. uuid: {}",
-                pSession->GetUuid().GetString());
+            LOG_ERROR(LOG_FILTER_SERVER, "Fail to insert session. {}",
+                pSession->GetUuid());
             return;
         }
 

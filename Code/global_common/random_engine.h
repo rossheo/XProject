@@ -12,8 +12,8 @@ public:
 
     template <typename T>
     T GetRandom(
-        T minValue = boost::integer_traits<T>::min(),
-        T maxValue = boost::integer_traits<T>::max()) const;
+        T minValue = boost::integer_traits<T>::const_min,
+        T maxValue = boost::integer_traits<T>::const_max) const;
 
     template <>
     float GetRandom(float minValue, float maxValue) const;

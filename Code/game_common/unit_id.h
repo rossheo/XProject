@@ -46,6 +46,11 @@ public:
         return static_cast<uint32>(*this) == static_cast<uint32>(INVALID); 
     }
 
+    friend std::wostream& operator << (std::wostream& os, const UnitId& rhs)
+    {
+        return os << rhs.GetWString();
+    }
+
 public:
     uint32 GetId() const { return _id; }
     eUnitType GetType() const { return eUnitType::_from_integral(_type); }
@@ -74,10 +79,8 @@ inline bool operator!= (const UnitId& lhs, const UnitId& rhs) { return !(lhs == 
 } // namespace XP
 
 template <>
-struct std::hash<XP::UnitId>
-    : public std::unary_function<XP::UnitId, std::size_t>
+struct std::hash<XP::UnitId> : public std::unary_function<XP::UnitId, std::size_t>
 {
-public:
     typedef XP::UnitId _Kty;
 
     std::size_t operator()(const _Kty& _Keyval) const
@@ -87,10 +90,8 @@ public:
 };
 
 template <>
-struct boost::hash<XP::UnitId>
-    : public std::unary_function<XP::UnitId, std::size_t>
+struct boost::hash<XP::UnitId> : public std::unary_function<XP::UnitId, std::size_t>
 {
-public:
     typedef XP::UnitId _Kty;
 
     std::size_t operator()(const _Kty& _Keyval) const
