@@ -18,10 +18,8 @@ IMPLEMENT_INITIALIZE(EchoClientSession)
 IMPLEMENT_HANDLER(EchoClientSession, PC2S_Chat)
 {
     const auto& remoteEndpoint = session.GetSocket().remote_endpoint();
-    LOG_INFO(LOG_FILTER_SERVER, "IP:{}, PORT:{}, Message:{}",
-        remoteEndpoint.address().to_string(),
-        remoteEndpoint.port(),
-        FromUTF8(packet.message()));
+    LOG_INFO(LOG_FILTER_SERVER, "{}, Message:{}",
+        remoteEndpoint, FromUTF8(packet.message()));
 
     PS2C_Chat out;
     out.set_message(packet.message());

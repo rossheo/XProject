@@ -4,7 +4,7 @@ namespace XP
 {
 template <typename T,
     typename T MIN_VALUE = T(),
-    typename T MAX_VALUE = boost::integer_traits<T>::max(),
+    typename T MAX_VALUE = boost::integer_traits<T>::const_max,
     typename T DEFAULT_SIZE = 1000,
     typename T INCREASE_SIZE = 100
 >
@@ -19,7 +19,7 @@ public:
             LOG_ERROR(LOG_FILTER_ID_POOL, "IdPool initialize failed.");
         }
     }
-    ~IdPool() {};
+    ~IdPool() = default;
 
 public:
     bool ExpandPool(const T& size) noexcept

@@ -49,3 +49,5 @@
 
 #define LOG_FILTER_PACKET_BUFFER "PacketBuffer"
 #define LOG_FILTER_PACKET_HANDLER "PacketHandler"
+
+#define LOG_FILTER_DECLARE_TYPE "DeclareType"

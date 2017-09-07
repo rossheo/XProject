@@ -69,19 +69,19 @@ Session<TSession>::~Session()
 
 namespace
 {
-std::string GetShutdownTypeString(boost::asio::socket_base::shutdown_type shutdownType)
+std::wstring GetShutdownTypeString(boost::asio::socket_base::shutdown_type shutdownType)
 {
     switch (shutdownType)
     {
     case boost::asio::socket_base::shutdown_type::shutdown_send:
-        return std::string("shutdown_send");
+        return TEXT("shutdown_send");
     case boost::asio::socket_base::shutdown_type::shutdown_receive:
-        return std::string("shutdown_receive");
+        return TEXT("shutdown_receive");
     case boost::asio::socket_base::shutdown_type::shutdown_both:
-        return std::string("shutdown_both");
+        return TEXT("shutdown_both");
     }
 
-    return std::string("shutdown_unknown");
+    return TEXT("shutdown_unknown");
 }
 } // nonamed namespace
 

@@ -22,6 +22,9 @@
     <Filter Include="fmt">
       <UniqueIdentifier>{3c665b4a-ccb6-4513-b73e-06be23e8b5b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="types">
+      <UniqueIdentifier>{05077e38-403e-408b-8967-07ab91a6591a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="boost_define.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="ostream.h">
       <Filter>defines</Filter>
+    </ClInclude>
+    <ClInclude Include="declare_type.h">
+      <Filter>types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

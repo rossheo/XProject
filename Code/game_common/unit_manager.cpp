@@ -51,8 +51,7 @@ PlayerUnit* UnitManager::CreatePlayerUnit(PlayerUnitData&& playerUnitData)
 
         if (!pairIb.second)
         {
-            LOG_ERROR(LOG_FILTER_UNIT, "Fail to insert into _s_units. UnitId: {}",
-                unitId.GetString());
+            LOG_ERROR(LOG_FILTER_UNIT, "Fail to insert into _s_units. UnitId: {}", unitId);
 
             _playerIdPool.Free(id);
             _playerUnitPool.destroy(pPlayerUnit);
@@ -63,7 +62,7 @@ PlayerUnit* UnitManager::CreatePlayerUnit(PlayerUnitData&& playerUnitData)
         return pPlayerUnit;
     }
 
-    LOG_ERROR(LOG_FILTER_UNIT, "Fail to create PlayerUnit. {}", unitId.GetString());
+    LOG_ERROR(LOG_FILTER_UNIT, "Fail to create PlayerUnit. {}", unitId);
     _playerIdPool.Free(id);
     return nullptr;
 }
@@ -99,8 +98,7 @@ NpcUnit* UnitManager::CreateNpcUnit(NpcUnitData&& npcUnitData)
 
         if (!pairIb.second)
         {
-            LOG_ERROR(LOG_FILTER_UNIT, "Fail to insert into _s_units. UnitId: {}",
-                unitId.GetString());
+            LOG_ERROR(LOG_FILTER_UNIT, "Fail to insert into _s_units. UnitId: {}", unitId);
 
             _npcIdPool.Free(id);
             _npcUnitPool.destroy(pNpcUnit);
@@ -111,7 +109,7 @@ NpcUnit* UnitManager::CreateNpcUnit(NpcUnitData&& npcUnitData)
         return pNpcUnit;
     }
 
-    LOG_ERROR(LOG_FILTER_UNIT, "Fail to create NpcUnit. {}", unitId.GetString());
+    LOG_ERROR(LOG_FILTER_UNIT, "Fail to create NpcUnit. {}", unitId);
     _npcIdPool.Free(id);
     return nullptr;
 }
@@ -150,8 +148,7 @@ void UnitManager::ReleasePlayerUnit(PlayerUnit* pPlayerUnit)
 
     if (!_playerUnitPool.is_from(pPlayerUnit))
     {
-        LOG_ERROR(LOG_FILTER_UNIT, "PlayerUnit is not contain from playerUnitPool. {}",
-            unitId.GetString());
+        LOG_ERROR(LOG_FILTER_UNIT, "PlayerUnit is not contain from playerUnitPool. {}", unitId);
     }
 
     _s_concurrent_units.unsafe_erase(unitId);
@@ -169,8 +166,7 @@ void UnitManager::ReleaseNpcUnit(NpcUnit* pNpcUnit)
 
     if (!_npcUnitPool.is_from(pNpcUnit))
     {
-        LOG_ERROR(LOG_FILTER_UNIT, "NpcUnit is not contain from npcUnitPool. {}",
-            unitId.GetString());
+        LOG_ERROR(LOG_FILTER_UNIT, "NpcUnit is not contain from npcUnitPool. {}", unitId);
     }
 
     _s_concurrent_units.unsafe_erase(unitId);

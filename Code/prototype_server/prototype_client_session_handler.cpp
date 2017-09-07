@@ -28,10 +28,8 @@ IMPLEMENT_INITIALIZE(PrototypeClientSession)
 IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Chat)
 {
     const auto& remoteEndpoint = session.GetSocket().remote_endpoint();
-    LOG_INFO(LOG_FILTER_SERVER, "IP:{}, PORT:{}, Message:{}",
-        remoteEndpoint.address().to_string(),
-        remoteEndpoint.port(),
-        FromUTF8(packet.message()));
+    LOG_INFO(LOG_FILTER_SERVER, "{}, Message:{}",
+        remoteEndpoint, FromUTF8(packet.message()));
 
     PS2C_Chat out;
     out.set_message(packet.message());
@@ -41,11 +39,8 @@ IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Chat)
 IMPLEMENT_HANDLER(PrototypeClientSession, PC2S_Auth)
 {
     const auto& remoteEndpoint = session.GetSocket().remote_endpoint();
-    LOG_INFO(LOG_FILTER_SERVER, "IP:{}, PORT:{}, ID:{}, PW:{}",
-        remoteEndpoint.address().to_string(),
-        remoteEndpoint.port(),
-        FromUTF8(packet.id()),
-        FromUTF8(packet.password()));
+    LOG_INFO(LOG_FILTER_SERVER, "{}, ID:{}, PW:{}",
+        remoteEndpoint, FromUTF8(packet.id()), FromUTF8(packet.password()));
 
     bool login_result = false;
     if (packet.id() == "proto_id" && packet.password() == "proto_pw")
