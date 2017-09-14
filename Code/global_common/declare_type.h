@@ -12,26 +12,48 @@ template <
 class DeclareType
 {
 public:
-    typedef NUMBER_TYPE NumberType;
-
     static_assert(MIN_VALUE < MAX_VALUE, "Minimum value will be smaller than the maximum value.");
     static_assert(boost::integer_traits<NUMBER_TYPE>::is_integer, "NumberType is must be integer type.");
 
 public:
-    explicit DeclareType(const NumberType value = NumberType())
+    explicit DeclareType()
+        : _value()
+    {}
+    explicit DeclareType(const NUMBER_TYPE& value)
         : _value(CheckRange(value))
     {}
     DeclareType(const DeclareType& rhs)
         : _value(rhs._value)
     {}
+    DeclareType(DeclareType&& rhs)
+        : _value(std::move(rhs._value))
+    {}
     ~DeclareType() = default;
 
-    static NumberType Min() { return MIN_VALUE; }
-    static NumberType Max() { return MAX_VALUE; }
+    static NUMBER_TYPE Min() { return MIN_VALUE; }
+    static NUMBER_TYPE Max() { return MAX_VALUE; }
 
-    NumberType Get() const
+    NUMBER_TYPE Get() const
     {
         return CheckRange(_value);
+    }
+
+    const DeclareType& operator = (const DeclareType& rhs) const
+    {
+        if (this != &rhs)
+        {
+            _value = rhs._value;
+        }
+        return *this;
+    }
+
+    DeclareType& operator = (DeclareType&& rhs) noexcept
+    {
+        if (this != &rhs)
+        {
+            _value = std::move(rhs._value);
+        }
+        return *this;
     }
 
     DeclareType& operator += (const DeclareType& rhs) { _value = CheckedAdd(_value, rhs._value); return *this; }
@@ -40,9 +62,9 @@ public:
     DeclareType& operator /= (const DeclareType& rhs) { _value = CheckedDiv(_value, rhs._value); return *this; }
 
     DeclareType& operator ++()    { if (_value != Max()) ++_value; return *this; }
-    DeclareType  operator ++(int) { NumberType tmp = _value; if (_value != Max()) _value++; return tmp; }
+    DeclareType  operator ++(int) { NUMBER_TYPE tmp = _value; if (_value != Max()) _value++; return DeclareType(tmp); }
     DeclareType& operator --()    { if (_value != Min()) --_value; return *this; }
-    DeclareType  operator --(int) { NumberType tmp = _value; if (_value != Min()) _value--; return tmp; }
+    DeclareType  operator --(int) { NUMBER_TYPE tmp = _value; if (_value != Min()) _value--; return DeclareType(tmp); }
 
     DeclareType operator + (const DeclareType& rhs) const { return DeclareType(CheckedAdd(_value, rhs._value)); }
     DeclareType operator - (const DeclareType& rhs) const { return DeclareType(CheckedSub(_value, rhs._value)); }
@@ -50,20 +72,19 @@ public:
     DeclareType operator * (const DeclareType& rhs) const { return DeclareType(CheckedMul(_value, rhs._value)); }
     DeclareType operator / (const DeclareType& rhs) const { return DeclareType(CheckedDiv(_value, rhs._value)); }
 
-    const NumberType operator()() const { return _value; }
-    bool operator == (const DeclareType& rhs) const { return (_value == rhs.Get()); }
-    bool operator != (const DeclareType& rhs) const { return !(*this == rhs); }
-    bool operator <  (const DeclareType& rhs) const { return (_value < rhs.Get()); }
-    bool operator >  (const DeclareType& rhs) const { return (rhs < *this); }
-    bool operator <= (const DeclareType& rhs) const { return ((*this < rhs) || (*this == rhs)); }
-    bool operator >= (const DeclareType& rhs) const { return (rhs <= *this); }
+    bool operator == (const DeclareType& rhs) const { return (_value == rhs._value); }
+    bool operator != (const DeclareType& rhs) const { return !(_value == rhs._value); }
+    bool operator <  (const DeclareType& rhs) const { return (_value < rhs._value); }
+    bool operator >  (const DeclareType& rhs) const { return (rhs._value < _value); }
+    bool operator <= (const DeclareType& rhs) const { return !(_value > rhs._value); }
+    bool operator >= (const DeclareType& rhs) const { return !(_value < rhs._value); }
 
-    bool operator == (NumberType rhs) const = delete;
-    bool operator != (NumberType rhs) const = delete;
-    bool operator <  (NumberType rhs) const = delete;
-    bool operator >  (NumberType rhs) const = delete;
-    bool operator <= (NumberType rhs) const = delete;
-    bool operator >= (NumberType rhs) const = delete;
+    bool operator == (const NUMBER_TYPE&) const = delete;
+    bool operator != (const NUMBER_TYPE&) const = delete;
+    bool operator <  (const NUMBER_TYPE&) const = delete;
+    bool operator >  (const NUMBER_TYPE&) const = delete;
+    bool operator <= (const NUMBER_TYPE&) const = delete;
+    bool operator >= (const NUMBER_TYPE&) const = delete;
 
     friend std::wostream& operator << (std::wostream& os, const DeclareType& rhs)
     {
@@ -71,7 +92,7 @@ public:
     }
 
 private:
-    static NumberType Clamp(NumberType value)
+    static NUMBER_TYPE Clamp(NUMBER_TYPE value)
     {
         if (value > Max())
             value = Max();
@@ -81,7 +102,7 @@ private:
         return value;
     }
 
-    static NumberType CheckRange(const NumberType value)
+    static NUMBER_TYPE CheckRange(const NUMBER_TYPE value)
     {
         if (value < Min() || value > Max())
         {
@@ -95,7 +116,7 @@ private:
         return value;
     }
 
-    static NumberType CheckedAdd(const NumberType lhs, const NumberType rhs)
+    static NUMBER_TYPE CheckedAdd(const NUMBER_TYPE lhs, const NUMBER_TYPE rhs)
     {
         if (lhs >= 0)
         {
@@ -121,7 +142,7 @@ private:
         return lhs + rhs;
     }
 
-    static NumberType CheckedSub(const NumberType lhs, const NumberType rhs)
+    static NUMBER_TYPE CheckedSub(const NUMBER_TYPE lhs, const NUMBER_TYPE rhs)
     {
         if (rhs < 0)
         {
@@ -147,7 +168,7 @@ private:
         return lhs - rhs;
     }
 
-    static NumberType CheckedMul(const NumberType lhs, const NumberType rhs)
+    static NUMBER_TYPE CheckedMul(const NUMBER_TYPE lhs, const NUMBER_TYPE rhs)
     {
         if (0 == lhs || 0 == rhs) return lhs * rhs;
         if (lhs < 0)
@@ -207,9 +228,9 @@ private:
         return lhs * rhs;
     }
 
-    static NumberType CheckedDiv(const NumberType lhs, const NumberType rhs)
+    static NUMBER_TYPE CheckedDiv(const NUMBER_TYPE lhs, const NUMBER_TYPE rhs)
     {
-        if (lhs == Min() && (rhs < 0 && rhs == NumberType() - 1))
+        if (lhs == Min() && (rhs < 0 && rhs == NUMBER_TYPE() - 1))
         {
             LOG_ERROR(LOG_FILTER_DECLARE_TYPE, "division negative overflow."
                 " lhs: {}, rhs: {}", lhs, rhs);
@@ -228,7 +249,7 @@ private:
         return lhs / rhs;
     }
 
-    NumberType _value;
+    mutable NUMBER_TYPE _value;
 };
 
 } // namespace XP
@@ -238,7 +259,7 @@ struct std::hash<XP::DeclareType<T, U, min, max>>
     : public std::unary_function<XP::DeclareType<T, U, min, max>, std::size_t>
 {
     typedef XP::DeclareType<T, U, min, max> _Kty;
-    typedef typename _Kty::NumberType       _Inttype;
+    typedef typename U                      _Inttype;
 
     std::size_t operator()(const _Kty& _Keyval) const
     {
@@ -251,7 +272,7 @@ struct boost::hash<XP::DeclareType<T, U, min, max>>
     : public std::unary_function<XP::DeclareType<T, U, min, max>, std::size_t>
 {
     typedef XP::DeclareType<T, U, min, max> _Kty;
-    typedef typename _Kty::NumberType       _Inttype;
+    typedef typename U                      _Inttype;
 
     std::size_t operator()(const _Kty& _Keyval) const
     {

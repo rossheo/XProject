@@ -17,6 +17,7 @@
 #include "fmt/ostream.h"
 #include "utf8.h"
 #include "ostream.h"
+#include "declare_type.h"
 #include "enum.h"
 #include "uuid.h"
 #include "rw_lock.h"
