@@ -117,7 +117,7 @@ void PacketBuffer::ReArrange()
 
 char* PacketBuffer::GetMutableBuffer()
 {
-    return reinterpret_cast<char*>(_buffer.data() + _readPos);
+    return reinterpret_cast<char*>(_buffer.data() + _writePos);
 }
 
 const char* PacketBuffer::GetBuffer() const
